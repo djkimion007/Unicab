@@ -11,28 +11,17 @@ namespace Unicab.Web.Services
     public interface IDriverManagementService
     {
         Task<List<DriverApplicant>> GetDriverApplicantsList();
-
-        Task<DriverApplicant> GetDriverApplicant(int driverApplicantId);
-
+        Task<DriverApplicant> ViewDriverApplicant(int driverApplicantId);
         Task ApproveDriverApplicant(DriverApplicant driver);
-
         Task RejectDriverApplicant(DriverApplicant driver);
 
         Task<List<Driver>> GetApprovedDriversList();
-
         Task<Driver> ViewDriver(int driverId);
 
-        Task SetInactiveDriver(int driverId);
-
-        Task SetActiveDriver(int driverId);
-
-        Task GetBlacklistedDriversList();
-
-        Task ViewBlacklistedDriver(int driverId);
-
-        Task BlacklistDriver(int driverId);
-
-        Task UnblacklistDriver(int driverId);
+        Task<List<DriverBlacklist>> GetDriverBlacklistsList();
+        Task<DriverBlacklist> ViewDriverBlacklist(int driverId);
+        Task AddDriverBlacklist(int driverId);
+        Task RemoveDriverBlacklist(int driverId);
 
     }
 }

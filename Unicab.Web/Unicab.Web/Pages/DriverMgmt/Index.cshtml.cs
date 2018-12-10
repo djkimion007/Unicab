@@ -12,6 +12,7 @@ namespace Unicab.Web.Pages.DriverMgmt
     public class IndexModel : PageModel
     {
         public List<DriverApplicant> DriverApplicants { get; set; }
+        public List<DriverBlacklist> DriverBlacklists { get; set; }
         public List<Driver> Drivers { get; set; }
 
         private IDriverManagementService driverManagementService;
@@ -24,7 +25,7 @@ namespace Unicab.Web.Pages.DriverMgmt
         public async Task OnGetAsync()
         {
             DriverApplicants = await driverManagementService.GetDriverApplicantsList();
-
+            DriverBlacklists = await driverManagementService.GetDriverBlacklistsList();
             Drivers = await driverManagementService.GetApprovedDriversList();
         }
     }

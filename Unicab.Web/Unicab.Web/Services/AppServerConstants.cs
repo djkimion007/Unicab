@@ -13,6 +13,9 @@ namespace Unicab.Web.Services
         public static string DriverApplicantsUrl = AppServerUrl + ":" + AppServerPort + "/api/DriverApplicants/{0}";
         public static string PassengerApplicantsUrl = AppServerUrl + ":" + AppServerPort + "/api/PassengerApplicants/{0}";
 
+        public static string DriverBlacklistsUrl = AppServerUrl + ":" + AppServerPort + "/api/DriverBlacklists/{0}";
+        public static string PassengerBlacklistsUrl = AppServerUrl + ":" + AppServerPort + "/api/PassengerBlacklists/{0}";
+
         public static string DriversUrl = AppServerUrl + ":" + AppServerPort + "/api/Drivers/{0}";
         public static string PassengersUrl = AppServerUrl + ":" + AppServerPort + "/api/Passengers/{0}";
     }

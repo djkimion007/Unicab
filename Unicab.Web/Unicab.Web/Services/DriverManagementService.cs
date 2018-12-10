@@ -14,6 +14,7 @@ namespace Unicab.Web.Services
         private readonly HttpClient client;
 
         public List<DriverApplicant> DriverApplicantsList { get; private set; }
+        public List<DriverBlacklist> DriverBlacklistsList { get; private set; }
         public List<Driver> DriversList { get; private set; }
 
         public DriverManagementService()
@@ -48,7 +49,7 @@ namespace Unicab.Web.Services
 
         }
 
-        public async Task<DriverApplicant> GetDriverApplicant(int driverApplicantId)
+        public async Task<DriverApplicant> ViewDriverApplicant(int driverApplicantId)
         {
             DriverApplicant applicant = new DriverApplicant();
 
@@ -156,32 +157,58 @@ namespace Unicab.Web.Services
             return driver;
         }
 
-        public Task SetInactiveDriver(int driverId)
+        public async Task<List<DriverBlacklist>> GetDriverBlacklistsList()
+        {
+            DriverBlacklistsList = new List<DriverBlacklist>();
+
+            var uri = new Uri(string.Format(AppServerConstants.DriverBlacklistsUrl, string.Empty));
+
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    DriverBlacklistsList = JsonConvert.DeserializeObject<List<DriverBlacklist>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return DriverBlacklistsList;
+        }
+
+        public async Task<DriverBlacklist> ViewDriverBlacklist(int driverBlacklistId)
+        {
+            DriverBlacklist driverBlacklist = new DriverBlacklist();
+
+            var uri = new Uri(string.Format(AppServerConstants.DriverBlacklistsUrl, driverBlacklistId));
+
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    driverBlacklist = JsonConvert.DeserializeObject<DriverBlacklist>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return driverBlacklist;
+        }
+
+        public Task AddDriverBlacklist(int driverId)
         {
             throw new NotImplementedException();
         }
 
-        public Task SetActiveDriver(int driverId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task GetBlacklistedDriversList()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task ViewBlacklistedDriver(int driverId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task BlacklistDriver(int driverId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UnblacklistDriver(int driverId)
+        public Task RemoveDriverBlacklist(int driverId)
         {
             throw new NotImplementedException();
         }

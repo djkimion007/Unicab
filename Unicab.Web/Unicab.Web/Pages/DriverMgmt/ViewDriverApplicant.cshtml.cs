@@ -9,21 +9,21 @@ using Unicab.Web.Services;
 
 namespace Unicab.Web.Pages.DriverMgmt
 {
-    public class ReviewDriverApplicantModel : PageModel
+    public class ViewDriverApplicantModel : PageModel
     {
         private IDriverManagementService driverManagementService;
 
         [BindProperty]
         public DriverApplicant driverApplicant { get; set; }
 
-        public ReviewDriverApplicantModel(IDriverManagementService service)
+        public ViewDriverApplicantModel(IDriverManagementService service)
         {
             driverManagementService = service;
         }
 
         public async Task OnGetAsync(int id)
         {
-            driverApplicant = await driverManagementService.GetDriverApplicant(id);
+            driverApplicant = await driverManagementService.ViewDriverApplicant(id);
         }
 
         public async Task<IActionResult> OnPostRejectDriverApplicantAsync()
