@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unicab.App.Android", "Unica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unicab.App.iOS", "Unicab.App\Unicab.App.iOS\Unicab.App.iOS.csproj", "{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unicab.App", "Unicab.App\Unicab.App\Unicab.App.csproj", "{1C4DADC0-2FC0-4859-AED5-79F67B652436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unicab.App", "Unicab.App\Unicab.App\Unicab.App.csproj", "{1C4DADC0-2FC0-4859-AED5-79F67B652436}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,7 +80,6 @@ Global
 		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
 		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.AppStore|iPhoneSimulator.Deploy.0 = AppStore|iPhoneSimulator
 		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
-		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.Debug|Any CPU.Deploy.0 = Debug|iPhoneSimulator
 		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{F048D83C-A68E-48DB-8BBD-08BF095F6AC9}.Debug|iPhone.Build.0 = Debug|iPhone
