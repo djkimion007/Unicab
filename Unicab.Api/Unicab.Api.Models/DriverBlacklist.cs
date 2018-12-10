@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unicab.Business.Models
+namespace Unicab.Api.Models
 {
-    public class PassengerBlacklist
+    public class DriverBlacklist
     {
-        public int PassengerBlacklistId { get; set; }
+        public int DriverBlacklistId { get; set; }
 
-        public int PassengerId { get; set; }
+        public int DriverId { get; set; }
 
         public DateTime BlacklistedDateTime { get; set; }
         public string BlacklistedReason { get; set; }
@@ -18,5 +18,6 @@ namespace Unicab.Business.Models
         public DateTime UnblacklistedDateTime { get; set; }
         public string UnblacklistedReason { get; set; }
         public int UnblacklistedByAdminId { get; set; }
+
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unicab.Business.Models
+namespace Unicab.Api.Models
 {
     public class CarpoolOffer
     {

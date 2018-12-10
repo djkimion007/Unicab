@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unicab.Business.Models
+namespace Unicab.Api.Models
 {
-    public class DriverApplicant
+    public class Driver
     {
-        public int DriverApplicantId { get; set; }
+        public int DriverId { get; set; }
 
         public string MatricsNo { get; set; }
 
@@ -34,10 +34,9 @@ namespace Unicab.Business.Models
         public byte[] CarInsuranceGrantPhoto { get; set; }
 
         public DateTime AddedDateTime { get; set; }
-
-        public bool IsApproved { get; set; }
-        public DateTime ApprovedDateTime { get; set; }
-        public int ApprovedByAdminId { get; set; }
+        public int AddedByAdminId { get; set; }
         public string Notes { get; set; }
+
+        public DateTime ModifiedDateTime { get; set; }
     }
 }

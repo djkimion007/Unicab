@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Unicab.Business.Models
+namespace Unicab.Api.Models
 {
-    public class Admin
+    public class Passenger
     {
-        public int AdminId { get; set; }
+        public int PassengerId { get; set; }
 
-        public string StaffNo { get; set; }
+        public string MatricsNo { get; set; }
 
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
@@ -16,9 +16,13 @@ namespace Unicab.Business.Models
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string StaffPosition { get; set; }
+        public char Gender { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+        public byte[] MatricsCardPhoto { get; set; }
 
         public DateTime AddedDateTime { get; set; }
+        public int AddedByAdminId { get; set; }
         public string Notes { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
