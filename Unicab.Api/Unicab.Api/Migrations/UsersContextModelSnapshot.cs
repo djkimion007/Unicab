@@ -166,6 +166,33 @@ namespace Unicab.Api.Migrations
                     b.ToTable("DriverApplicants");
                 });
 
+            modelBuilder.Entity("Unicab.Api.Models.DriverBlacklist", b =>
+                {
+                    b.Property<int>("DriverBlacklistId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BlacklistedByAdminId");
+
+                    b.Property<DateTime>("BlacklistedDateTime");
+
+                    b.Property<int>("BlacklistedDuration");
+
+                    b.Property<string>("BlacklistedReason");
+
+                    b.Property<int>("DriverId");
+
+                    b.Property<int>("UnblacklistedByAdminId");
+
+                    b.Property<DateTime>("UnblacklistedDateTime");
+
+                    b.Property<string>("UnblacklistedReason");
+
+                    b.HasKey("DriverBlacklistId");
+
+                    b.ToTable("DriverBlacklists");
+                });
+
             modelBuilder.Entity("Unicab.Api.Models.Passenger", b =>
                 {
                     b.Property<int>("PassengerId")
@@ -244,6 +271,33 @@ namespace Unicab.Api.Migrations
                     b.HasKey("PassengerApplicantId");
 
                     b.ToTable("PassengerApplicants");
+                });
+
+            modelBuilder.Entity("Unicab.Api.Models.PassengerBlacklist", b =>
+                {
+                    b.Property<int>("PassengerBlacklistId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BlacklistedByAdminId");
+
+                    b.Property<DateTime>("BlacklistedDateTime");
+
+                    b.Property<int>("BlacklistedDuration");
+
+                    b.Property<string>("BlacklistedReason");
+
+                    b.Property<int>("PassengerId");
+
+                    b.Property<int>("UnblacklistedByAdminId");
+
+                    b.Property<DateTime>("UnblacklistedDateTime");
+
+                    b.Property<string>("UnblacklistedReason");
+
+                    b.HasKey("PassengerBlacklistId");
+
+                    b.ToTable("PassengerBlacklists");
                 });
 #pragma warning restore 612, 618
         }

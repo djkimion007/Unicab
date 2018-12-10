@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Unicab.Api.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -63,6 +63,26 @@ namespace Unicab.Api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DriverApplicants", x => x.DriverApplicantId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DriverBlacklists",
+                columns: table => new
+                {
+                    DriverBlacklistId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DriverId = table.Column<int>(nullable: false),
+                    BlacklistedDateTime = table.Column<DateTime>(nullable: false),
+                    BlacklistedReason = table.Column<string>(nullable: true),
+                    BlacklistedByAdminId = table.Column<int>(nullable: false),
+                    BlacklistedDuration = table.Column<int>(nullable: false),
+                    UnblacklistedDateTime = table.Column<DateTime>(nullable: false),
+                    UnblacklistedReason = table.Column<string>(nullable: true),
+                    UnblacklistedByAdminId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DriverBlacklists", x => x.DriverBlacklistId);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,6 +146,26 @@ namespace Unicab.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PassengerBlacklists",
+                columns: table => new
+                {
+                    PassengerBlacklistId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PassengerId = table.Column<int>(nullable: false),
+                    BlacklistedDateTime = table.Column<DateTime>(nullable: false),
+                    BlacklistedReason = table.Column<string>(nullable: true),
+                    BlacklistedByAdminId = table.Column<int>(nullable: false),
+                    BlacklistedDuration = table.Column<int>(nullable: false),
+                    UnblacklistedDateTime = table.Column<DateTime>(nullable: false),
+                    UnblacklistedReason = table.Column<string>(nullable: true),
+                    UnblacklistedByAdminId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PassengerBlacklists", x => x.PassengerBlacklistId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Passengers",
                 columns: table => new
                 {
@@ -160,10 +200,16 @@ namespace Unicab.Api.Migrations
                 name: "DriverApplicants");
 
             migrationBuilder.DropTable(
+                name: "DriverBlacklists");
+
+            migrationBuilder.DropTable(
                 name: "Drivers");
 
             migrationBuilder.DropTable(
                 name: "PassengerApplicants");
+
+            migrationBuilder.DropTable(
+                name: "PassengerBlacklists");
 
             migrationBuilder.DropTable(
                 name: "Passengers");
