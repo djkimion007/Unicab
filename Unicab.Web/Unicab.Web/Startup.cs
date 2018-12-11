@@ -36,6 +36,7 @@ namespace Unicab.Web
 
             services.AddScoped<IDriverManagementService, DriverManagementService>();
             services.AddScoped<IPassengerManagementService, PassengerManagementService>();
+            services.AddScoped<IAdminManagementService, AdminManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
