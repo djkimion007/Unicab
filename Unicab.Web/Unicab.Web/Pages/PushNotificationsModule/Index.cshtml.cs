@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Unicab.Web.Pages.PassengerMgmt
+namespace Unicab.Web.Pages.PushNotificationsModule
 {
-    public class ViewPassengerBlacklistModel : PageModel
+    public class IndexModel : PageModel
     {
         public void OnGet()
         {

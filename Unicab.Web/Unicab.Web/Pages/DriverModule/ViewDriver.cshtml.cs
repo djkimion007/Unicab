@@ -7,24 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unicab.Api.Models;
 using Unicab.Web.Services;
 
-namespace Unicab.Web.Pages.DriverMgmt
+namespace Unicab.Web.Pages.DriverModule
 {
-    public class ViewDriverBlacklistModel : PageModel
+    public class ViewDriverModel : PageModel
     {
         private IDriverManagementService driverManagementService;
+        public Driver driver;
 
-        [BindProperty]
-        public DriverBlacklist driverBlacklist { get; set; }
-
-        public ViewDriverBlacklistModel(IDriverManagementService service)
+        public ViewDriverModel(IDriverManagementService service)
         {
             driverManagementService = service;
         }
 
         public async Task OnGetAsync(int id)
         {
-            driverBlacklist = await driverManagementService.ViewDriverBlacklist(id);
+            driver = await driverManagementService.ViewDriver(id);
         }
-
     }
 }

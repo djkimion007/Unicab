@@ -1,7 +1,7 @@
-﻿@page "{id:int?}/{handler?}"
-@model Unicab.Web.Pages.DriverMgmt.ViewDriverApplicantModel
+﻿@page
+@model Unicab.Web.Pages.ReportsModule.IndexModel
 @{
-    ViewData["Title"] = "View Driver Applicant";
+    ViewData["Title"] = "Reports";
 }
 
 @section Stylesheets {
@@ -27,7 +27,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3><b>VIEW DRIVER APPLICANT</b></h3>
+                <h3><b>REPORTS</b></h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -36,69 +36,33 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <form method="post" data-parsley-validate class="form-horizontal form-label-left">
-                            <input hidden asp-for="driverApplicant.DriverApplicantId" />
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Email Address :
-                                </label>
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Select report type: <span class="required">*</span></label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.EmailAddress" />
+                                    <select class="form-control" required>
+                                        <option>Choose report type</option>
+                                        <option>Revenue report</option>
+                                        <option>Usage report</option>
+                                        <option>Traffic report</option>
+                                    </select>
                                 </div>
                             </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Matrics No. :
-                                </label>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Select time period: <span class="required">*</span></label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.MatricsNo">
+                                    <div id="reportrange_right" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                        <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    First Name :
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.FirstName">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Last Name :
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.LastName">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Car Plate No. :
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarPlateNo">
-                                </div>
-                            </div>
-
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Road Tax Due Date :
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarRoadTaxDueDate">
-                                </div>
-                            </div>
-
                             <div class="ln_solid"></div>
-
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="button" onclick="location.href = '/DriverMgmt';">Back</button>
-                                    <button type="submit" value="Reject" asp-page-handler="RejectDriverApplicant" class="btn btn-danger">Reject</button>
-                                    <button type="submit" value="Approve" asp-page-handler="ApproveDriverApplicant" class="btn btn-success">Approve</button>
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Generate</button>
                                 </div>
                             </div>
                         </form>
@@ -138,3 +102,4 @@
     <!-- Ion.RangeSlider -->
     <script src="~/lib/gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
 }
+

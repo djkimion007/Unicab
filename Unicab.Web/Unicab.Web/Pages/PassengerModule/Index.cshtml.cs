@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unicab.Api.Models;
 using Unicab.Web.Services;
 
-namespace Unicab.Web.Pages.PassengerMgmt
+namespace Unicab.Web.Pages.PassengerModule
 {
     public class IndexModel : PageModel
     {

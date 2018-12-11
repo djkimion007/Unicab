@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unicab.Api.Models;
 using Unicab.Web.Services;
 
-namespace Unicab.Web.Pages.DriverMgmt
+namespace Unicab.Web.Pages.DriverModule
 {
     public class ViewDriverApplicantModel : PageModel
     {
@@ -36,7 +36,7 @@ namespace Unicab.Web.Pages.DriverMgmt
             if (driverApplicant != null)
                 await driverManagementService.RejectDriverApplicant(driverApplicant);
 
-            return RedirectToPage("/DriverMgmt/Index");
+            return RedirectToPage("/DriverModule/Index");
         }
 
         public async Task<IActionResult> OnPostApproveDriverApplicantAsync()
@@ -49,7 +49,7 @@ namespace Unicab.Web.Pages.DriverMgmt
             if (driverApplicant != null)
                 await driverManagementService.ApproveDriverApplicant(driverApplicant);
 
-            return RedirectToPage("/DriverMgmt/Index");
+            return RedirectToPage("/DriverModule/Index");
         }
     }
 }

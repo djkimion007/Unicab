@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Unicab.Web.Pages.PassengerMgmt
+namespace Unicab.Web.Pages.PassengerModule
 {
     public class ViewPassengerModel : PageModel
     {

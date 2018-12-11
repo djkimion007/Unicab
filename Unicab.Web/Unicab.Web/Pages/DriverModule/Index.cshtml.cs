@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Unicab.Api.Models;
 using Unicab.Web.Services;
 
-namespace Unicab.Web.Pages.DriverMgmt
+namespace Unicab.Web.Pages.DriverModule
 {
     public class IndexModel : PageModel
     {

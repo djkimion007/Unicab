@@ -1,7 +1,7 @@
 ﻿@page "{id:int?}/{handler?}"
-@model Unicab.Web.Pages.DriverMgmt.ViewDriverModel
+@model Unicab.Web.Pages.DriverModule.ViewDriverApplicantModel
 @{
-    ViewData["Title"] = "View Driver";
+    ViewData["Title"] = "View Driver Applicant";
 }
 
 @section Stylesheets {
@@ -27,7 +27,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3><b>REVIEW DRIVER APPLICANT</b></h3>
+                <h3><b>VIEW DRIVER APPLICANT</b></h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -36,14 +36,14 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                            @*<input hidden asp-for="driver.UserId" />*@
+                        <form method="post" data-parsley-validate class="form-horizontal form-label-left">
+                            <input hidden asp-for="driverApplicant.DriverApplicantId" />
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Email Address :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driver.EmailAddress" />
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.EmailAddress" />
                                 </div>
                             </div>
 
@@ -52,7 +52,7 @@
                                     Matrics No. :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driver.MatricsNo">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.MatricsNo">
                                 </div>
                             </div>
 
@@ -61,7 +61,7 @@
                                     First Name :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driver.FirstName">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.FirstName">
                                 </div>
                             </div>
 
@@ -70,7 +70,7 @@
                                     Last Name :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driver.LastName">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.LastName">
                                 </div>
                             </div>
 
@@ -79,7 +79,7 @@
                                     Car Plate No. :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driver.CarPlateNo">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarPlateNo">
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@
                                     Road Tax Due Date :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driver.CarRoadTaxDueDate">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarRoadTaxDueDate">
                                 </div>
                             </div>
 
@@ -96,9 +96,9 @@
 
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="button" onclick="location.href = '/DriverMgmt';">Back</button>
-                                    <button class="btn btn-danger" type="button">Reject</button>
-                                    <button type="submit" class="btn btn-success">Approve</button>
+                                    <button class="btn btn-primary" type="button" onclick="location.href = '/DriverModule';">Back</button>
+                                    <button type="submit" value="Reject" asp-page-handler="RejectDriverApplicant" class="btn btn-danger">Reject</button>
+                                    <button type="submit" value="Approve" asp-page-handler="ApproveDriverApplicant" class="btn btn-success">Approve</button>
                                 </div>
                             </div>
                         </form>

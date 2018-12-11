@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Unicab.Web.Pages.Messages
+namespace Unicab.Web.Pages.MessagesModule
 {
     public class IndexModel : PageModel
     {
