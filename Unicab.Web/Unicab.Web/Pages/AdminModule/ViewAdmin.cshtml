@@ -1,0 +1,114 @@
+﻿@page "{id:int?}/{handler?}"
+@model Unicab.Web.Pages.AdminModule.ViewAdminModel
+@{
+    ViewData["Title"] = "View Admin";
+}
+
+
+@section Stylesheets {
+    <!-- iCheck -->
+    <link href="~/lib/gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="~/lib/gentelella/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="~/lib/gentelella/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="~/lib/gentelella/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="~/lib/gentelella/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/lib/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="~/lib/gentelella/vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="~/lib/gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="~/lib/gentelella/vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><b>VIEW ADMIN</b></h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                            <input hidden asp-for="admin.AdminId" />
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Email Address :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="admin.EmailAddress" />
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    First Name :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="admin.FirstName">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Last Name :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="admin.LastName">
+                                </div>
+                            </div>
+                            
+                            <div class="ln_solid"></div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary" type="button" onclick="location.href = '/AdminModule';">Back</button>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- bootstrap-progressbar -->
+    <script src="~/lib/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/lib/gentelella/vendors/iCheck/icheck.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/lib/gentelella/vendors/moment/min/moment.min.js"></script>
+    <script src="~/lib/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script src="~/lib/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+    <script src="~/lib/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="~/lib/gentelella/vendors/google-code-prettify/src/prettify.js"></script>
+    <!-- jQuery Tags Input -->
+    <script src="~/lib/gentelella/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <script src="~/lib/gentelella/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/lib/gentelella/vendors/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="~/lib/gentelella/vendors/parsleyjs/dist/parsley.min.js"></script>
+    <!-- Autosize -->
+    <script src="~/lib/gentelella/vendors/autosize/dist/autosize.min.js"></script>
+    <!-- jQuery autocomplete -->
+    <script src="~/lib/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+    <!-- starrr -->
+    <script src="~/lib/gentelella/vendors/starrr/dist/starrr.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="~/lib/gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+}
+

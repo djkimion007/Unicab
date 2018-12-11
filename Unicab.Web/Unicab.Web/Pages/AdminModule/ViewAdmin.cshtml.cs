@@ -9,20 +9,20 @@ using Unicab.Web.Services;
 
 namespace Unicab.Web.Pages.AdminModule
 {
-    public class IndexModel : PageModel
+    public class ViewAdminModel : PageModel
     {
-        public List<Admin> Admins { get; private set; }
+        public Admin admin { get; private set; }
 
         private IAdminManagementService adminManagementService;
 
-        public IndexModel(IAdminManagementService service)
+        public ViewAdminModel(IAdminManagementService service)
         {
             adminManagementService = service;
         }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(int id)
         {
-            Admins = await adminManagementService.GetAdminsList();
+            admin = await adminManagementService.ViewAdmin(id);
         }
     }
 }
