@@ -20,8 +20,8 @@ namespace Unicab.Web.Services
 
         Task<List<DriverBlacklist>> GetDriverBlacklistsList();
         Task<DriverBlacklist> ViewDriverBlacklist(int driverId);
-        Task AddDriverBlacklist(int driverId);
-        Task RemoveDriverBlacklist(int driverId);
+        Task AddToDriverBlacklist(int driverId);
+        Task RemoveFromDriverBlacklist(int driverId);
 
     }
 }

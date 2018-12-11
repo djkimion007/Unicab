@@ -9,19 +9,19 @@ using Unicab.Web.Services;
 
 namespace Unicab.Web.Pages.PassengerMgmt
 {
-    public class ReviewPassengerApplicantModel : PageModel
+    public class ViewPassengerApplicantModel : PageModel
     {
         private IPassengerManagementService passengerManagementService;
         public PassengerApplicant passengerApplicant;
 
-        public ReviewPassengerApplicantModel(IPassengerManagementService service)
+        public ViewPassengerApplicantModel(IPassengerManagementService service)
         {
             passengerManagementService = service;
         }
 
         public async Task OnGetAsync(int id)
         {
-            passengerApplicant = await passengerManagementService.GetPassengerApplicant(id);
+            passengerApplicant = await passengerManagementService.ViewPassengerApplicant(id);
         }
     }
 }

@@ -9,27 +9,16 @@ namespace Unicab.Web.Services
     public interface IPassengerManagementService
     {
         Task<List<PassengerApplicant>> GetPassengerApplicantsList();
-
-        Task<PassengerApplicant> GetPassengerApplicant(int passengerApplicantId);
-
-        Task ApprovePassengerApplicant(int passengerApplicantId);
-
-        Task RejectPassengerApplicant(int passengerApplicantId);
+        Task<PassengerApplicant> ViewPassengerApplicant(int passengerApplicantId);
+        Task ApprovePassengerApplicant(PassengerApplicant passengerApplicant);
+        Task RejectPassengerApplicant(PassengerApplicant passengerApplicant);
 
         Task<List<Passenger>> GetApprovedPassengersList();
-
         Task<Passenger> ViewPassenger(int passengerId);
 
-        Task SetInactivePassenger(int passengerId);
-
-        Task SetActivePassenger(int passengerId);
-
-        Task GetBlacklistedPassengersList();
-
-        Task ViewBlacklistedPassenger(int passengerId);
-
-        Task BlacklistPassenger(int passengerId);
-
-        Task UnblacklistPassenger(int passengerId);
+        Task<List<PassengerBlacklist>> GetPassengerBlacklistsList();
+        Task<PassengerBlacklist> ViewPassengerBlacklist(int passengerId);
+        Task AddToPassengerBlacklist(int passengerId);
+        Task RemoveFromPassengerBlacklist(int passengerId);
     }
 }

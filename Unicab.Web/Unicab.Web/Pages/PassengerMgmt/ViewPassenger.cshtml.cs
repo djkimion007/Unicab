@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Unicab.Web.Pages.PassengerMgmt
 {
-    public class ViewApprovedPassengerModel : PageModel
+    public class ViewPassengerModel : PageModel
     {
         public void OnGet()
         {

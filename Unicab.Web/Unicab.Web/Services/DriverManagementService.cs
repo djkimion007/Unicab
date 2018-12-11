@@ -203,12 +203,12 @@ namespace Unicab.Web.Services
             return driverBlacklist;
         }
 
-        public Task AddDriverBlacklist(int driverId)
+        public Task AddToDriverBlacklist(int driverId)
         {
             throw new NotImplementedException();
         }
 
-        public Task RemoveDriverBlacklist(int driverId)
+        public Task RemoveFromDriverBlacklist(int driverId)
         {
             throw new NotImplementedException();
         }

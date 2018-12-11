@@ -12,6 +12,7 @@ namespace Unicab.Web.Pages.PassengerMgmt
     public class IndexModel : PageModel
     {
         public List<PassengerApplicant> PassengerApplicants { get; set; }
+        public List<PassengerBlacklist> PassengerBlacklists { get; set; }
         public List<Passenger> Passengers { get; set; }
 
         private IPassengerManagementService passengerManagementService;
@@ -24,7 +25,7 @@ namespace Unicab.Web.Pages.PassengerMgmt
         public async Task OnGetAsync()
         {
             PassengerApplicants = await passengerManagementService.GetPassengerApplicantsList();
-
+            PassengerBlacklists = await passengerManagementService.GetPassengerBlacklistsList();
             Passengers = await passengerManagementService.GetApprovedPassengersList();
         }
     }
