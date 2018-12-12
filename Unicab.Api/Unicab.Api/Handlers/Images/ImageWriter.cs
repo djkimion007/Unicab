@@ -48,7 +48,7 @@ namespace Unicab.Api.Handlers.Images
             {
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
                 fileName = Guid.NewGuid().ToString() + extension;
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", fileName);
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\uploads", fileName);
 
                 using (var bits = new FileStream(path, FileMode.Create))
                 {

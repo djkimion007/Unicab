@@ -5,8 +5,9 @@ using Unicab.Api.Handlers.Images;
 
 namespace Unicab.Api.Controllers
 {
-    [Route("api/images")]
-    public class ImagesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ImagesController : ControllerBase
     {
         private readonly IImageHandler _imageHandler;
 
@@ -15,7 +16,8 @@ namespace Unicab.Api.Controllers
             _imageHandler = imageHandler;
         }
 
-        public async Task<IActionResult> UploadImage(IFormFile file)
+        [HttpPost]
+        public async Task<IActionResult> PostImage(IFormFile file)
         {
             return await _imageHandler.UploadImage(file);
         }
