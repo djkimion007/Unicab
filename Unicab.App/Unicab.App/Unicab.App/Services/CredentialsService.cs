@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Unicab.App.Common;
 using Unicab.Api.Models;
 using Newtonsoft.Json;
 using System.Net;
@@ -18,7 +17,7 @@ namespace Unicab.App.Services
         {
             client = new HttpClient
             {
-                MaxResponseContentBufferSize = 10240000
+                MaxResponseContentBufferSize = 1024000
             };
         }
 
