@@ -19,8 +19,8 @@ namespace Unicab.Api.Models
         public char Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public byte[] MatricsCardPhoto { get; set; }
-        public byte[] DriversLicensePhoto { get; set; }
+        public string MatricsCardPhotoAddress { get; set; }
+        public string DriversLicensePhotoAddress { get; set; }
 
         public DateTime DriversLicenseDueDate { get; set; }
 
@@ -31,7 +31,7 @@ namespace Unicab.Api.Models
         public string CarColour { get; set; }
         public DateTime CarRoadTaxDueDate { get; set; }
 
-        public byte[] CarInsuranceGrantPhoto { get; set; }
+        public string CarInsuranceGrantPhotoAddress { get; set; }
 
         public DateTime AddedDateTime { get; set; }
         public int AddedByAdminId { get; set; }

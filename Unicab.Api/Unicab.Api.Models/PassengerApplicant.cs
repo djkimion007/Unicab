@@ -19,7 +19,7 @@ namespace Unicab.Api.Models
         public char Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public byte[] MatricsCardPhoto { get; set; }
+        public string MatricsCardPhotoAddress { get; set; }
 
         public DateTime AddedDateTime { get; set; }
 
