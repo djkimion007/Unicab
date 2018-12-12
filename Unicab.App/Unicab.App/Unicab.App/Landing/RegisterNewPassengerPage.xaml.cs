@@ -83,6 +83,7 @@ namespace Unicab.App.Landing
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
                 SaveToAlbum = true,
                 Directory = "Unicab Service"
             });

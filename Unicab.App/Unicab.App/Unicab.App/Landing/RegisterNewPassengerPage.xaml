@@ -55,8 +55,8 @@
                 <!-- Gender -->
                 <Picker x:Name="genderPicker" Grid.Row="7" Grid.Column="1">
                     <Picker.Items>
-                        <x:String>Male</x:String>
-                        <x:String>Female</x:String>
+                        <x:String>M</x:String>
+                        <x:String>F</x:String>
                     </Picker.Items>
                 </Picker>
                 
