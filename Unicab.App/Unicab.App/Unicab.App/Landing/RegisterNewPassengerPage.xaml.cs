@@ -17,6 +17,8 @@ namespace Unicab.App.Landing
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegisterNewPassengerPage : ContentPage
 	{
+        private byte[] MatricsCardCapturePhoto { get; set; }
+
 		public RegisterNewPassengerPage ()
 		{
 			InitializeComponent ();
@@ -40,9 +42,13 @@ namespace Unicab.App.Landing
             {
                 EmailAddress = emailEntry.Text,
                 MatricsNo = matricsnoEntry.Text,
+                Password = newPasswordAgainEntry.Text,
+                PhoneNumber = phonenumberEntry.Text,
                 FirstName = firstNameEntry.Text,
                 LastName = lastNameEntry.Text,
-                Password = newPasswordAgainEntry.Text
+                Gender = Convert.ToChar((string)genderPicker.SelectedItem),
+                DateOfBirth = dateOfBirthPicker.Date,
+                MatricsCardPhoto = MatricsCardCapturePhoto
             };
 
             HttpStatusCode statusCode = await App.CredentialsManager.TryPassengerSignUp(applicant);
@@ -65,28 +71,30 @@ namespace Unicab.App.Landing
             await Navigation.PopAsync();
         }
 
-        //private async void MatricsCardCaptureBtn_Clicked(object sender, EventArgs e)
-        //{
-        //    await CrossMedia.Current.Initialize();
+        private async void MatricsCardPhotoButton_Clicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
 
-        //    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-        //    {
-        //        await DisplayAlert("No Camera", "No camera detected.", "OK");
-        //        return;
-        //    }
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", "No camera detected.", "OK");
+                return;
+            }
 
-        //    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-        //    {
-        //        SaveToAlbum = true,
-        //        Directory = "Unicab Service"
-        //    });
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                SaveToAlbum = true,
+                Directory = "Unicab Service"
+            });
 
-        //    if (file == null)
-        //        return;
+            if (file == null)
+                return;
 
-        //    //await DisplayAlert("File Location", file.AlbumPath, "OK");
-        //    MatricsCardCaptureBtn.Text = "Matrics Card Photo Added!";
+            MatricsCardCapturePhoto = File.ReadAllBytes(file.Path);
 
-        //}
+            await DisplayAlert("File Location", file.AlbumPath, "OK");
+            MatricsCardPhotoButton.Text = "Matrics Card Photo Added!";
+
+        }
     }
 }
