@@ -22,4 +22,16 @@
       <HintPath>..\..\..\Unicab.Api\Unicab.Api.Models\bin\Debug\netcoreapp2.1\Unicab.Api.Models.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Landing\RegisterNewDriver_MainPage.xaml.cs">
+      <DependentUpon>RegisterNewDriver_MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Landing\RegisterNewDriver_CarDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

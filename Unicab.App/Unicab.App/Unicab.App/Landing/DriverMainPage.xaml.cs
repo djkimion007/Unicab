@@ -19,7 +19,7 @@ namespace Unicab.App.Landing
 
         private async void RegisterBtn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterNewDriverPage());
+            await Navigation.PushAsync(new RegisterNewDriver_MainPage());
         }
 
         // Validation required

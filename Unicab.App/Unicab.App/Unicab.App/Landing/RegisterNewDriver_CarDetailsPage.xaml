@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:system="clr-namespace:System;assembly=netstandard"
-             x:Class="Unicab.App.Landing.RegisterNewDriverPage"
+             x:Class="Unicab.App.Landing.RegisterNewDriver_CarDetailsPage"
              Title="Register New Driver"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -10,6 +9,10 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -32,28 +35,19 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Create New Driver Account" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+                <Label Text="Create New Driver Account (Step 2 of 3)" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
 
-                <Entry x:Name="emailEntry" Keyboard="Email" Placeholder="USM e-mail address" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
-
-                <Entry x:Name="matricsnoEntry" Placeholder="Matrics no." Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
-
-                <Entry x:Name="firstNameEntry" Placeholder="First name" Grid.Row="5" Grid.Column="1" />
-
-                <Entry x:Name="lastNameEntry" Placeholder="Last name" Grid.Row="5" Grid.Column="2" />
-
-                <Entry x:Name="newPasswordEntry" IsPassword="True" Placeholder="New password" Grid.Row="6" Grid.Column="1" />
-
-                <Entry x:Name="newPasswordAgainEntry" IsPassword="True" Placeholder="Reenter password" Grid.Row="6" Grid.Column="2" />
-
-                <Entry x:Name="carPlateNoEntry" Placeholder="Car Plate No" Grid.Row="7" Grid.Column="1" />
-
-                <DatePicker x:Name="roadTaxDueDatePicker" MinimumDate="{x:Static system:DateTime.Today}" Format="d" Grid.Row="7" Grid.Column="2" />
+                <!-- DriversLicenseDueDate -->
+                <DatePicker x:Name="DriversLicenseDueDatePicker" Format="d" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" />
+                
+                <!-- DriversLicensePhoto -->
+                <Button x:Name="DriversLicensePhotoButton" Text="Take Driver's License Photo" Clicked="DriversLicensePhotoButton_Clicked"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" />
 
                 <Label Text="By registering and using this app, you hereby agree to the Unicab Service Terms and Conditions." FontSize="Micro" HorizontalTextAlignment="Center" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="SubmitButton" Text="Submit" Clicked="SubmitButton_Clicked" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="NextButton" Text="Next" Clicked="NextButton_Clicked" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="BackButton" Text="Back" Clicked="BackButton_Clicked" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
 
             </Grid>
         </ScrollView>

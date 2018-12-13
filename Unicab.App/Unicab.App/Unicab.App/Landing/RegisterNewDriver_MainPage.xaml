@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Unicab.App.Landing.RegisterNewPassengerPage"
-             Title="Register New Passenger"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
+             x:Class="Unicab.App.Landing.RegisterNewDriver_MainPage"
+             Title="Register New Driver"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -32,11 +36,11 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Create New Passenger Account" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+                <Label Text="Create New Driver Account (Step 1 of 3)" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
 
                 <!-- MatricsNo -->
                 <Entry x:Name="matricsnoEntry" Placeholder="Matrics no." Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
-                
+
                 <!-- EmailAddress -->
                 <Entry x:Name="emailEntry" Keyboard="Email" Placeholder="USM e-mail address" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
 
@@ -51,7 +55,7 @@
                 <Entry x:Name="firstNameEntry" Placeholder="First name" Grid.Row="6" Grid.Column="1" />
                 <!-- LastName -->
                 <Entry x:Name="lastNameEntry" Placeholder="Last name" Grid.Row="6" Grid.Column="2" />
-                
+
                 <!-- Gender -->
                 <Picker x:Name="genderPicker" Title="Gender" Grid.Row="7" Grid.Column="1">
                     <Picker.Items>
@@ -59,17 +63,17 @@
                         <x:String>F</x:String>
                     </Picker.Items>
                 </Picker>
-                
+
                 <!-- DateOfBirth -->
                 <DatePicker x:Name="dateOfBirthPicker" Format="d" Grid.Row="7" Grid.Column="2" />
-                
+
                 <!-- MatricsCardPhoto -->
                 <Button x:Name="MatricsCardPhotoButton" Text="Take Matrics Card Photo" Clicked="MatricsCardPhotoButton_Clicked"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="By registering and using this app, you hereby agree to the Unicab Service Terms and Conditions." FontSize="Micro" HorizontalTextAlignment="Center" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="By registering and using this app, you hereby agree to the Unicab Service Terms and Conditions." FontSize="Micro" HorizontalTextAlignment="Center" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="SubmitButton" Text="Submit" Clicked="SubmitButton_Clicked" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="NextButton" Text="Next" Clicked="NextButton_Clicked" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
 
             </Grid>
         </ScrollView>
