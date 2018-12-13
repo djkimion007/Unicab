@@ -17,6 +17,8 @@ namespace Unicab.App.Landing
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegisterNewPassengerPage : ContentPage
 	{
+        private byte[] MatricsCardPhotoCapture { get; set; }
+
         public RegisterNewPassengerPage ()
 		{
 			InitializeComponent ();
@@ -46,7 +48,7 @@ namespace Unicab.App.Landing
                 LastName = lastNameEntry.Text,
                 Gender = Convert.ToChar((string)genderPicker.SelectedItem),
                 DateOfBirth = dateOfBirthPicker.Date,
-                //MatricsCardPhotoAddress = MatricsCardCapturePhoto
+                MatricsCardPhoto = MatricsCardPhotoCapture
             };
 
             HttpStatusCode statusCode = await App.CredentialsManager.TryPassengerSignUp(applicant);
@@ -81,7 +83,8 @@ namespace Unicab.App.Landing
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Custom,
+                CustomPhotoSize = 10,
                 SaveToAlbum = true,
                 Directory = "Unicab Service"
             });
@@ -89,9 +92,8 @@ namespace Unicab.App.Landing
             if (file == null)
                 return;
 
-            //MatricsCardCapturePhotoPath = File.ReadAllBytes(file.Path);
-
-            await DisplayAlert("File Location", file.AlbumPath, "OK");
+            MatricsCardPhotoCapture = File.ReadAllBytes(file.Path);
+            
             MatricsCardPhotoButton.Text = "Matrics Card Photo Added!";
 
         }

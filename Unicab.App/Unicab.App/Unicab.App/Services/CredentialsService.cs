@@ -77,11 +77,11 @@ namespace Unicab.App.Services
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine("POST 201 OK: DriverApplicant registration successful");
+                    Debug.WriteLine("POST 201 OK: PassengerApplicant registration successful");
                 }
                 else
                 {
-                    Debug.WriteLine(@"POST {0} NOT OK: DriverApplicant registration failed", responseMessage.StatusCode);
+                    Debug.WriteLine(@"POST {0} NOT OK: PassengerApplicant registration failed", responseMessage.StatusCode);
                 }
             }
             catch (Exception ex)
