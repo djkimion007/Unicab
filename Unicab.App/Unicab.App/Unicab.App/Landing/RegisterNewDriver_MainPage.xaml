@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Create New Driver Account (Step 1 of 3)" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+                <Label Text="Create New Driver Account (Step 1 of 2)" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
 
                 <!-- MatricsNo -->
                 <Entry x:Name="matricsnoEntry" Placeholder="Matrics no." Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
