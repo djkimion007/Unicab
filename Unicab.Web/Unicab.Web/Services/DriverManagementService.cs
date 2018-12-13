@@ -21,7 +21,7 @@ namespace Unicab.Web.Services
         {
             client = new HttpClient
             {
-                MaxResponseContentBufferSize = 256000
+                MaxResponseContentBufferSize = 2048000
             };
         }
 

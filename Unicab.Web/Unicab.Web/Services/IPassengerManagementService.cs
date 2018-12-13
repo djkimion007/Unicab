@@ -10,8 +10,8 @@ namespace Unicab.Web.Services
     {
         Task<List<PassengerApplicant>> GetPassengerApplicantsList();
         Task<PassengerApplicant> ViewPassengerApplicant(int passengerApplicantId);
-        Task ApprovePassengerApplicant(PassengerApplicant passengerApplicant);
-        Task RejectPassengerApplicant(PassengerApplicant passengerApplicant);
+        Task<bool> ApprovePassengerApplicant(int passengerApplicantId);
+        Task<bool> RejectPassengerApplicant(int passengerApplicantId);
 
         Task<List<Passenger>> GetApprovedPassengersList();
         Task<Passenger> ViewPassenger(int passengerId);

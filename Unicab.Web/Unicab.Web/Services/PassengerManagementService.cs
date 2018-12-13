@@ -22,20 +22,13 @@ namespace Unicab.Web.Services
         {
             client = new HttpClient()
             {
-                MaxResponseContentBufferSize = 25600
+                MaxResponseContentBufferSize = 2048000
             };
         }
 
-        public async Task ApprovePassengerApplicant(PassengerApplicant passengerApplicant)
+        public async Task<bool> ApprovePassengerApplicant(int passengerApplicantId)
         {
-            Passenger newPassenger = new Passenger()
-            {
-                FirstName = passengerApplicant.FirstName,
-                LastName = passengerApplicant.LastName,
-                MatricsNo = passengerApplicant.MatricsNo,
-                Password = passengerApplicant.Password,
-                EmailAddress = passengerApplicant.EmailAddress
-            };
+            Passenger newPassenger = new Passenger(ViewPassengerApplicant(passengerApplicantId).Result);
 
             var uri = new Uri(string.Format(AppServerConstants.PassengersUrl, string.Empty));
 
@@ -49,12 +42,15 @@ namespace Unicab.Web.Services
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"SUCCESS: New passenger added to table!");
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(@"ERROR: {0}", ex.Message);
             }
+
+            return false;
         }
 
         public Task AddToPassengerBlacklist(int passengerId)
@@ -154,7 +150,7 @@ namespace Unicab.Web.Services
             return PassengerApplicantsList;
         }
 
-        public Task RejectPassengerApplicant(PassengerApplicant passengerApplicant)
+        public Task<bool> RejectPassengerApplicant(int passengerApplicantId)
         {
             throw new NotImplementedException();
         }
