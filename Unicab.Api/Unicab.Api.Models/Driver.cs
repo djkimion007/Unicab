@@ -38,5 +38,37 @@ namespace Unicab.Api.Models
         public string Notes { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
+
+        public Driver()
+        {
+        }
+
+        public Driver(DriverApplicant driverApplicant)
+        {
+            MatricsNo = driverApplicant.MatricsNo;
+
+            EmailAddress = driverApplicant.EmailAddress;
+            PhoneNumber = driverApplicant.PhoneNumber;
+            Password = driverApplicant.Password;
+
+            FirstName = driverApplicant.FirstName;
+            LastName = driverApplicant.LastName;
+            Gender = driverApplicant.Gender;
+            DateOfBirth = driverApplicant.DateOfBirth;
+
+            MatricsCardPhoto = driverApplicant.MatricsCardPhoto;
+            DriversLicensePhoto = driverApplicant.DriversLicensePhoto;
+
+            DriversLicenseDueDate = driverApplicant.DriversLicenseDueDate;
+
+            CarPlateNo = driverApplicant.CarPlateNo;
+            CarMake = driverApplicant.CarMake;
+            CarModel = driverApplicant.CarModel;
+            CarMakeYear = driverApplicant.CarMakeYear;
+            CarColour = driverApplicant.CarColour;
+            CarRoadTaxDueDate = driverApplicant.CarRoadTaxDueDate;
+
+            CarInsuranceGrantPhoto = driverApplicant.CarInsuranceGrantPhoto;
+    }
     }
 }

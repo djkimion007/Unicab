@@ -26,5 +26,26 @@ namespace Unicab.Api.Models
         public string Notes { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
+
+        public Passenger()
+        {
+
+        }
+
+        public Passenger(PassengerApplicant passengerApplicant)
+        {
+            MatricsNo = passengerApplicant.MatricsNo;
+
+            EmailAddress = passengerApplicant.EmailAddress;
+            PhoneNumber = passengerApplicant.PhoneNumber;
+            Password = passengerApplicant.Password;
+
+            FirstName = passengerApplicant.FirstName;
+            LastName = passengerApplicant.LastName;
+            Gender = passengerApplicant.Gender;
+            DateOfBirth = passengerApplicant.DateOfBirth;
+
+            MatricsCardPhoto = passengerApplicant.MatricsCardPhoto;
+        }
     }
 }
