@@ -98,25 +98,25 @@ namespace Unicab.Api.Controllers
         }
 
         // DELETE: api/Drivers/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDriver([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteDriver([FromRoute] int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var driver = await _context.Drivers.FindAsync(id);
-            if (driver == null)
-            {
-                return NotFound();
-            }
+        //    var driver = await _context.Drivers.FindAsync(id);
+        //    if (driver == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Drivers.Remove(driver);
-            await _context.SaveChangesAsync();
+        //    _context.Drivers.Remove(driver);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(driver);
-        }
+        //    return Ok(driver);
+        //}
 
         private bool DriverExists(int id)
         {

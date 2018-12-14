@@ -98,25 +98,25 @@ namespace Unicab.Api.Controllers
         }
 
         // DELETE: api/Admins/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAdmin([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteAdmin([FromRoute] int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var admin = await _context.Admins.FindAsync(id);
-            if (admin == null)
-            {
-                return NotFound();
-            }
+        //    var admin = await _context.Admins.FindAsync(id);
+        //    if (admin == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.Admins.Remove(admin);
-            await _context.SaveChangesAsync();
+        //    _context.Admins.Remove(admin);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(admin);
-        }
+        //    return Ok(admin);
+        //}
 
         private bool AdminExists(int id)
         {

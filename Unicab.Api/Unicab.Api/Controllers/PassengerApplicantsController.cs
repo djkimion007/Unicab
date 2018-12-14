@@ -98,25 +98,25 @@ namespace Unicab.Api.Controllers
         }
 
         // DELETE: api/PassengerApplicants/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePassengerApplicant([FromRoute] int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeletePassengerApplicant([FromRoute] int id)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var passengerApplicant = await _context.PassengerApplicants.FindAsync(id);
-            if (passengerApplicant == null)
-            {
-                return NotFound();
-            }
+        //    var passengerApplicant = await _context.PassengerApplicants.FindAsync(id);
+        //    if (passengerApplicant == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            _context.PassengerApplicants.Remove(passengerApplicant);
-            await _context.SaveChangesAsync();
+        //    _context.PassengerApplicants.Remove(passengerApplicant);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(passengerApplicant);
-        }
+        //    return Ok(passengerApplicant);
+        //}
 
         private bool PassengerApplicantExists(int id)
         {
