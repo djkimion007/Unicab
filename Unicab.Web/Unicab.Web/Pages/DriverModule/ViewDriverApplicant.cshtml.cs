@@ -15,6 +15,12 @@ namespace Unicab.Web.Pages.DriverModule
 
         [BindProperty]
         public DriverApplicant driverApplicant { get; set; }
+        [BindProperty]
+        public string MatricsCardPhotoImgSrc { get; set; }
+        [BindProperty]
+        public string DriversLicensePhotoImgSrc { get; set; }
+        [BindProperty]
+        public string CarInsuranceGrantPhotoImgSrc { get; set; }
 
         public ViewDriverApplicantModel(IDriverManagementService service)
         {
@@ -24,6 +30,24 @@ namespace Unicab.Web.Pages.DriverModule
         public async Task OnGetAsync(int id)
         {
             driverApplicant = await driverManagementService.ViewDriverApplicant(id);
+
+            if (driverApplicant.MatricsCardPhoto != null)
+            {
+                var base64 = Convert.ToBase64String(driverApplicant.MatricsCardPhoto);
+                MatricsCardPhotoImgSrc = string.Format("data:image;base64,{0}", base64);
+            }
+
+            if (driverApplicant.DriversLicensePhoto != null)
+            {
+                var base64 = Convert.ToBase64String(driverApplicant.DriversLicensePhoto);
+                DriversLicensePhotoImgSrc = string.Format("data:image;base64,{0}", base64);
+            }
+
+            if (driverApplicant.CarInsuranceGrantPhoto != null)
+            {
+                var base64 = Convert.ToBase64String(driverApplicant.CarInsuranceGrantPhoto);
+                CarInsuranceGrantPhotoImgSrc = string.Format("data:image;base64,{0}", base64);
+            }
         }
 
         public async Task<IActionResult> OnPostRejectDriverApplicantAsync()
@@ -34,7 +58,7 @@ namespace Unicab.Web.Pages.DriverModule
             }
 
             if (driverApplicant != null)
-                await driverManagementService.RejectDriverApplicant(driverApplicant);
+                await driverManagementService.RejectDriverApplicant(driverApplicant.DriverApplicantId);
 
             return RedirectToPage("/DriverModule/Index");
         }
@@ -47,7 +71,7 @@ namespace Unicab.Web.Pages.DriverModule
             }
 
             if (driverApplicant != null)
-                await driverManagementService.ApproveDriverApplicant(driverApplicant);
+                await driverManagementService.ApproveDriverApplicant(driverApplicant.DriverApplicantId);
 
             return RedirectToPage("/DriverModule/Index");
         }

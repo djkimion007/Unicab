@@ -38,14 +38,6 @@
                     <div class="x_content">
                         <form method="post" data-parsley-validate class="form-horizontal form-label-left">
                             <input hidden asp-for="driverApplicant.DriverApplicantId" />
-                            <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
-                                    Email Address :
-                                </label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.EmailAddress" />
-                                </div>
-                            </div>
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
@@ -76,6 +68,42 @@
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Gender :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.Gender">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Date of Birth :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.DateOfBirth" />
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Email Address :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.EmailAddress" />
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Phone Number :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.PhoneNumber" />
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Car Plate No. :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -85,10 +113,73 @@
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Car Make :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarMake">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Car Model :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarModel">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Car Make Year :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarMakeYear">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Car Colour :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarColour">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Road Tax Due Date :
                                 </label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <input type="text" readonly class="form-control col-md-7 col-xs-12" asp-for="driverApplicant.CarRoadTaxDueDate">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Matrics Card Photo :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <img src="@Model.MatricsCardPhotoImgSrc" class="img-thumbnail" />
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Driver's License Photo :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <img src="@Model.DriversLicensePhotoImgSrc" class="img-thumbnail" />
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Car Insurance Grant Photo :
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <img src="@Model.CarInsuranceGrantPhotoImgSrc" class="img-thumbnail" />
                                 </div>
                             </div>
 

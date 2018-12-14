@@ -12,8 +12,8 @@ namespace Unicab.Web.Services
     {
         Task<List<DriverApplicant>> GetDriverApplicantsList();
         Task<DriverApplicant> ViewDriverApplicant(int driverApplicantId);
-        Task ApproveDriverApplicant(DriverApplicant driver);
-        Task RejectDriverApplicant(DriverApplicant driver);
+        Task<bool> ApproveDriverApplicant(int driverApplicantId);
+        Task<bool> RejectDriverApplicant(int driverApplicantId);
 
         Task<List<Driver>> GetApprovedDriversList();
         Task<Driver> ViewDriver(int driverId);

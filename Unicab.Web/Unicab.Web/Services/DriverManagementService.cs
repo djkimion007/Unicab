@@ -72,18 +72,9 @@ namespace Unicab.Web.Services
             return applicant;
         }
 
-        public async Task ApproveDriverApplicant(DriverApplicant driverApplicant)
+        public async Task<bool> ApproveDriverApplicant(int driverApplicantId)
         {
-            Driver newDriver = new Driver()
-            {
-                FirstName = driverApplicant.FirstName,
-                LastName = driverApplicant.LastName,
-                MatricsNo = driverApplicant.MatricsNo,
-                Password = driverApplicant.Password,
-                EmailAddress = driverApplicant.EmailAddress,
-                CarPlateNo = driverApplicant.CarPlateNo,
-                CarRoadTaxDueDate = driverApplicant.CarRoadTaxDueDate
-            };
+            Driver newDriver = new Driver(ViewDriverApplicant(driverApplicantId).Result);
 
             var uri = new Uri(string.Format(AppServerConstants.DriversUrl, string.Empty));
 
@@ -97,6 +88,7 @@ namespace Unicab.Web.Services
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"SUCCESS: New driver added to table!");
+                    return true;
                 }
             }
             catch (Exception ex)
@@ -104,9 +96,11 @@ namespace Unicab.Web.Services
                 Debug.WriteLine(@"ERROR: {0}", ex.Message);
             }
 
+            return false;
+
         }
 
-        public Task RejectDriverApplicant(DriverApplicant driver)
+        public Task<bool> RejectDriverApplicant(int driverApplicantId)
         {
             throw new NotImplementedException();
         }
