@@ -28,6 +28,8 @@ namespace Unicab.App.Services
 
         public async Task<HttpStatusCode> TryDriverSignUp(DriverApplicant applicant)
         {
+            applicant.AddedDateTime = DateTime.Now;
+
             var uri = new Uri(string.Format(AppServerConstants.DriverApplicantsUrl, string.Empty));
             HttpResponseMessage responseMessage = null;
 
@@ -65,6 +67,8 @@ namespace Unicab.App.Services
 
         public async Task<HttpStatusCode> TryPassengerSignUp(PassengerApplicant applicant)
         {
+            applicant.AddedDateTime = DateTime.Now;
+
             var uri = new Uri(string.Format(AppServerConstants.PassengerApplicantsUrl, string.Empty));
             HttpResponseMessage responseMessage = null;
 
