@@ -31,17 +31,12 @@ namespace Unicab.App.Landing
             await Navigation.PopAsync();
         }
 
-        private void NextButton_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
         private async void CancelButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopToRootAsync();
         }
 
-        private void DriversLicensePhotoButton_Clicked(object sender, EventArgs e)
+        private async void DriversLicensePhotoButton_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
 
@@ -66,7 +61,7 @@ namespace Unicab.App.Landing
             DriversLicensePhotoButton.Text = "Driver's License Photo Added!";
         }
 
-        private void CarInsuranceGrantPhotoButton_Clicked(object sender, EventArgs e)
+        private async void CarInsuranceGrantPhotoButton_Clicked(object sender, EventArgs e)
         {
             await CrossMedia.Current.Initialize();
 
@@ -89,6 +84,46 @@ namespace Unicab.App.Landing
 
             CarInsuranceGrantPhotoCapture = File.ReadAllBytes(file.Path);
             CarInsuranceGrantPhotoButton.Text = "Car Insurance Grant Photo Added!";
+        }
+
+        private async void SubmitButton_Clicked(object sender, EventArgs e)
+        {
+            SubmitButton.Text = "Submitting ...";
+            SubmitButton.IsEnabled = false;
+
+            if (!string.IsNullOrEmpty(CarPlateNoEntry.Text)
+                || !string.IsNullOrEmpty(CarMakeEntry.Text)
+                || !string.IsNullOrEmpty(CarModelEntry.Text)
+                || !string.IsNullOrEmpty(CarMakeYearEntry.Text)
+                || !string.IsNullOrEmpty(CarColourEntry.Text)
+                || DriversLicensePhotoCapture != null
+                || DriversLicensePhotoCapture.Length != 0
+                || CarInsuranceGrantPhotoCapture != null
+                || CarInsuranceGrantPhotoCapture.Length != 0)
+            {
+                driverApplicant.DriversLicenseDueDate = DriversLicenseDueDatePicker.Date;
+                driverApplicant.DriversLicensePhoto = DriversLicensePhotoCapture;
+                driverApplicant.CarPlateNo = CarPlateNoEntry.Text;
+                driverApplicant.CarMake = CarMakeEntry.Text;
+                driverApplicant.CarModel = CarModelEntry.Text;
+                driverApplicant.CarMakeYear = CarMakeYearEntry.Text;
+                driverApplicant.CarColour = CarColourEntry.Text;
+                driverApplicant.CarRoadTaxDueDate = CarRoadTaxDueDatePicker.Date;
+                driverApplicant.CarInsuranceGrantPhoto = CarInsuranceGrantPhotoCapture; 
+            }
+
+            HttpStatusCode statusCode = await App.CredentialsManager.TryDriverSignUp(driverApplicant);
+
+            if (statusCode == HttpStatusCode.Created)
+            {
+                await DisplayAlert("Driver Sign Up", "Sign up successful. Kindly wait for admin approval before using the service. Thank you.", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Driver Sign Up", "Sign up failed. Please try again. (status code: " + statusCode.ToString() + ")", "OK");
+            }
+
+            await Navigation.PopToRootAsync();
         }
     }
 }
