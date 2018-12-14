@@ -25,7 +25,7 @@ namespace Unicab.Api.Controllers
         [HttpGet]
         public IEnumerable<DriverApplicant> GetDriverApplicants()
         {
-            return _context.DriverApplicants;
+            return _context.DriverApplicants.Where(b => b.IsApproved != true);
         }
 
         // GET: api/DriverApplicants/5

@@ -25,7 +25,7 @@ namespace Unicab.Api.Controllers
         [HttpGet]
         public IEnumerable<PassengerApplicant> GetPassengerApplicants()
         {
-            return _context.PassengerApplicants;
+            return _context.PassengerApplicants.Where(b => b.IsApproved != true);
         }
 
         // GET: api/PassengerApplicants/5

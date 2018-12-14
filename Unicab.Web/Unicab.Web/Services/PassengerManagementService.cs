@@ -42,6 +42,14 @@ namespace Unicab.Web.Services
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"SUCCESS: New passenger added to table!");
+
+                    bool isApplicantHidden = await HidePassengerAppllicant(passengerApplicantId);
+
+                    if (isApplicantHidden)
+                        Debug.WriteLine(@"SUCCESS: PassengerApplicant record hidden!");
+                    else
+                        Debug.WriteLine(@"ERROR: PassengerApplicant record could not be hidden!");
+
                     return true;
                 }
             }
@@ -204,6 +212,76 @@ namespace Unicab.Web.Services
             }
 
             return passenger;
+        }
+
+        // Private methods
+
+        private async Task<bool> HidePassengerAppllicant(int passengerApplicantId)
+        {
+            PassengerApplicant applicant = ViewPassengerApplicant(passengerApplicantId).Result;
+
+            applicant.IsApproved = true;
+            applicant.ApprovedDateTime = DateTime.Now;
+            applicant.ApprovedByAdminId = 1;
+            //applicant.IsHidden = true;
+            //applicant.HiddenDateTime = DateTime.Now;
+
+            var uri = new Uri(string.Format(AppServerConstants.PassengerApplicantsUrl, passengerApplicantId));
+
+            HttpResponseMessage response = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(applicant);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                response = await client.PutAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"SUCCESS: PassengerApplicant hidden!");
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}: {1}", response.StatusCode, ex.Message);
+            }
+
+            return false;
+        }
+
+        private async Task<bool> HidePassenger(int passengerId)
+        {
+            Passenger passenger = ViewPassenger(passengerId).Result;
+
+            //passenger.IsHidden = true;
+            //passenger.HiddenDateTime = DateTime.Now;
+            passenger.ModifiedDateTime = DateTime.Now;
+
+            var uri = new Uri(string.Format(AppServerConstants.PassengersUrl, passengerId));
+
+            HttpResponseMessage response = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(passenger);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                response = await client.PutAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"SUCCESS: Passenger hidden!");
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}: {1}", response.StatusCode, ex.Message);
+            }
+
+            return false;
         }
     }
 }
