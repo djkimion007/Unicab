@@ -19,6 +19,8 @@ namespace Unicab.Api.Models
         public char Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
 
+        public byte[] ProfilePhoto { get; set; }
+
         public byte[] MatricsCardPhoto { get; set; }
         public byte[] DriversLicensePhoto { get; set; }
 
@@ -38,6 +40,8 @@ namespace Unicab.Api.Models
         public string Notes { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
+
+        public bool IsActive { get; set; }
 
         public Driver()
         {

@@ -18,9 +18,13 @@ namespace Unicab.Api.Models
         public string LastName { get; set; }
         public string StaffPosition { get; set; }
 
+        public byte[] ProfilePhoto { get; set; }
+
         public DateTime AddedDateTime { get; set; }
         public string Notes { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
