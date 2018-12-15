@@ -21,7 +21,7 @@ namespace Unicab.App.Services
             };
         }
 
-        public Task TryDriverLogin(string emailAddress, string password)
+        public Task<Driver> TryDriverLogin(string emailAddress, string password)
         {
             throw new NotImplementedException();
         }
@@ -60,7 +60,7 @@ namespace Unicab.App.Services
                 return HttpStatusCode.InternalServerError;
         }
 
-        public Task TryPassengerLogin(string emailAddress, string password)
+        public Task<Passenger> TryPassengerLogin(string emailAddress, string password)
         {
             throw new NotImplementedException();
         }

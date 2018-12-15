@@ -25,5 +25,15 @@ namespace Unicab.App.Services
         {
             return credentialsService.TryPassengerSignUp(applicant);
         }
+
+        public Task<Driver> TryDriverLogIn(string emailAddress, string password)
+        {
+            return credentialsService.TryDriverLogin(emailAddress, password);
+        }
+
+        public Task<Passenger> TryPassengerLogIn(string emailAddress, string password)
+        {
+            return credentialsService.TryPassengerLogin(emailAddress, password);
+        }
     }
 }
