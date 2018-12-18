@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:system="clr-namespace:System;assembly=netstandard"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="Unicab.App.DriverModule.OfferCarpoolRidesPage"
              Title="Offer Carpool">
     <ContentPage.Content>
@@ -33,20 +34,20 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Driving To" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="Large"/>
-                <Picker x:Name="DrivingToPicker" Title="Select destination" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"></Picker>
+                <xfx:XfxComboBox x:Name="DrivingToComboBox" Placeholder="Enter trip destination" Text="{Binding TripDestination}" ItemsSource="{Binding TripDestinationList}"
+                                 Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Driving From (optional)" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Picker x:Name="DrivingFromPicker" Title="Select pickup" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" ></Picker>
+                <xfx:XfxComboBox x:Name="DrivingFromComboBox" Placeholder="Enter pickup point (optional)" Text="{Binding TripDestination}" ItemsSource="{Binding TripDestinationList}"
+                                 Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Departing Date" Grid.Row="5" Grid.Column="1" />
-                <DatePicker x:Name="DepartingDatePicker" MinimumDate="{x:Static system:DateTime.Today}" Grid.Row="6" Grid.Column="1" />
+                <Label Text="Departing Date" Grid.Row="3" Grid.Column="1" />
+                <DatePicker x:Name="DepartingDatePicker" MinimumDate="{x:Static system:DateTime.Today}" Grid.Row="4" Grid.Column="1" />
 
-                <Label Text="Departing Time" Grid.Row="5" Grid.Column="2" />
-                <TimePicker x:Name="DepartingTimePicker" Grid.Row="6" Grid.Column="2" />
+                <Label Text="Departing Time" Grid.Row="3" Grid.Column="2" />
+                <TimePicker x:Name="DepartingTimePicker" Grid.Row="4" Grid.Column="2" />
 
-                <Label Text="No. of Seats" Grid.Row="7" Grid.Column="1" />
-                <Picker x:Name="NoOfSeatsPicker" Title="Select no. of seats" Grid.Row="8" Grid.Column="1" >
+                <Label Text="No. of Seats" Grid.Row="5" Grid.Column="1" />
+                <Picker x:Name="NoOfSeatsPicker" Title="Select no. of seats" Grid.Row="6" Grid.Column="1" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>1</x:String>
@@ -57,8 +58,8 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <Label Text="Ladies Only?" Grid.Row="7" Grid.Column="2" />
-                <Picker x:Name="LadiesOnlyPicker" Title="Select" Grid.Row="8" Grid.Column="2" >
+                <Label Text="Ladies Only?" Grid.Row="5" Grid.Column="2" />
+                <Picker x:Name="LadiesOnlyPicker" Title="Select" Grid.Row="6" Grid.Column="2" >
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>No</x:String>
@@ -67,10 +68,10 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <Label Text="Additional Notes" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Editor x:Name="AdditionalNotesEditor" Placeholder="Enter any additional details here." MaxLength="160" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="Additional Notes" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Editor x:Name="AdditionalNotesEditor" Placeholder="Enter any additional details here." MaxLength="160" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="OfferCarpoolBtn" Text="Offer Carpool" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" Clicked="OfferCarpoolBtn_Clicked" />
+                <Button x:Name="OfferCarpoolBtn" Text="Offer Carpool" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" Clicked="OfferCarpoolBtn_Clicked" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

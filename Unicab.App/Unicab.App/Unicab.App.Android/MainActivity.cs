@@ -8,6 +8,8 @@ using Android.Widget;
 using Android.OS;
 using ImageCircle.Forms.Plugin.Droid;
 using Plugin.CurrentActivity;
+using Xfx;
+using Plugin.LocalNotifications;
 
 namespace Unicab.App.Droid
 {
@@ -23,12 +25,16 @@ namespace Unicab.App.Droid
 
             base.SetTheme(Resource.Style.MainTheme);
 
+            XfxControls.Init();
+
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             ImageCircleRenderer.Init();
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+            LocalNotificationsImplementation.NotificationIconId = Resource.Drawable.Icon;
 
             LoadApplication(new App());
 
