@@ -27,5 +27,7 @@ namespace Unicab.Api.Models
         public DateTime AddedDateTime { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
+
+        public bool IsAccepted { get; set; }
     }
 }
