@@ -20,5 +20,7 @@ namespace Unicab.Web.Services
         public static string PassengersUrl = AppServerUrl + ":" + AppServerPort + "/api/Passengers/{0}";
 
         public static string AdminsUrl = AppServerUrl + ":" + AppServerPort + "/api/Admins/{0}";
+
+        public static string LocationsUri = AppServerUrl + ":" + AppServerPort + "/api/Locations/{0}";
     }
 }
