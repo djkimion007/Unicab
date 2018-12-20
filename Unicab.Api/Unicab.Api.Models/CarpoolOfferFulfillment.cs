@@ -6,7 +6,11 @@ namespace Unicab.Api.Models
 {
     public class CarpoolOfferFulfillment
     {
-        public CarpoolOffer CplOffer { get; set; }
+        public int CarpoolOfferFulfillmentId { get; set; }
+
+        public int CarpoolOfferId { get; set; }
+
+        public int AcceptedPassengerId { get; set; }
 
         public bool DriverHasCompleted { get; set; }
         public DateTime DriverCompletedDateTime { get; set; }
@@ -16,5 +20,7 @@ namespace Unicab.Api.Models
 
         public double DistanceTravelled { get; set; }
         public double FareCharge { get; set; }
+        public bool IsFarePaid { get; set; }
+        public bool IsFareSplit { get; set; }
     }
 }

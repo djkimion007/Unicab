@@ -14,9 +14,9 @@ namespace Unicab.Api.Controllers
     [ApiController]
     public class DriverBlacklistsController : ControllerBase
     {
-        private readonly UsersContext _context;
+        private readonly UnicabContext _context;
 
-        public DriverBlacklistsController(UsersContext context)
+        public DriverBlacklistsController(UnicabContext context)
         {
             _context = context;
         }

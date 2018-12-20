@@ -14,9 +14,9 @@ namespace Unicab.Api.Controllers
     [ApiController]
     public class DriversController : ControllerBase
     {
-        private readonly UsersContext _context;
+        private readonly UnicabContext _context;
 
-        public DriversController(UsersContext context)
+        public DriversController(UnicabContext context)
         {
             _context = context;
         }

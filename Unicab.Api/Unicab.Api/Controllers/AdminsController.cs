@@ -14,9 +14,9 @@ namespace Unicab.Api.Controllers
     [ApiController]
     public class AdminsController : ControllerBase
     {
-        private readonly UsersContext _context;
+        private readonly UnicabContext _context;
 
-        public AdminsController(UsersContext context)
+        public AdminsController(UnicabContext context)
         {
             _context = context;
         }

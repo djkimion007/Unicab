@@ -14,9 +14,9 @@ namespace Unicab.Api.Controllers
     [ApiController]
     public class PassengersController : ControllerBase
     {
-        private readonly UsersContext _context;
+        private readonly UnicabContext _context;
 
-        public PassengersController(UsersContext context)
+        public PassengersController(UnicabContext context)
         {
             _context = context;
         }

@@ -16,13 +16,12 @@ namespace Unicab.Api.Models
         public string DestinationLocation { get; set; }
 
         public int NoOfPassengers { get; set; }
-        public List<int> PassengersList { get; set; }
 
         public bool IsLadiesOnly { get; set; }
 
         public string AdditionalNotes { get; set; }
 
-        public int OfferPeriod { get; set; } // in no. of days
+        public int OfferPeriod { get; set; } // in days?
 
         public DateTime AddedDateTime { get; set; }
 
