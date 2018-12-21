@@ -56,17 +56,14 @@ namespace Unicab.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var passenger = await _context.Passengers.SingleOrDefaultAsync(b => b.EmailAddress == emailAddress);
+            var passenger = await _context.Passengers.SingleOrDefaultAsync(b => b.EmailAddress == emailAddress && b.Password == password);
 
             if (passenger == null)
             {
                 return NotFound();
             }
 
-            if (passenger.Password == password)
-                return Ok(passenger);
-            else
-                return Unauthorized();
+            return Ok(passenger);
         }
 
         // PUT: api/Passengers/5

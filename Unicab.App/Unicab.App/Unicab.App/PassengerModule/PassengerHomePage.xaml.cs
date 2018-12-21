@@ -24,6 +24,7 @@ namespace Unicab.App.PassengerModule
                 return;
             else if (item.Id == 99)
             {
+                App.CurrentPassenger = null;
                 App.Current.MainPage = new Landing.PassengerMainPage();
                 return;
             }

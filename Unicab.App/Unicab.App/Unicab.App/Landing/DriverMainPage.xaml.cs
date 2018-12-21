@@ -33,6 +33,7 @@ namespace Unicab.App.Landing
             {
                 DependencyService.Get<IToasts>().ShortToast("Login success");
                 App.CurrentDriver = driver;
+                App.CurrentPassenger = null;
                 App.Current.MainPage = new DriverModule.DriverHomePage();
             }
             else

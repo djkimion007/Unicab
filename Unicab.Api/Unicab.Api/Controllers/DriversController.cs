@@ -56,17 +56,14 @@ namespace Unicab.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            var driver = await _context.Drivers.SingleOrDefaultAsync(b => b.EmailAddress == emailAddress);
+            var driver = await _context.Drivers.SingleOrDefaultAsync(b => b.EmailAddress == emailAddress && b.Password == password);
 
             if (driver == null)
             {
                 return NotFound();
             }
 
-            if (driver.Password == password)
-                return Ok(driver);
-            else
-                return Unauthorized();
+            return Ok(driver);
         }
 
         // PUT: api/Drivers/5
