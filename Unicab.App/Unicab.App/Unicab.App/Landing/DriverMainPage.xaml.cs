@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicab.Api.Models;
 using Unicab.App.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,20 +24,21 @@ namespace Unicab.App.Landing
         }
 
         // Validation required
-        private void LoginBtn_Clicked(object sender, EventArgs e)
+        private async void LoginBtn_Clicked(object sender, EventArgs e)
         {
             // Login logic come here
+            Driver driver = await App.CredentialsManager.TryDriverLogIn(loginUsernameEntry.Text, loginPasswordEntry.Text);
 
-            //if (loginUsernameEntry.Text == "pgr" && loginPasswordEntry.Text == "123")
-            if (true)
+            if (driver.EmailAddress != null)
             {
                 DependencyService.Get<IToasts>().ShortToast("Login success");
+                App.CurrentDriver = driver;
                 App.Current.MainPage = new DriverModule.DriverHomePage();
             }
-            //else
-            //{
-            //    DependencyService.Get<IToasts>().ShortToast("Login failed, credentials incorrect");
-            //}
+            else
+            {
+                DependencyService.Get<IToasts>().ShortToast("Login failed, credentials incorrect");
+            }
 
         }
 

@@ -15,13 +15,21 @@ namespace Unicab.App.PassengerModule
 	public partial class SelectedCarpoolPage : ContentPage
 	{
         public CarpoolOffer carpoolOffer;
+        public Driver carpoolDriver;
 
         public SelectedCarpoolPage(CarpoolOffer selectedOffer)
         {
             InitializeComponent();
 
+            InitContexts(selectedOffer);
+
+        }
+
+        private void InitContexts(CarpoolOffer selectedOffer)
+        {
             carpoolOffer = selectedOffer;
 
+            //carpoolDriver = await App.CredentialsManager.TryGetDriverById(carpoolOffer.DriverId);
         }
 
 

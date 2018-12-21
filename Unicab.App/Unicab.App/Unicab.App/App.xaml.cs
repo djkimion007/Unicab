@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Unicab.App.Services;
+using Unicab.Api.Models;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Unicab.App
@@ -10,6 +11,9 @@ namespace Unicab.App
     {
         public static CredentialsManager CredentialsManager { get; private set; }
         public static CarpoolManager CarpoolManager { get; private set; }
+
+        public static Driver CurrentDriver { get; set; }
+        public static Passenger CurrentPassenger { get; set; }
 
         public App()
         {

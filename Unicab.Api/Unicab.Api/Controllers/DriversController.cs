@@ -47,6 +47,28 @@ namespace Unicab.Api.Controllers
             return Ok(driver);
         }
 
+        // GET: api/{emailAddress}/{password}
+        [HttpGet("{emailAddress}/{password}")]
+        public async Task<IActionResult> GetDriver([FromRoute] string emailAddress, string password)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var driver = await _context.Drivers.SingleOrDefaultAsync(b => b.EmailAddress == emailAddress);
+
+            if (driver == null)
+            {
+                return NotFound();
+            }
+
+            if (driver.Password == password)
+                return Ok(driver);
+            else
+                return Unauthorized();
+        }
+
         // PUT: api/Drivers/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDriver([FromRoute] int id, [FromBody] Driver driver)

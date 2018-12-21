@@ -47,6 +47,28 @@ namespace Unicab.Api.Controllers
             return Ok(passenger);
         }
 
+        // GET: api/Passengers/5
+        [HttpGet("{emailAddress}/{password}")]
+        public async Task<IActionResult> GetPassenger([FromRoute] string emailAddress, string password)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var passenger = await _context.Passengers.SingleOrDefaultAsync(b => b.EmailAddress == emailAddress);
+
+            if (passenger == null)
+            {
+                return NotFound();
+            }
+
+            if (passenger.Password == password)
+                return Ok(passenger);
+            else
+                return Unauthorized();
+        }
+
         // PUT: api/Passengers/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPassenger([FromRoute] int id, [FromBody] Passenger passenger)

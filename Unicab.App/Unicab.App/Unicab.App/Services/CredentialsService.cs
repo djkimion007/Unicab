@@ -21,9 +21,30 @@ namespace Unicab.App.Services
             };
         }
 
-        public Task<Driver> TryDriverLogin(string emailAddress, string password)
+        public async Task<Driver> TryDriverLogin(string emailAddress, string password)
         {
-            throw new NotImplementedException();
+            Driver driver = new Driver();
+
+            var uri = new Uri(string.Format(AppServerConstants.DriversUrl, emailAddress + "/" + password));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                responseMessage = await client.GetAsync(uri);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var content = await responseMessage.Content.ReadAsStringAsync();
+                    driver = JsonConvert.DeserializeObject<Driver>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return driver;
         }
 
         public async Task<HttpStatusCode> TryDriverSignUp(DriverApplicant applicant)
@@ -60,9 +81,30 @@ namespace Unicab.App.Services
                 return HttpStatusCode.InternalServerError;
         }
 
-        public Task<Passenger> TryPassengerLogin(string emailAddress, string password)
+        public async Task<Passenger> TryPassengerLogin(string emailAddress, string password)
         {
-            throw new NotImplementedException();
+            Passenger passenger = new Passenger();
+
+            var uri = new Uri(string.Format(AppServerConstants.PassengersUrl, emailAddress + "/" + password));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                responseMessage = await client.GetAsync(uri);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var content = await responseMessage.Content.ReadAsStringAsync();
+                    passenger = JsonConvert.DeserializeObject<Passenger>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return passenger;
         }
 
         public async Task<HttpStatusCode> TryPassengerSignUp(PassengerApplicant applicant)
