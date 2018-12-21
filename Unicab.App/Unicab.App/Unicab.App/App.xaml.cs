@@ -9,12 +9,14 @@ namespace Unicab.App
     public partial class App : Application
     {
         public static CredentialsManager CredentialsManager { get; private set; }
+        public static CarpoolManager CarpoolManager { get; private set; }
 
         public App()
         {
             InitializeComponent();
 
             CredentialsManager = new CredentialsManager(new CredentialsService());
+            CarpoolManager = new CarpoolManager(new CarpoolService());
 
             MainPage = new NavigationPage(new Landing.PassengerMainPage());
         }

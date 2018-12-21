@@ -5,9 +5,9 @@
              Title="Available Carpool">
     <ListView x:Name="AvailableCarpoolListView"
             ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
+            ItemSelected="Handle_ItemSelected"
             CachingStrategy="RecycleElement"
-              RowHeight="100">
+              RowHeight="140">
 
         <ListView.ItemTemplate>
             <DataTemplate>
@@ -16,20 +16,22 @@
                         <Frame OutlineColor="Accent" Padding="5">
                             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Horizontal">
-                                    <Image Source="car_icon.png" WidthRequest="60" HeightRequest="60" />
+                                    <Image Source="carpool_icon.png" WidthRequest="60" HeightRequest="60" />
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding DestinationLocation}" FontSize="Large" FontAttributes="Bold" TextColor="HotPink" />
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding DrivingFrom}" FontSize="Medium" />
-                                            <Label Text="&#8599;" FontSize="Medium"/>
-                                            <Label Text="{Binding DrivingTo}" FontSize="Medium" FontAttributes="Bold" TextColor="HotPink" />
+                                            <Label Text="From:" FontSize="Medium" />
+                                            <Label Text="{Binding OriginLocation}" FontSize="Medium" />
                                         </StackLayout>
-                                        <StackLayout Orientation="Horizontal" BindingContext="{Binding DepartingDateTime}">
+                                        <StackLayout Orientation="Horizontal" BindingContext="{Binding OriginDateTime}">
                                             <Label Text="{Binding StringFormat='Date: {0:d}'}" />
                                             <Label Text="|" />
                                             <Label Text="{Binding StringFormat='Time: {0:t}'}" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding NoOfSeats, StringFormat='Seats Available: {0}'}" />
+                                            <Label Text="{Binding NoOfPassengers, StringFormat='Seats Available: {0}'}" />
+                                            <Label Text="|" />
+                                            <Label Text="{Binding NoOfPassengers, StringFormat='Seats Taken: {0}'}" />
                                         </StackLayout>
                                     </StackLayout>
 

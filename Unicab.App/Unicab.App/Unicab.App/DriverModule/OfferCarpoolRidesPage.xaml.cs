@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Unicab.Api.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -115,8 +115,25 @@ namespace Unicab.App.DriverModule
 
             if (confirmBooking)
             {
-                // add operations to carpool
-                await DisplayAlert("Offer Carpool", "Your carpool offer is being processed. You will be notified once it is accepted by any of our passengers.", "OK");
+
+                DateTime dateTime = DepartingDatePicker.Date + DepartingTimePicker.Time;
+
+                CarpoolOffer carpoolOffer = new CarpoolOffer
+                {
+                    DestinationLocation = DrivingToComboBox.Text,
+                    OriginLocation = DrivingFromComboBox.Text,
+                    OriginDateTime = dateTime,
+                    NoOfPassengers = Convert.ToInt32(NoOfSeatsPicker.SelectedItem),
+                    IsLadiesOnly = (LadiesOnlyPicker.SelectedItem.Equals("Yes")) ? true : false,
+                    AdditionalNotes = AdditionalNotesEditor.Text
+                };
+
+                bool IsSubmitted = await App.CarpoolManager.TryCreateNewCarpoolOffer(carpoolOffer);
+
+                if (IsSubmitted)
+                    await DisplayAlert("Offer Carpool", "Your carpool offer is being processed. You will be notified once it is accepted by any of our passengers.", "OK");
+                else
+                    await DisplayAlert("Offer Carpool", "Your carpool offer could not be processed. Please contact technical support.", "OK");
 
             }
             else
@@ -124,7 +141,7 @@ namespace Unicab.App.DriverModule
                 await DisplayAlert("Offer Carpool", "You have not proceeded with your carpool offer.", "OK");
             }
 
-            CrossLocalNotifications.Current.Show("Unicab Service Carpool", "Carpool Ride done");
+            //CrossLocalNotifications.Current.Show("Unicab Service Carpool", "Carpool Ride done");
 
             await Navigation.PopToRootAsync();
         }
