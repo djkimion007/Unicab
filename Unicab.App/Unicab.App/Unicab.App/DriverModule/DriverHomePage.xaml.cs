@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Unicab.App.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,14 +18,24 @@ namespace Unicab.App.DriverModule
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (!(e.SelectedItem is DriverHomePageMenuItem item))
                 return;
             else if (item.Id == 99)
             {
-                App.CurrentDriver = null;
-                App.Current.MainPage = new Landing.DriverMainPage();
+                bool IsLoggedOut = await App.CredentialsManager.LogOutDriver(App.CurrentDriver);
+
+                if (IsLoggedOut)
+                {
+
+                    App.CurrentDriver = null;
+
+                    DependencyService.Get<IToasts>().ShortToast("Logged out of Unicab Service (Driver)");
+
+                    App.Current.MainPage = new Landing.DriverMainPage();
+                }
+                
                 return;
             }
 

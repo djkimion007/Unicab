@@ -51,15 +51,15 @@ namespace Unicab.App.Landing
                 MatricsCardPhoto = MatricsCardPhotoCapture
             };
 
-            HttpStatusCode statusCode = await App.CredentialsManager.RegisterPassenger(applicant);
+            bool isRegistrationSuccess = await App.CredentialsManager.RegisterPassenger(applicant);
 
-            if (statusCode == HttpStatusCode.Created)
+            if (isRegistrationSuccess)
             {
                 await DisplayAlert("Passenger Sign Up", "Sign up successful. Kindly wait for admin approval before using the service. Thank you.", "OK");
             }
             else
             {
-                await DisplayAlert("Passenger Sign Up", "Sign up failed. Please try again. (status code: " + statusCode.ToString() + ")", "OK");
+                await DisplayAlert("Passenger Sign Up", "Sign up failed. Please try again.", "OK");
             }
 
             await Navigation.PopAsync();

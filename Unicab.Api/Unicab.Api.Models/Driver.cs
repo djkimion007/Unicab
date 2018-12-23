@@ -41,6 +41,11 @@ namespace Unicab.Api.Models
 
         public DateTime ModifiedDateTime { get; set; }
 
+        public bool IsLoggedIn { get; set; }
+        public string CurrentLoginUniqueId { get; set; }
+        public DateTime CurrentLoginDateTime { get; set; }
+        public DateTime LastLoginDateTime { get; set; }
+
         public bool IsActive { get; set; }
 
         public Driver()

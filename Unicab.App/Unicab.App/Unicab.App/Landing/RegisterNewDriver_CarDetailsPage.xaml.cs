@@ -112,15 +112,15 @@ namespace Unicab.App.Landing
                 driverApplicant.CarInsuranceGrantPhoto = CarInsuranceGrantPhotoCapture; 
             }
 
-            HttpStatusCode statusCode = await App.CredentialsManager.RegisterDriver(driverApplicant);
+            bool isRegistrationSuccess = await App.CredentialsManager.RegisterDriver(driverApplicant);
 
-            if (statusCode == HttpStatusCode.Created)
+            if (isRegistrationSuccess)
             {
                 await DisplayAlert("Driver Sign Up", "Sign up successful. Kindly wait for admin approval before using the service. Thank you.", "OK");
             }
             else
             {
-                await DisplayAlert("Driver Sign Up", "Sign up failed. Please try again. (status code: " + statusCode.ToString() + ")", "OK");
+                await DisplayAlert("Driver Sign Up", "Sign up failed. Please try again.", "OK");
             }
 
             await Navigation.PopToRootAsync();

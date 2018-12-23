@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Unicab.App.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,14 +18,23 @@ namespace Unicab.App.PassengerModule
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (!(e.SelectedItem is PassengerHomePageMenuItem item))
                 return;
             else if (item.Id == 99)
             {
-                App.CurrentPassenger = null;
-                App.Current.MainPage = new Landing.PassengerMainPage();
+                bool IsLoggedOut = await App.CredentialsManager.LogOutPassenger(App.CurrentPassenger);
+
+                if (IsLoggedOut)
+                {
+                    App.CurrentPassenger = null;
+
+                    DependencyService.Get<IToasts>().ShortToast("Logged out of Unicab Service (Passenger)");
+
+                    App.Current.MainPage = new Landing.PassengerMainPage();
+                }
+                
                 return;
             }
 

@@ -13,11 +13,17 @@ namespace Unicab.App.Services
 
         Task<Driver> LogInDriver(string emailAddress, string password);
 
-        Task<HttpStatusCode> RegisterPassenger(PassengerApplicant applicant);
+        Task<bool> LogOutPassenger(Passenger passenger);
 
-        Task<HttpStatusCode> RegisterDriver(DriverApplicant applicant);
+        Task<bool> LogOutDriver(Driver driver);
 
-        Task RetrievePassword(string emailAddress);
+        Task<bool> RegisterPassenger(PassengerApplicant applicant);
+
+        Task<bool> RegisterDriver(DriverApplicant applicant);
+
+        Task<bool> RetrieveDriverPassword(string emailAddress);
+
+        Task<bool> RetrievePassengerPassword(string emailAddress);
 
     }
 }

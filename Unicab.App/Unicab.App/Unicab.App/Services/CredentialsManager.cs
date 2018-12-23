@@ -16,12 +16,12 @@ namespace Unicab.App.Services
             credentialsService = service;
         }
 
-        public Task<HttpStatusCode> RegisterDriver(DriverApplicant applicant)
+        public Task<bool> RegisterDriver(DriverApplicant applicant)
         {
             return credentialsService.RegisterDriver(applicant);
         }
 
-        public Task<HttpStatusCode> RegisterPassenger(PassengerApplicant applicant)
+        public Task<bool> RegisterPassenger(PassengerApplicant applicant)
         {
             return credentialsService.RegisterPassenger(applicant);
         }
@@ -34,6 +34,16 @@ namespace Unicab.App.Services
         public Task<Passenger> LogInPassenger(string emailAddress, string password)
         {
             return credentialsService.LogInPassenger(emailAddress, password);
+        }
+
+        public Task<bool> LogOutDriver(Driver driver)
+        {
+            return credentialsService.LogOutDriver(driver);
+        }
+
+        public Task<bool> LogOutPassenger(Passenger passenger)
+        {
+            return credentialsService.LogOutPassenger(passenger);
         }
     }
 }
