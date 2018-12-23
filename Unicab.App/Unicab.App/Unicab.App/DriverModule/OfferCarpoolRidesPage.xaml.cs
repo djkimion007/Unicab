@@ -1,11 +1,14 @@
 ﻿using Plugin.LocalNotifications;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Unicab.Api.Models;
+using Unicab.App.Common;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,9 +17,11 @@ namespace Unicab.App.DriverModule
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class OfferCarpoolRidesPage : ContentPage
 	{
-		public OfferCarpoolRidesPage ()
+        public OfferCarpoolRidesPage ()
 		{
 			InitializeComponent ();
+
+            BindingContext = new SortModel();
 
             List<string> pickupLocationList = new List<string>
             {
@@ -125,7 +130,9 @@ namespace Unicab.App.DriverModule
                     OriginDateTime = dateTime,
                     NoOfPassengers = Convert.ToInt32(NoOfSeatsPicker.SelectedItem),
                     IsLadiesOnly = (LadiesOnlyPicker.SelectedItem.Equals("Yes")) ? true : false,
-                    AdditionalNotes = AdditionalNotesEditor.Text
+                    AdditionalNotes = AdditionalNotesEditor.Text,
+
+                    DriverId = App.CurrentDriver.DriverId
                 };
 
                 bool IsSubmitted = await App.CarpoolManager.CreateNewCarpoolOffer(carpoolOffer);
@@ -141,10 +148,9 @@ namespace Unicab.App.DriverModule
                 await DisplayAlert("Offer Carpool", "You have not proceeded with your carpool offer.", "OK");
             }
 
-            //CrossLocalNotifications.Current.Show("Unicab Service Carpool", "Carpool Ride done");
-
             await Navigation.PopToRootAsync();
         }
 
     }
+
 }

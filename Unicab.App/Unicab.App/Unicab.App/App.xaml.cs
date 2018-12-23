@@ -30,36 +30,22 @@ namespace Unicab.App
 
             MainPage = new NavigationPage(new Landing.PassengerMainPage());
 
-            //var seconds = TimeSpan.FromSeconds(1);
-            //Device.StartTimer(seconds,
-            //    () =>
-            //    {
-            //        DoIHaveInternet();
-            //        return false;
-            //    });
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+
         }
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            
         }
 
         protected override void OnResume()
         {
-            // Handle when your app resumes
+            
         }
 
-        //public bool DoIHaveInternet()
-        //{
-        //    if (!CrossConnectivity.IsSupported)
-        //        return true;
-
-        //    return CrossConnectivity.Current.IsConnected;
-        //}
     }
 }
