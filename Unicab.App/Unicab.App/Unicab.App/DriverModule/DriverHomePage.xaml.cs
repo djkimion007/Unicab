@@ -18,7 +18,7 @@ namespace Unicab.App.DriverModule
             MasterPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
-        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (!(e.SelectedItem is DriverHomePageMenuItem item))
                 return;
