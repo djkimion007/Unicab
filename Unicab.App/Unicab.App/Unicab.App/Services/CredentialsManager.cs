@@ -16,24 +16,24 @@ namespace Unicab.App.Services
             credentialsService = service;
         }
 
-        public Task<HttpStatusCode> TryDriverSignUp(DriverApplicant applicant)
+        public Task<HttpStatusCode> RegisterDriver(DriverApplicant applicant)
         {
-            return credentialsService.TryDriverSignUp(applicant);
+            return credentialsService.RegisterDriver(applicant);
         }
 
-        public Task<HttpStatusCode> TryPassengerSignUp(PassengerApplicant applicant)
+        public Task<HttpStatusCode> RegisterPassenger(PassengerApplicant applicant)
         {
-            return credentialsService.TryPassengerSignUp(applicant);
+            return credentialsService.RegisterPassenger(applicant);
         }
 
-        public Task<Driver> TryDriverLogIn(string emailAddress, string password)
+        public Task<Driver> LogInDriver(string emailAddress, string password)
         {
-            return credentialsService.TryDriverLogin(emailAddress, password);
+            return credentialsService.LogInDriver(emailAddress, password);
         }
 
-        public Task<Passenger> TryPassengerLogIn(string emailAddress, string password)
+        public Task<Passenger> LogInPassenger(string emailAddress, string password)
         {
-            return credentialsService.TryPassengerLogin(emailAddress, password);
+            return credentialsService.LogInPassenger(emailAddress, password);
         }
     }
 }

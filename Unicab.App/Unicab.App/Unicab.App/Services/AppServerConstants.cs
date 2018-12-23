@@ -6,7 +6,7 @@ namespace Unicab.App.Services
 {
     public static class AppServerConstants
     {
-        public static string AppServerUrl = "http://10.207.142.52";
+        public static string AppServerUrl = "http://172.20.10.3";
         public static int AppServerPort = 53940;
 
         public static string DriverApplicantsUrl = AppServerUrl + ":" + AppServerPort + "/api/DriverApplicants/{0}";
@@ -18,5 +18,6 @@ namespace Unicab.App.Services
         public static string LocationsUrl = AppServerUrl + ":" + AppServerPort + "/api/Locations/{0}";
 
         public static string CarpoolOffersUrl = AppServerUrl + ":" + AppServerPort + "/api/CarpoolOffers/{0}";
+        public static string CabRequestsUrl = AppServerUrl + ":" + AppServerPort + "/api/CabRequests/{0}";
     }
 }

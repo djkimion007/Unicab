@@ -128,7 +128,7 @@ namespace Unicab.App.DriverModule
                     AdditionalNotes = AdditionalNotesEditor.Text
                 };
 
-                bool IsSubmitted = await App.CarpoolManager.TryCreateNewCarpoolOffer(carpoolOffer);
+                bool IsSubmitted = await App.CarpoolManager.CreateNewCarpoolOffer(carpoolOffer);
 
                 if (IsSubmitted)
                     await DisplayAlert("Offer Carpool", "Your carpool offer is being processed. You will be notified once it is accepted by any of our passengers.", "OK");

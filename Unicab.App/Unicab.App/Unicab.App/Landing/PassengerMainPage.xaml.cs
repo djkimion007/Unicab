@@ -27,7 +27,7 @@ namespace Unicab.App.Landing
         private async void LoginBtn_Clicked(object sender, EventArgs e)
         {
             // Login logic come here
-            Passenger passenger = await App.CredentialsManager.TryPassengerLogIn(loginUsernameEntry.Text, loginPasswordEntry.Text);
+            Passenger passenger = await App.CredentialsManager.LogInPassenger(loginUsernameEntry.Text, loginPasswordEntry.Text);
 
             if (passenger.EmailAddress != null)
             {

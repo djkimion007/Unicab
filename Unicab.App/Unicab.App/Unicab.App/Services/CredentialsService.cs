@@ -21,7 +21,7 @@ namespace Unicab.App.Services
             };
         }
 
-        public async Task<Driver> TryDriverLogin(string emailAddress, string password)
+        public async Task<Driver> LogInDriver(string emailAddress, string password)
         {
             Driver driver = new Driver();
 
@@ -47,7 +47,7 @@ namespace Unicab.App.Services
             return driver;
         }
 
-        public async Task<HttpStatusCode> TryDriverSignUp(DriverApplicant applicant)
+        public async Task<HttpStatusCode> RegisterDriver(DriverApplicant applicant)
         {
             applicant.AddedDateTime = DateTime.Now;
 
@@ -81,7 +81,7 @@ namespace Unicab.App.Services
                 return HttpStatusCode.InternalServerError;
         }
 
-        public async Task<Passenger> TryPassengerLogin(string emailAddress, string password)
+        public async Task<Passenger> LogInPassenger(string emailAddress, string password)
         {
             Passenger passenger = new Passenger();
 
@@ -107,7 +107,7 @@ namespace Unicab.App.Services
             return passenger;
         }
 
-        public async Task<HttpStatusCode> TryPassengerSignUp(PassengerApplicant applicant)
+        public async Task<HttpStatusCode> RegisterPassenger(PassengerApplicant applicant)
         {
             applicant.AddedDateTime = DateTime.Now;
 
@@ -141,7 +141,7 @@ namespace Unicab.App.Services
                 return HttpStatusCode.InternalServerError;
         }
 
-        public Task TryRetrievePassword(string emailAddress)
+        public Task RetrievePassword(string emailAddress)
         {
             throw new NotImplementedException();
         }

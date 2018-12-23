@@ -15,17 +15,17 @@ namespace Unicab.App.Services
             carpoolService = service;
         }
 
-        public Task<bool> TryCreateNewCarpoolOffer(CarpoolOffer carpoolOffer)
+        public Task<bool> CreateNewCarpoolOffer(CarpoolOffer carpoolOffer)
         {
             return carpoolService.CreateNewCarpoolOffer(carpoolOffer);
         }
 
-        public Task<CarpoolOffer> TryGetCarpoolOfferById(int carpoolOfferId)
+        public Task<CarpoolOffer> GetCarpoolOfferById(int carpoolOfferId)
         {
             return carpoolService.GetCarpoolOfferById(carpoolOfferId);
         }
 
-        public Task<List<CarpoolOffer>> TryGetAvailableCarpoolOffers()
+        public Task<List<CarpoolOffer>> GetAvailableCarpoolOffers()
         {
             return carpoolService.GetAvailableCarpoolOffers();
         }

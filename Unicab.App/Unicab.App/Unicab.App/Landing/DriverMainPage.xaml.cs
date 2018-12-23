@@ -27,7 +27,7 @@ namespace Unicab.App.Landing
         private async void LoginBtn_Clicked(object sender, EventArgs e)
         {
             // Login logic come here
-            Driver driver = await App.CredentialsManager.TryDriverLogIn(loginUsernameEntry.Text, loginPasswordEntry.Text);
+            Driver driver = await App.CredentialsManager.LogInDriver(loginUsernameEntry.Text, loginPasswordEntry.Text);
 
             if (driver.EmailAddress != null)
             {

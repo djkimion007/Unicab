@@ -51,7 +51,7 @@ namespace Unicab.App.Landing
                 MatricsCardPhoto = MatricsCardPhotoCapture
             };
 
-            HttpStatusCode statusCode = await App.CredentialsManager.TryPassengerSignUp(applicant);
+            HttpStatusCode statusCode = await App.CredentialsManager.RegisterPassenger(applicant);
 
             if (statusCode == HttpStatusCode.Created)
             {

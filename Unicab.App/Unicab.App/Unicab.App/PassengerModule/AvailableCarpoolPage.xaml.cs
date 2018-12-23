@@ -25,7 +25,7 @@ namespace Unicab.App.PassengerModule
         {
             base.OnAppearing();
 
-            AvailableCarpoolListView.ItemsSource = await App.CarpoolManager.TryGetAvailableCarpoolOffers();
+            AvailableCarpoolListView.ItemsSource = await App.CarpoolManager.GetAvailableCarpoolOffers();
         }
 
         async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)

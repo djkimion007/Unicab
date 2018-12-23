@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Unicab.App.Services;
 using Unicab.Api.Models;
+using Plugin.Connectivity;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Unicab.App
@@ -27,6 +29,14 @@ namespace Unicab.App
             PassengerManager = new PassengerManager(new PassengerService());
 
             MainPage = new NavigationPage(new Landing.PassengerMainPage());
+
+            //var seconds = TimeSpan.FromSeconds(1);
+            //Device.StartTimer(seconds,
+            //    () =>
+            //    {
+            //        DoIHaveInternet();
+            //        return false;
+            //    });
         }
 
         protected override void OnStart()
@@ -43,5 +53,13 @@ namespace Unicab.App
         {
             // Handle when your app resumes
         }
+
+        //public bool DoIHaveInternet()
+        //{
+        //    if (!CrossConnectivity.IsSupported)
+        //        return true;
+
+        //    return CrossConnectivity.Current.IsConnected;
+        //}
     }
 }

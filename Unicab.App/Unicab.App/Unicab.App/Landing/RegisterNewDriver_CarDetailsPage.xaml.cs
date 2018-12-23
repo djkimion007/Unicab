@@ -112,7 +112,7 @@ namespace Unicab.App.Landing
                 driverApplicant.CarInsuranceGrantPhoto = CarInsuranceGrantPhotoCapture; 
             }
 
-            HttpStatusCode statusCode = await App.CredentialsManager.TryDriverSignUp(driverApplicant);
+            HttpStatusCode statusCode = await App.CredentialsManager.RegisterDriver(driverApplicant);
 
             if (statusCode == HttpStatusCode.Created)
             {

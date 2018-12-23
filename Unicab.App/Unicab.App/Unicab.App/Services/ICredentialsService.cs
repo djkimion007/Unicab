@@ -9,15 +9,15 @@ namespace Unicab.App.Services
 {
     public interface ICredentialsService
     {
-        Task<Passenger> TryPassengerLogin(string emailAddress, string password);
+        Task<Passenger> LogInPassenger(string emailAddress, string password);
 
-        Task<Driver> TryDriverLogin(string emailAddress, string password);
+        Task<Driver> LogInDriver(string emailAddress, string password);
 
-        Task<HttpStatusCode> TryPassengerSignUp(PassengerApplicant applicant);
+        Task<HttpStatusCode> RegisterPassenger(PassengerApplicant applicant);
 
-        Task<HttpStatusCode> TryDriverSignUp(DriverApplicant applicant);
+        Task<HttpStatusCode> RegisterDriver(DriverApplicant applicant);
 
-        Task TryRetrievePassword(string emailAddress);
+        Task RetrievePassword(string emailAddress);
 
     }
 }
