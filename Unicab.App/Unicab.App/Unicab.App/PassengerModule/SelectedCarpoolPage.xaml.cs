@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Xamarin.Essentials;
 using Unicab.Api.Models;
+using System.Diagnostics;
 
 namespace Unicab.App.PassengerModule
 {
@@ -21,15 +22,16 @@ namespace Unicab.App.PassengerModule
         {
             InitializeComponent();
 
-            InitContexts(selectedOffer);
+            carpoolOffer = selectedOffer;
 
         }
 
-        private void InitContexts(CarpoolOffer selectedOffer)
+        protected async override void OnAppearing()
         {
-            carpoolOffer = selectedOffer;
+            base.OnAppearing();
 
-            //carpoolDriver = await App.CredentialsManager.TryGetDriverById(carpoolOffer.DriverId);
+            carpoolDriver = await App.DriverManager.GetDriverById(carpoolOffer.DriverId);
+
         }
 
 
@@ -58,7 +60,6 @@ namespace Unicab.App.PassengerModule
             {
                 await DisplayAlert("Message Driver", "Not implemented yet, sorry.", "OK");
 
-                //await Navigation.PopAsync();
             }
             else
             {
@@ -71,12 +72,15 @@ namespace Unicab.App.PassengerModule
             bool continueNextSteps = await DisplayAlert("Call Driver", "Are you sure you wish to call the driver regarding this carpool offer? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
             if (continueNextSteps)
             {
-                await DisplayAlert("Call Driver", "Not implemented yet, sorry.", "OK");
-
-                //await Navigation.PopAsync();
-            }
-            else
-            {
+                try
+                {
+                    PhoneDialer.Open(carpoolDriver.PhoneNumber);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                    throw;
+                }
 
             }
         }
