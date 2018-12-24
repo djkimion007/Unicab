@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Unicab.App.LM.DriverMainPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="20">
+
+                <Image Source="Icon.png" HorizontalOptions="Center" MinimumWidthRequest="360" MinimumHeightRequest="360" />
+
+                <Label Text="Welcome to Unicab Service!" FontSize="Large" HorizontalOptions="Center" Margin="0,5,0,10" />
+                <Label Text="Driver Login" HorizontalOptions="Center" Margin="0,5,0,5" />
+
+                <Entry x:Name="loginUsernameEntry" Placeholder="USM email address" PlaceholderColor="DimGray" />
+
+                <Entry x:Name="loginPasswordEntry" IsPassword="true" Placeholder="Password" PlaceholderColor="DimGray" />
+
+                <Button x:Name="LoginBtn" Text="Login" Clicked="LoginBtn_Clicked" />
+                <Label x:Name="ForgotPasswordLabel" Text="Forgot Your Password?" HorizontalOptions="Center" Margin="0,5,0,5" TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="ForgotPasswordLabelTapper" NumberOfTapsRequired="1" Tapped="ForgotPasswordLabel_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Button x:Name="RegisterBtn" Text="Sign Up" Clicked="RegisterBtn_Clicked" Margin="0,10,0,0"/>
+                <Button x:Name="PassengerInterfaceBtn" Text="I am a Passenger" Clicked="PassengerInterfaceBtn_Clicked" Margin="0,10,0,0"/>
+
+                <Label Text="&#9400; 2018 Unicab Service. Made in &lt;code&gt;, with &#10084; by Lester" HorizontalOptions="Center" FontSize="Micro" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

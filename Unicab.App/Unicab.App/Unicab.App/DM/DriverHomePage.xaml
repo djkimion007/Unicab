@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Unicab.App.DM.DriverHomePage"
+             xmlns:pages="clr-namespace:Unicab.App.DM">
+  <MasterDetailPage.Master>
+    <pages:DriverHomePageMaster x:Name="MasterPage" />
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+    <NavigationPage BarBackgroundColor="Teal" BarTextColor="White">
+      <x:Arguments>
+        <pages:DriverDashboardPage />
+      </x:Arguments>
+    </NavigationPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

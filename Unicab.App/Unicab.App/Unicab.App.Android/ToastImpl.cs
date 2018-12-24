@@ -12,7 +12,7 @@ using Android.Widget;
 
 using Xamarin.Forms;
 
-using Unicab.App.Services;
+using Unicab.App.SM;
 using Unicab.App.Droid;
 
 [assembly: Dependency(typeof(ToastImpl))]

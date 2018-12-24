@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Unicab.App.DM.SelectedRideHistoryPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Status" TextDecorations="Underline" FontSize="Medium" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label x:Name="StatusLabel" FontSize="Large" FontAttributes="Bold" TextColor="DarkGreen" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="Ride From" TextDecorations="Underline" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label x:Name="RideFromLabel" FontSize="Medium" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="Ride To" TextDecorations="Underline" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" />
+                <Label x:Name="RideToLabel" FontSize="Medium" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" />
+
+                <Label Text="Pickup Date" TextDecorations="Underline" Grid.Row="5" Grid.Column="1" />
+                <Label x:Name="PickupDateLabel" FontSize="Medium" Grid.Row="6" Grid.Column="1" />
+
+                <Label Text="Pickup Time" TextDecorations="Underline" Grid.Row="5" Grid.Column="2" />
+                <Label x:Name="PickupTimeLabel" FontSize="Medium" Grid.Row="6" Grid.Column="2" />
+
+                <Label Text="No. of Seats" TextDecorations="Underline" Grid.Row="7" Grid.Column="1" />
+                <Label x:Name="NoOfSeatsLabel" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
+
+                <Label Text="Ladies Only?" TextDecorations="Underline" Grid.Row="7" Grid.Column="2" />
+                <Label x:Name="LadiesOnlyLabel" FontSize="Medium" Grid.Row="8" Grid.Column="2" />
+
+                <Label Text="Driver Name" TextDecorations="Underline" Grid.Row="9" Grid.Column="1" />
+                <Label x:Name="DriverNameLabel" FontSize="Medium" Grid.Row="10" Grid.Column="1" />
+
+                <Label Text="Vehicle Plate No." TextDecorations="Underline" Grid.Row="9" Grid.Column="2" />
+                <Label x:Name="VehiclePlateNoLabel" FontSize="Medium" Grid.Row="10" Grid.Column="2" />
+
+                <Label Text="Vehicle Make" TextDecorations="Underline" Grid.Row="11" Grid.Column="1" />
+                <Label x:Name="VehicleMakeLabel" FontSize="Medium" Grid.Row="12" Grid.Column="1" />
+
+                <Label Text="Vehicle Model" TextDecorations="Underline" Grid.Row="11" Grid.Column="2" />
+                <Label x:Name="VehicleModelLabel" FontSize="Medium" Grid.Row="12" Grid.Column="2" />
+
+                <Label Text="Additional Notes" TextDecorations="Underline" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label x:Name="AdditionalNotesLabel" FontSize="Medium" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="Rating / Feedback" TextDecorations="Underline" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label x:Name="RatingFeedbackLabel" FontSize="Medium" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <!--<Button x:Name="CallPassengerBtn" Text="Call Passenger" Grid.Row="16" Grid.Column="1" Clicked="CallPassengerBtn_Clicked" />
+                <Button x:Name="MessagePassengerBtn" Text="Message Passenger" Grid.Row="16" Grid.Column="2" Clicked="MessagePassengerBtn_Clicked" />-->
+                <!--<Button x:Name="BackBtn" Text="Back to Upcoming Rides" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" Clicked="BackBtn_Clicked" />-->
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

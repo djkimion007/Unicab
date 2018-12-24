@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Unicab.App.LM.RegisterNewPassengerPage"
+             Title="Register New Passenger"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Create New Passenger Account" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" />
+
+                <!-- MatricsNo -->
+                <Entry x:Name="matricsnoEntry" Placeholder="Matrics no." Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+                
+                <!-- EmailAddress -->
+                <Entry x:Name="emailEntry" Keyboard="Email" Placeholder="USM e-mail address" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                <!-- PhoneNumber -->
+                <Entry x:Name="phonenumberEntry" Placeholder="Phone number (01x-xxxxxxxx)" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <!-- Password -->
+                <Entry x:Name="newPasswordEntry" IsPassword="True" Placeholder="New password" Grid.Row="5" Grid.Column="1" />
+                <Entry x:Name="newPasswordAgainEntry" IsPassword="True" Placeholder="Reenter password" Grid.Row="5" Grid.Column="2" />
+
+                <!-- FirstName -->
+                <Entry x:Name="firstNameEntry" Placeholder="First name" Grid.Row="6" Grid.Column="1" />
+                <!-- LastName -->
+                <Entry x:Name="lastNameEntry" Placeholder="Last name" Grid.Row="6" Grid.Column="2" />
+                
+                <!-- Gender -->
+                <Picker x:Name="genderPicker" Title="Gender" Grid.Row="7" Grid.Column="1">
+                    <Picker.Items>
+                        <x:String>M</x:String>
+                        <x:String>F</x:String>
+                    </Picker.Items>
+                </Picker>
+                
+                <!-- DateOfBirth -->
+                <DatePicker x:Name="dateOfBirthPicker" Format="d" Grid.Row="7" Grid.Column="2" />
+                
+                <!-- MatricsCardPhoto -->
+                <Button x:Name="MatricsCardPhotoButton" Text="Take Matrics Card Photo" Clicked="MatricsCardPhotoButton_Clicked"  Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="By registering and using this app, you hereby agree to the Unicab Service Terms and Conditions." FontSize="Micro" HorizontalTextAlignment="Center" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Button x:Name="SubmitButton" Text="Submit" Clicked="SubmitButton_Clicked" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

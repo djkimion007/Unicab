@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Unicab.App.LM.RegisterNewDriver_CarDetailsPage"
+             Title="Register New Driver"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Create New Driver Account (Step 2 of 2)" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                <!-- DriversLicenseDueDate -->
+                <Label Text="Driver's License Due Date" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+                <DatePicker x:Name="DriversLicenseDueDatePicker" Format="d" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+                
+                <!-- DriversLicensePhoto -->
+                <Button x:Name="DriversLicensePhotoButton" Text="Take Driver's License Photo" Clicked="DriversLicensePhotoButton_Clicked"  Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <!-- CarPlateNo -->
+                <Entry x:Name="CarPlateNoEntry" Placeholder="Car Plate No." Grid.Row="6" Grid.Column="1" />
+                <!-- CarMake -->
+                <Entry x:Name="CarMakeEntry" Placeholder="Car Make" Grid.Row="6" Grid.Column="2" />
+
+                <!-- CarModel -->
+                <Entry x:Name="CarModelEntry" Placeholder="Car Model" Grid.Row="7" Grid.Column="1" />
+                <!-- CarMakeYear -->
+                <Entry x:Name="CarMakeYearEntry" Placeholder="Car Make Year" Grid.Row="7" Grid.Column="2" />
+
+                <!-- CarColour -->
+                <Entry x:Name="CarColourEntry" Placeholder="Car Colour" Grid.Row="8" Grid.Column="1" />
+                <!-- CarRoadTaxDueDate -->
+                <DatePicker x:Name="CarRoadTaxDueDatePicker" Format="d" Grid.Row="8" Grid.Column="2" />
+
+                <!-- CarInsuranceGrantPhoto -->
+                <Button x:Name="CarInsuranceGrantPhotoButton" Text="Take Car Insurance Grant Photo" Clicked="CarInsuranceGrantPhotoButton_Clicked"  Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
+                
+                <Label Text="By registering and using this app, you hereby agree to the Unicab Service Terms and Conditions." FontSize="Micro" HorizontalTextAlignment="Center" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Button x:Name="SubmitButton" Text="Submit" Clicked="SubmitButton_Clicked"  Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="BackButton" Text="Back" Clicked="BackButton_Clicked" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" />
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

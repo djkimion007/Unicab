@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Unicab.App.Services;
+using Unicab.App.SM;
 using Unicab.Api.Models;
 using Plugin.Connectivity;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace Unicab.App
             DriverManager = new DriverManager(new DriverService());
             PassengerManager = new PassengerManager(new PassengerService());
 
-            MainPage = new NavigationPage(new Landing.PassengerMainPage());
+            MainPage = new NavigationPage(new LM.PassengerMainPage());
 
         }
 

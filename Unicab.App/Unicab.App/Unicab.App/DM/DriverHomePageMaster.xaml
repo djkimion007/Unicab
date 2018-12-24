@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Unicab.App.DM.DriverHomePageMaster"
+             Title="Master">
+    <StackLayout>
+        <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+            <ListView.Header>
+                <Grid BackgroundColor="Transparent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <!--<Label Text="Unicab Service: Passenger" VerticalOptions="CenterAndExpand" TextColor="BlueViolet" FontSize="Medium" />-->
+                        <Image Source="bg_profile.jpg" Aspect="AspectFill" />
+                        <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <controls:CircleImage BorderColor="White" BorderThickness="2" Source="profile_blank.png" Aspect="AspectFill" WidthRequest="85" HeightRequest="85" HorizontalOptions="Center">
+                                <controls:CircleImage.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="ProfilePhotoTapper" NumberOfTapsRequired="1" Tapped="ProfileTapper_Tapped" />
+                                </controls:CircleImage.GestureRecognizers>
+                            </controls:CircleImage>
+                            <Label x:Name="DvrUserName" Text="Sharifah Shakirah" TextColor="White" FontSize="Medium">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer x:Name="ProfileNameLabelTapper" NumberOfTapsRequired="1" Tapped="ProfileTapper_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <Label VerticalOptions="FillAndExpand" 
+                    VerticalTextAlignment="Center" 
+                    Text="{Binding Title}" 
+                    FontSize="24"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
