@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:system="clr-namespace:System;assembly=netstandard"
-             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              x:Class="Unicab.App.DM.OfferCarpoolRidesPage"
              Title="Offer Carpool">
     <ContentPage.Content>
@@ -34,11 +33,9 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <xfx:XfxComboBox x:Name="DrivingToComboBox" Placeholder="Enter carpool destination" FontSize="Large" ItemsSource="{Binding TripDestinationList}"
-                                 Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" SortingAlgorithm="{Binding SortingAlgorithm}" />
+                <Picker x:Name="DrivingToPicker" Title="Select carpool destination" FontSize="Large" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" ItemDisplayBinding="{Binding LocationName}" />
 
-                <xfx:XfxComboBox x:Name="DrivingFromComboBox" Placeholder="Enter pickup point (optional)" ItemsSource="{Binding TripDestinationList}"
-                                 Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SortingAlgorithm="{Binding SortingAlgorithm}" />
+                <Picker x:Name="DrivingFromPicker" Title="Select carpool pick-up point" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" ItemDisplayBinding="{Binding LocationName}" />
 
                 <Label Text="Departing Date" Grid.Row="3" Grid.Column="1" />
                 <DatePicker x:Name="DepartingDatePicker" MinimumDate="{x:Static system:DateTime.Today}" Grid.Row="4" Grid.Column="1" />

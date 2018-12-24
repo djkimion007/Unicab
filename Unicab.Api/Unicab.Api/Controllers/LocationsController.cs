@@ -28,6 +28,20 @@ namespace Unicab.Api.Controllers
             return _context.Locations;
         }
 
+        // GET: api/Locations/ExUSM
+        [HttpGet("ExUSM")]
+        public IEnumerable<Location> GetLocationsExcludeUSM()
+        {
+            return _context.Locations.Where(b => !b.IsWithinUSM);
+        }
+
+        // GET: api/Locations/InUSM
+        [HttpGet("InUSM")]
+        public IEnumerable<Location> GetLocationsIncludeUSM()
+        {
+            return _context.Locations.Where(b => b.IsWithinUSM);
+        }
+
         // GET: api/Locations/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetLocation([FromRoute] int id)

@@ -15,6 +15,7 @@ namespace Unicab.App
         public static CarpoolManager CarpoolManager { get; private set; }
         public static DriverManager DriverManager { get; private set; }
         public static PassengerManager PassengerManager { get; set; }
+        public static LocationManager LocationManager { get; set; }
 
         public static Driver CurrentDriver { get; set; }
         public static Passenger CurrentPassenger { get; set; }
@@ -27,6 +28,7 @@ namespace Unicab.App
             CarpoolManager = new CarpoolManager(new CarpoolService());
             DriverManager = new DriverManager(new DriverService());
             PassengerManager = new PassengerManager(new PassengerService());
+            LocationManager = new LocationManager(new LocationService());
 
             MainPage = new NavigationPage(new LM.PassengerMainPage());
 
