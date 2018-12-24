@@ -23,12 +23,14 @@ namespace Unicab.App.PM
 
             BindingContext = new PassengerHomePageMasterViewModel();
             ListView = MenuItemsListView;
+
+            FullName.Text = string.Format("{0} {1}", App.CurrentPassenger.FirstName, App.CurrentPassenger.LastName);
         }
 
         class PassengerHomePageMasterViewModel : INotifyPropertyChanged
         {
             public ObservableCollection<PassengerHomePageMenuItem> MenuItems { get; set; }
-            
+
             public PassengerHomePageMasterViewModel()
             {
                 MenuItems = new ObservableCollection<PassengerHomePageMenuItem>(new[]

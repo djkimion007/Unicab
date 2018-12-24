@@ -23,6 +23,8 @@ namespace Unicab.App.DM
 
             BindingContext = new DriverHomePageMasterViewModel();
             ListView = MenuItemsListView;
+
+            FullName.Text = string.Format("{0} {1}", App.CurrentDriver.FirstName, App.CurrentDriver.LastName);
         }
 
         class DriverHomePageMasterViewModel : INotifyPropertyChanged

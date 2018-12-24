@@ -6,61 +6,58 @@
              Title="My Profile">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
 
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="0,20,0,10">
-                    <!-- Profile photo -->
-                    <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Source="profile_blank.png" Aspect="AspectFill" WidthRequest="85" HeightRequest="85" />
-                    <!-- Profile name -->
-                    <Label x:Name="PgrName" Text="Sharifah Shakirah" FontSize="Large" FontAttributes="Bold" />
-                </StackLayout>
+                <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Source="profilephoto_sample.jpg" Aspect="AspectFit"
+                                      WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="0,10,0,10">
+                <Label x:Name="FullName" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding MatricsNo}" FontSize="Medium" HorizontalTextAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="0,0,20,0">
-                        <!-- Gender -->
-                        <Label Text="Gender" FontAttributes="Bold" />
-                        <Label x:Name="PgrGender" Text="Female" />
-                    </StackLayout>
+                <Label Text="Gender" TextDecorations="Underline" Grid.Row="7" Grid.Column="1" />
+                <Label Text="{Binding Gender}" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
 
-                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="20,0,0,0">
-                        <!-- Date of birth -->
-                        <Label Text="Date of Birth" FontAttributes="Bold" />
-                        <Label x:Name="PgrDateOfBirth" Text="10/2/1994" />
-                    </StackLayout>
-                </StackLayout>
+                <Label Text="Date of Birth" TextDecorations="Underline" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding DateOfBirth, StringFormat='{0:d}'}" FontSize="Medium" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="0,10,0,10">
-                    <!-- USM email address -->
-                    <Label Text="USM E-mail Address" FontAttributes="Bold" />
-                    <Label x:Name="PgrEmailAddress" Text="janedoe@student.usm.my" />
-                </StackLayout>
+                <Label Text="Email Address" TextDecorations="Underline" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding EmailAddress}" FontSize="Medium" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="0,10,0,10">
-                    <!-- USM matrics number -->
-                    <Label Text="USM Matrics No." FontAttributes="Bold" />
-                    <Label x:Name="PgrMatricsNo" Text="124567" />
-                </StackLayout>
+                <Label Text="Phone Number" TextDecorations="Underline" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding PhoneNumber}" FontSize="Medium" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="0,10,0,10">
-                    <!-- Registered Phone No. -->
-                    <Label Text="Registered Phone No." FontAttributes="Bold" />
-                    <Label x:Name="PgrPhoneNo" Text="016 - 789 0123" />
-                </StackLayout>
+                <Button x:Name="UpdateProfileButton" Text="Update Profile" Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="2" Clicked="UpdateProfileButton_Clicked" />
 
-                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="0,10,0,10">
-                    <!-- Date Registered -->
-                    <Label Text="Registered Since" FontAttributes="Bold" />
-                    <Label x:Name="PgrRegisteredDate" Text="12th October 2018" />
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Padding="0,10,0,10">
-                    <!-- Update Button -->
-                    <Button x:Name="UpdateProfileBtn" Text="Update Profile" />
-                </StackLayout>
-
-
-            </StackLayout>
+            </Grid>
 
         </ScrollView>
     </ContentPage.Content>
