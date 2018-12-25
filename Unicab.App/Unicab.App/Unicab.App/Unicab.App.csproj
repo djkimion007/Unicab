@@ -28,12 +28,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="DM\SelectedCarpoolPage.xaml.cs">
+      <DependentUpon>SelectedCarpoolPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Landing\RegisterNewDriver_MainPage.xaml.cs">
       <DependentUpon>RegisterNewDriver_MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="DM\CarpoolDashboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\SelectedCarpoolPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Landing\RegisterNewDriver_CarDetailsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

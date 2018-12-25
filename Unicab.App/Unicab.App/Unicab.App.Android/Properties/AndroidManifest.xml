@@ -4,10 +4,10 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <application android:label="Unicab Service" android:icon="@drawable/Icon">
-    <!--<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyChSocGuZsYOFlY-TUpqZMUoIJtAbRpwO4" />-->
-    <provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
-      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
-    </provider>
-  </application>
+	<application android:label="Unicab Service" android:icon="@drawable/Icon">
+		<!--<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyChSocGuZsYOFlY-TUpqZMUoIJtAbRpwO4" />-->
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
+		</provider>
+	</application>
 </manifest>
