@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Unicab.App.DM.CP.CPDashboardPage"
              Title="Carpool Offers">
-    <StackLayout>
+    <StackLayout Margin="5">
+        
         <ListView x:Name="YourCPListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
-            RowHeight="140">
+            HasUnevenRows="true"
+            IsPullToRefreshEnabled="True">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -20,13 +22,13 @@
                                         <Image Source="car_icon.png" WidthRequest="60" HeightRequest="60" />
                                         <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                             <StackLayout>
-                                                <Label Text="{Binding DestinationLocationId}" FontSize="Large" FontAttributes="Bold" TextColor="Teal" />
-                                                <Label Text="{Binding OriginLocationId}" FontSize="Medium" />
+                                                <Label Text="{Binding LocationName}" BindingContext="{Binding DestinationLocation}" FontSize="Medium" FontAttributes="Bold" TextColor="Teal" />
+                                                <Label Text="{Binding LocationName}" BindingContext="{Binding OriginLocation}" />
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal" BindingContext="{Binding OriginDateTime}">
-                                                <Label Text="{Binding StringFormat='Date: {0:d}'}" />
+                                                <Label Text="{Binding StringFormat='{0:d}'}" FontAttributes="Bold" />
                                                 <Label Text="|" />
-                                                <Label Text="{Binding StringFormat='Time: {0:t}'}" />
+                                                <Label Text="{Binding StringFormat='{0:t}'}" FontAttributes="Bold" />
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding NoOfPassengers, StringFormat='Seats Available: {0}'}" />
@@ -43,7 +45,6 @@
             </ListView.ItemTemplate>
 
         </ListView>
-        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="Teal" />
     </StackLayout>
 
 </ContentPage>

@@ -55,8 +55,8 @@ namespace Unicab.App.DM.CP
 
                 CarpoolOffer carpoolOffer = new CarpoolOffer
                 {
-                    DestinationLocation = DrivingToPicker.SelectedItem as Location,
-                    OriginLocation = DrivingFromPicker.SelectedItem as Location,
+                    DestinationLocationId = (DrivingToPicker.SelectedItem as Location).LocationId,
+                    OriginLocationId = (DrivingFromPicker.SelectedItem as Location).LocationId,
                     OriginDateTime = dateTime,
                     NoOfPassengers = Convert.ToInt32(NoOfSeatsPicker.SelectedItem),
                     IsLadiesOnly = (LadiesOnlyPicker.SelectedItem.Equals("Yes")) ? true : false,

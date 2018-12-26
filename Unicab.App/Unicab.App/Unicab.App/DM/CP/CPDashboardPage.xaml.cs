@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,20 +16,15 @@ namespace Unicab.App.DM.CP
 	{
         public ObservableCollection<CarpoolOffer> Items { get; set; }
 
-        bool isLoading;
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                isLoading = value;
-                OnPropertyChanged();
-            }
-        }
-
         public CPDashboardPage()
         {
             InitializeComponent();
+
+            YourCPListView.RefreshCommand = new Command(async () =>
+            {
+                await RefreshData();
+                YourCPListView.IsRefreshing = false;
+            });
 
         }
 
@@ -36,11 +32,9 @@ namespace Unicab.App.DM.CP
         {
             base.OnAppearing();
 
-            var carpoolOffersList = await LoadItemsAsync();
 
-            Items = new ObservableCollection<CarpoolOffer>(carpoolOffersList);
-
-            YourCPListView.ItemsSource = Items;
+            await RefreshData();
+            
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -54,26 +48,13 @@ namespace Unicab.App.DM.CP
             ((ListView)sender).SelectedItem = null;
         }
 
-        async Task<List<CarpoolOffer>> LoadItemsAsync()
+        private async Task RefreshData()
         {
-            List<CarpoolOffer> items = null;
-            try
-            {
-                IsLoading = true;
+            var carpoolOffersList = await App.CarpoolManager.GetAvailableCarpoolOffersByDriverId(App.CurrentDriver.DriverId);
 
-                // Call your web service here
-                items = await App.CarpoolManager.GetAvailableCarpoolOffersByDriverId(App.CurrentDriver.DriverId);
-            }
-            catch (Exception ex)
-            {
+            Items = new ObservableCollection<CarpoolOffer>(carpoolOffersList);
 
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-
-            return items;
+            YourCPListView.ItemsSource = Items;
         }
     }
 }

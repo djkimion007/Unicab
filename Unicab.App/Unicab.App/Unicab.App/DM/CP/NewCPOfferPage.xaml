@@ -68,8 +68,8 @@
                 <Label Text="Additional Notes" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" />
                 <Editor x:Name="AdditionalNotesEditor" Placeholder="Enter any additional details here." MaxLength="160" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-                <Label Text="Offer Until" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
-                <DatePicker x:Name="OfferUntilDatePicker" MinimumDate="{x:Static system:DateTime.Today}" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+                <!--<Label Text="Offer Until" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
+                <DatePicker x:Name="OfferUntilDatePicker" MinimumDate="{x:Static system:DateTime.Today}" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />-->
 
                 <Button x:Name="OfferCarpoolBtn" Text="Offer Carpool" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Clicked="OfferCarpoolBtn_Clicked" />
             </Grid>

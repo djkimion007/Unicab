@@ -12,9 +12,16 @@ namespace Unicab.App.DM.CP
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CPSelectedPage : ContentPage
 	{
+
 		public CPSelectedPage (CarpoolOffer carpoolOffer)
 		{
 			InitializeComponent ();
+
+            BindingContext = carpoolOffer;
+
+            FullName.Text = string.Format("{0} {1}", carpoolOffer.Driver.FirstName, carpoolOffer.Driver.LastName);
+
 		}
-	}
+
+    }
 }
