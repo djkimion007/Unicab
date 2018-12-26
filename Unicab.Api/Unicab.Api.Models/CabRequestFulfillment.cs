@@ -8,6 +8,7 @@ namespace Unicab.Api.Models
     {
         public int CabRequestFulfillmentId { get; set; }
 
+        public int CabRequestId { get; set; }
         public CabRequest CabRequest { get; set; }
 
         public int DriverId { get; set; }

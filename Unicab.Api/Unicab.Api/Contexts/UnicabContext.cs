@@ -68,21 +68,33 @@ namespace Unicab.Api.Contexts
                 .Property(b => b.AddedDateTime)
                 .HasDefaultValueSql("GETDATE()");
 
-            modelBuilder.Entity<CarpoolOffer>()
-                .HasOne(b => b.OriginLocation)
-                .WithMany();
+            modelBuilder.Entity<CarpoolOffer>(fk =>
+            {
+                fk.HasOne(f => f.DestinationLocation)
+                .WithMany()
+                .HasForeignKey(p => p.DestinationLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CarpoolOffer>()
-                .HasOne(p => p.DestinationLocation)
-                .WithMany();
+                fk.HasOne(f => f.OriginLocation)
+                .WithMany()
+                .HasForeignKey(p => p.OriginLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<CabRequest>()
-                .HasOne(p => p.PickUpLocation)
-                .WithMany();
+            });
 
-            modelBuilder.Entity<CabRequest>()
-                .HasOne(p => p.DropOffLocation)
-                .WithMany();
+            modelBuilder.Entity<CabRequest>(fk =>
+            {
+                fk.HasOne(f => f.PickUpLocation)
+                .WithMany()
+                .HasForeignKey(p => p.PickUpLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+                fk.HasOne(f => f.DropOffLocation)
+                .WithMany()
+                .HasForeignKey(p => p.DropOffLocationId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            });
         }
     }
 }

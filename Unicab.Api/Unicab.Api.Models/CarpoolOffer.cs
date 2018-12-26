@@ -11,7 +11,10 @@ namespace Unicab.Api.Models
         public int DriverId { get; set; }
         public Driver Driver { get; set; }
 
+        public int OriginLocationId { get; set; }
         public Location OriginLocation { get; set; }
+
+        public int DestinationLocationId { get; set; }
         public Location DestinationLocation { get; set; }
 
         public DateTime OriginDateTime { get; set; }

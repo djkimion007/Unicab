@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Unicab.Api.Contexts;
 
 namespace Unicab.Api.Migrations
 {
     [DbContext(typeof(UnicabContext))]
-    partial class UnicabContextModelSnapshot : ModelSnapshot
+    [Migration("20181226131351_UpdateModelFKAgainTwo")]
+    partial class UpdateModelFKAgainTwo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,11 +78,11 @@ namespace Unicab.Api.Migrations
 
                     b.Property<string>("AdditionalNotes");
 
-                    b.Property<int>("DropOffLocationId");
-
                     b.Property<bool>("IsAccepted");
 
                     b.Property<bool>("IsLadiesOnly");
+
+                    b.Property<int?>("LocationId");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -90,17 +92,17 @@ namespace Unicab.Api.Migrations
 
                     b.Property<DateTime>("PickUpDateTime");
 
-                    b.Property<int>("PickUpLocationId");
+                    b.Property<int?>("PickUpLocationLocationId");
 
                     b.Property<int>("RequestPeriod");
 
                     b.HasKey("CabRequestId");
 
-                    b.HasIndex("DropOffLocationId");
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("PassengerId");
 
-                    b.HasIndex("PickUpLocationId");
+                    b.HasIndex("PickUpLocationLocationId");
 
                     b.ToTable("CabRequests");
                 });
@@ -150,13 +152,15 @@ namespace Unicab.Api.Migrations
 
                     b.Property<string>("AdditionalNotes");
 
-                    b.Property<int>("DestinationLocationId");
+                    b.Property<int?>("DestinationLocationLocationId");
 
                     b.Property<int>("DriverId");
 
                     b.Property<bool>("IsAccepted");
 
                     b.Property<bool>("IsLadiesOnly");
+
+                    b.Property<int?>("LocationId");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -166,15 +170,13 @@ namespace Unicab.Api.Migrations
 
                     b.Property<DateTime>("OriginDateTime");
 
-                    b.Property<int>("OriginLocationId");
-
                     b.HasKey("CarpoolOfferId");
 
-                    b.HasIndex("DestinationLocationId");
+                    b.HasIndex("DestinationLocationLocationId");
 
                     b.HasIndex("DriverId");
 
-                    b.HasIndex("OriginLocationId");
+                    b.HasIndex("LocationId");
 
                     b.ToTable("CarpoolOffers");
                 });
@@ -564,8 +566,7 @@ namespace Unicab.Api.Migrations
                 {
                     b.HasOne("Unicab.Api.Models.Location", "DropOffLocation")
                         .WithMany()
-                        .HasForeignKey("DropOffLocationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("LocationId");
 
                     b.HasOne("Unicab.Api.Models.Passenger", "Passenger")
                         .WithMany()
@@ -574,8 +575,7 @@ namespace Unicab.Api.Migrations
 
                     b.HasOne("Unicab.Api.Models.Location", "PickUpLocation")
                         .WithMany()
-                        .HasForeignKey("PickUpLocationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("PickUpLocationLocationId");
                 });
 
             modelBuilder.Entity("Unicab.Api.Models.CabRequestFulfillment", b =>
@@ -595,8 +595,7 @@ namespace Unicab.Api.Migrations
                 {
                     b.HasOne("Unicab.Api.Models.Location", "DestinationLocation")
                         .WithMany()
-                        .HasForeignKey("DestinationLocationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("DestinationLocationLocationId");
 
                     b.HasOne("Unicab.Api.Models.Driver", "Driver")
                         .WithMany()
@@ -605,8 +604,7 @@ namespace Unicab.Api.Migrations
 
                     b.HasOne("Unicab.Api.Models.Location", "OriginLocation")
                         .WithMany()
-                        .HasForeignKey("OriginLocationId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("LocationId");
                 });
 
             modelBuilder.Entity("Unicab.Api.Models.CarpoolOfferFulfillment", b =>
