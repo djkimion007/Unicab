@@ -22,7 +22,7 @@ namespace Unicab.App.PM.PP
             FullName.Text = string.Format("{0} {1}", App.CurrentPassenger.FirstName, App.CurrentPassenger.LastName);
 		}
 
-        private void UpdateProfileButton_Clicked(object sender, EventArgs e)
+        private void UpdateProfilePhotoButton_Clicked(object sender, EventArgs e)
         {
 
         }

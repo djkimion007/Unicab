@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             x:Class="Unicab.App.PM.BD.SelectedDriverPage">
+             x:Class="Unicab.App.PM.BD.SelectedDriverPage"
+             Title="Selected Driver">
     <ContentPage.Content>
         <ScrollView>
             <Grid>
@@ -36,25 +37,25 @@
                 <Label x:Name="FullNameLabel" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
 
                 <Label Text="Vehicle Plate No." TextDecorations="Underline" Grid.Row="5" Grid.Column="1" />
-                <Label x:Name="VehiclePlateNoLabel" FontSize="Medium" Grid.Row="6" Grid.Column="1" />
+                <Label Text="{Binding CarPlateNo}" FontSize="Medium" Grid.Row="6" Grid.Column="1" />
 
                 <Label Text="Road Tax Expiry Date" TextDecorations="Underline" Grid.Row="5" Grid.Column="2" />
-                <Label x:Name="RoadTaxExpiryLabel" FontSize="Medium" Grid.Row="6" Grid.Column="2" />
+                <Label Text="{Binding CarRoadTaxDueDate, StringFormat='{0:d}'}" FontSize="Medium" Grid.Row="6" Grid.Column="2" />
 
                 <Label Text="Vehicle Make" TextDecorations="Underline" Grid.Row="7" Grid.Column="1" />
-                <Label x:Name="VehicleMakeLabel" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
+                <Label Text="{Binding CarMake}" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
 
                 <Label Text="Vehicle Model" TextDecorations="Underline" Grid.Row="7" Grid.Column="2" />
-                <Label x:Name="VehicleModelLabel" FontSize="Medium" Grid.Row="8" Grid.Column="2" />
+                <Label Text="{Binding CarModel}" FontSize="Medium" Grid.Row="8" Grid.Column="2" />
 
-                <Label Text="E-mail Address" TextDecorations="Underline" Grid.Row="9" Grid.Column="1" />
-                <Label x:Name="EmailAddressLabel" FontSize="Medium" Grid.Row="10" Grid.Column="1" />
+                <Label Text="E-mail Address" TextDecorations="Underline" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding EmailAddress}" FontSize="Medium" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Phone Number" TextDecorations="Underline" Grid.Row="9" Grid.Column="2" />
-                <Label x:Name="PhoneNumberLabel" FontSize="Medium" Grid.Row="10" Grid.Column="2" />
+                <Label Text="Phone Number" TextDecorations="Underline" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding PhoneNumber}" FontSize="Medium" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="CallDriverBtn" Text="Call Driver" Grid.Row="12" Grid.Column="1" Clicked="CallDriverBtn_Clicked" />
-                <Button x:Name="MessageDriverBtn" Text="Message Driver" Grid.Row="12" Grid.Column="2" Clicked="MessageDriverBtn_Clicked" />
+                <Button x:Name="CallDriverBtn" Text="Call" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CallDriverBtn_Clicked" />
+                <Button x:Name="MessageDriverBtn" Text="Message" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" Clicked="MessageDriverBtn_Clicked" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

@@ -26,6 +26,7 @@ namespace Unicab.App.LM
         // Validation required
         private async void LoginBtn_Clicked(object sender, EventArgs e)
         {
+            LoginBtn.IsEnabled = false;
             // Login logic come here
             Passenger passenger = await App.CredentialsManager.LogInPassenger(loginUsernameEntry.Text, loginPasswordEntry.Text);
 
@@ -39,6 +40,7 @@ namespace Unicab.App.LM
             else
             {
                 DependencyService.Get<IToasts>().ShortToast("Login failed, credentials incorrect");
+                LoginBtn.IsEnabled = true;
             }
 
         }

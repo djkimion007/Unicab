@@ -16,6 +16,8 @@ namespace Unicab.App.DM
         public DriverDashboardPage()
         {
             InitializeComponent();
+
+            WelcomeLabel.Text = string.Format("Welcome, {0} {1}!", App.CurrentDriver.FirstName, App.CurrentDriver.LastName);
         }
 
         private void AcceptCabFrameTapGesture_Tapped(object sender, EventArgs e)

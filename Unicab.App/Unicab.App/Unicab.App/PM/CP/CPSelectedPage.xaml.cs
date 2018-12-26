@@ -15,65 +15,15 @@ namespace Unicab.App.PM.CP
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CPSelectedPage : ContentPage
 	{
-        public CarpoolOffer carpoolOffer;
-
-        public CPSelectedPage(CarpoolOffer selectedOffer)
+        public CPSelectedPage(CarpoolOffer carpoolOffer)
         {
             InitializeComponent();
 
-            carpoolOffer = selectedOffer;
+            BindingContext = carpoolOffer;
+
+            FullName.Text = string.Format("{0} {1}", carpoolOffer.Driver.FirstName, carpoolOffer.Driver.LastName);
 
         }
 
-
-        private async void AcceptCarpoolBtn_Clicked(object sender, EventArgs e)
-        {
-            bool continueNextSteps = await DisplayAlert("Accept Carpool", "Are you sure you wish to accept this carpool offer? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
-            if (continueNextSteps)
-            {
-                // perform carpool acceptance
-
-                await DisplayAlert("Accept Carpool", "You have accepted this carpool offer. Kindly wait for driver's confirmation. Thank you.", "OK");
-
-                await Navigation.PopAsync();
-            }
-            else
-            {
-                
-            }
-            
-        }
-
-        private async void MessageDriverBtn_Clicked(object sender, EventArgs e)
-        {
-            bool continueNextSteps = await DisplayAlert("Message Driver", "Are you sure you wish to message the driver regarding this carpool offer? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
-            if (continueNextSteps)
-            {
-                await DisplayAlert("Message Driver", "Not implemented yet, sorry.", "OK");
-
-            }
-            else
-            {
-
-            }
-        }
-
-        private async void CallDriverBtn_Clicked(object sender, EventArgs e)
-        {
-            bool continueNextSteps = await DisplayAlert("Call Driver", "Are you sure you wish to call the driver regarding this carpool offer? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
-            if (continueNextSteps)
-            {
-                try
-                {
-                    PhoneDialer.Open(carpoolOffer.Driver.PhoneNumber);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(@"ERROR: {0}", ex.Message);
-                    throw;
-                }
-
-            }
-        }
     }
 }

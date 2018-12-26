@@ -15,20 +15,15 @@ namespace Unicab.App.DM.CR
     {
         public ObservableCollection<CabRequest> Items { get; set; }
 
-        bool isLoading;
-        public bool IsLoading
-        {
-            get => isLoading;
-            set
-            {
-                isLoading = value;
-                OnPropertyChanged();
-            }
-        }
-
         public CRDashboardPage()
         {
             InitializeComponent();
+
+            AvailableCRListView.RefreshCommand = new Command(async () =>
+            {
+                await RefreshData();
+                AvailableCRListView.IsRefreshing = false;
+            });
 
         }
 
@@ -36,11 +31,8 @@ namespace Unicab.App.DM.CR
         {
             base.OnAppearing();
 
-            var cabRequestsList = await LoadItemsAsync();
+            await RefreshData();
 
-            Items = new ObservableCollection<CabRequest>(cabRequestsList);
-
-            AvailableCRListView.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -54,26 +46,13 @@ namespace Unicab.App.DM.CR
             ((ListView)sender).SelectedItem = null;
         }
 
-        async Task<List<CabRequest>> LoadItemsAsync()
+        private async Task RefreshData()
         {
-            List<CabRequest> items = null;
-            try
-            {
-                IsLoading = true;
+            var cabRequestsList = await App.CabManager.GetAvailableCabRequests();
 
-                // Call your web service here
-                items = await App.CabManager.GetAvailableCabRequests();
-            }
-            catch (Exception ex)
-            {
-                
-            }
-            finally
-            {
-                IsLoading = false;
-            }
+            Items = new ObservableCollection<CabRequest>(cabRequestsList);
 
-            return items;
+            AvailableCRListView.ItemsSource = Items;
         }
     }
 }

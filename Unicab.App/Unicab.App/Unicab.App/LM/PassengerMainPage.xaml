@@ -10,7 +10,7 @@
                 <Image Source="Icon.png" HorizontalOptions="Center" MinimumWidthRequest="360" MinimumHeightRequest="360" />
 
                 <Label Text="Welcome to Unicab Service!" FontSize="Large" HorizontalOptions="Center" Margin="0,5,0,10" HorizontalTextAlignment="Center" />
-                <Label Text="Passenger Login" HorizontalOptions="Center" Margin="0,5,0,5" />
+                <Label Text="Passenger Login" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center" Margin="0,5,0,5" />
 
                 <Entry x:Name="loginUsernameEntry" Placeholder="USM email address" PlaceholderColor="DimGray" />
 

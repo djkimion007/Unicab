@@ -17,96 +17,27 @@ namespace Unicab.App.PM.CR
 		public NewCRPage ()
 		{
 			InitializeComponent ();
-
-            List<string> pickupLocationList = new List<string>
-            {
-                "RST Guard House, USM",
-                "M05 (belakang kafe), Desasiswa Tekun, USM",
-                "M05 (hadapan kafe), Desasiswa Tekun, USM",
-                "M04, Desasiswa Saujana, USM",
-                "M01 (parkir motor). Desasiswa Restu, USM",
-                "M03 (parkir motor), Desasiswa Saujana, USM",
-                "Kafe Restu / Saujana, USM",
-                "M02 (tingkat bawah), Desasiswa Restu, USM",
-                "M02 (tingkat atas), Desasiswa Restu, USM",
-                "Dewan Utama Desasiswa (DUD), USM",
-                "Kafe D'Tekun Bistro, Desasiswa Tekun, USM",
-                "M06 (Pondok), Desasiswa Tekun, USM",
-                "Hentian Bas Padang Kawad, USM",
-                "Hentian Bas Indah Kembara, USM",
-                "Hentian Bas Aman Damai, USM",
-                "Hentian Bas Jabatan Keselamatan (JK), USM",
-                "Hentian Bas Stor Kimia, USM",
-                "Hentian Bas Padang Bola Keranjang, Desasiswa Bakti Permai, USM",
-                "Hentian Bas Pusat Sejahtera, USM",
-                "Hentian Bas DK SK, USM",
-                "Hentian Bas SOLLAT, USM",
-                "Hentian Bas HBP, USM",
-                "Hentian Bas PHS II, USM",
-                "Hentian Bas Kompleks Eureka, USM",
-                "Hentian Bas Fajar Harapan, USM",
-                "Stadium Hoki / Pusat Sukan, USM",
-                "Padang Minden / Batu Uban, USM",
-                "Glugor",
-                "Sungai Dua",
-                "Terminal Bas Sungai Nibong",
-                "Lip Sin",
-                "Queensbay Mall",
-                "Kompleks Bukit Jambul",
-                "Penang International Airport",
-                "Hospital Pulau Pinang"
-            };
-
-            List<string> dropoffLocationList = new List<string>
-            {
-                "RST Guard House, USM",
-                "M05 (belakang kafe), Desasiswa Tekun, USM",
-                "M05 (hadapan kafe), Desasiswa Tekun, USM",
-                "M04, Desasiswa Saujana, USM",
-                "M01 (parkir motor). Desasiswa Restu, USM",
-                "M03 (parkir motor), Desasiswa Saujana, USM",
-                "Kafe Restu / Saujana, USM",
-                "M02 (tingkat bawah), Desasiswa Restu, USM",
-                "M02 (tingkat atas), Desasiswa Restu, USM",
-                "Dewan Utama Desasiswa (DUD), USM",
-                "Kafe D'Tekun Bistro, Desasiswa Tekun, USM",
-                "M06 (Pondok), Desasiswa Tekun, USM",
-                "Hentian Bas Padang Kawad, USM",
-                "Hentian Bas Indah Kembara, USM",
-                "Hentian Bas Aman Damai, USM",
-                "Hentian Bas Jabatan Keselamatan (JK), USM",
-                "Hentian Bas Stor Kimia, USM",
-                "Hentian Bas Padang Bola Keranjang, Desasiswa Bakti Permai, USM",
-                "Hentian Bas Pusat Sejahtera, USM",
-                "Hentian Bas DK SK, USM",
-                "Hentian Bas SOLLAT, USM",
-                "Hentian Bas HBP, USM",
-                "Hentian Bas PHS II, USM",
-                "Hentian Bas Kompleks Eureka, USM",
-                "Hentian Bas Fajar Harapan, USM",
-                "Stadium Hoki / Pusat Sukan, USM",
-                "Padang Minden / Batu Uban, USM",
-                "Glugor",
-                "Sungai Dua",
-                "Terminal Bas Sungai Nibong",
-                "Lip Sin",
-                "Queensbay Mall",
-                "Kompleks Bukit Jambul",
-                "Penang International Airport",
-                "Hospital Pulau Pinang"
-            };
-
-            PickupLocationPicker.ItemsSource = pickupLocationList;
-            DropoffLocationPicker.ItemsSource = dropoffLocationList;
 		}
 
-        private async void BookCabBtn_Clicked(object sender, EventArgs e)
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            List<Location> pickupLocationList = await App.LocationManager.GetStationLocationsAll();
+
+            List<Location> dropoffLocationList = await App.LocationManager.GetStationLocationsAll();
+
+            PickUpPicker.ItemsSource = pickupLocationList;
+            DropOffPicker.ItemsSource = dropoffLocationList;
+        }
+
+        private async void RequestCabBtn_Clicked(object sender, EventArgs e)
         {
             string confirmBookingText = string.Format("Do you wish to confirm your cab request as follows:\n\nPickup Location: {0}\nDropoff Location: {1}\nPickup Date: {2:D}\nPickup Time: {3}\nNo. of Passengers: {4}\nLadies Only?: {5}\nAdditional Notes: {6}",
-                PickupLocationPicker.SelectedItem,
-                DropoffLocationPicker.SelectedItem,
-                PickupDatePicker.Date.ToString("ddd, d MMM yyyy"),
-                DateTime.Today.Add(PickupTimePicker.Time).ToString("h:mm tt"),
+                (PickUpPicker.SelectedItem as Location).LocationName,
+                (DropOffPicker.SelectedItem as Location).LocationName,
+                PickUpDatePicker.Date.ToString("ddd, d MMM yyyy"),
+                DateTime.Today.Add(PickUpTimePicker.Time).ToString("h:mm tt"),
                 NoOfPassengersPicker.SelectedItem,
                 LadiesOnlyPicker.SelectedItem,
                 AdditionalNotesEditor.Text);
@@ -116,14 +47,32 @@ namespace Unicab.App.PM.CR
             if (confirmBooking)
             {
                 // add operations to book a cab
-                await DisplayAlert("Request Cab", "Your cab request is being processed. You will be notified once it is accepted by any of our drivers.", "OK");
-                
+                DateTime dateTime = PickUpDatePicker.Date + PickUpTimePicker.Time;
+
+                CabRequest cabRequest = new CabRequest
+                {
+                    PickUpLocationId = (PickUpPicker.SelectedItem as Location).LocationId,
+                    DropOffLocationId = (DropOffPicker.SelectedItem as Location).LocationId,
+                    PickUpDateTime = dateTime,
+                    NoOfPassengers = Convert.ToInt32(NoOfPassengersPicker.SelectedItem),
+                    IsLadiesOnly = (LadiesOnlyPicker.SelectedItem.Equals("Yes")) ? true : false,
+                    AdditionalNotes = AdditionalNotesEditor.Text,
+                    PassengerId = App.CurrentPassenger.PassengerId
+                };
+
+                bool IsSubmitted = await App.CabManager.CreateNewCabRequest(cabRequest);
+
+                if (IsSubmitted)
+                    await DisplayAlert("Request Cab", "Your cab request is being processed. You will be notified once it is accepted by any of our drivers.", "OK");
+                else
+                    await DisplayAlert("Request Cab", "Your cab request could not be processed. Please contact technical support.", "OK");
             }
             else
             {
                 await DisplayAlert("Request Cab", "You have not proceeded with your cab request.", "OK");
             }
-        }
 
+            await Navigation.PopToRootAsync();
+        }
     }
 }

@@ -19,5 +19,10 @@ namespace Unicab.App.SM
         {
             return driverService.GetDriverById(driverId);
         }
+
+        public Task<List<Driver>> GetAvailableDrivers()
+        {
+            return driverService.GetAvailableDrivers();
+        }
     }
 }

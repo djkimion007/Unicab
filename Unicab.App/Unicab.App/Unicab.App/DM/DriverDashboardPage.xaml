@@ -7,6 +7,8 @@
         <ScrollView Margin="5">
             <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
 
+                <Label x:Name="WelcomeLabel" FontSize="36" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center">
                     <ContentView Padding="5,5,5,5">
                         <ContentView.Content>

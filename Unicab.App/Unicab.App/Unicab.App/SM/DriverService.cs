@@ -21,6 +21,31 @@ namespace Unicab.App.SM
             };
         }
 
+        public async Task<List<Driver>> GetAvailableDrivers()
+        {
+            List<Driver> driversList = new List<Driver>();
+
+            var uri = new Uri(string.Format(AppServerConstants.DriversUrl, string.Empty));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                responseMessage = await client.GetAsync(uri);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var content = await responseMessage.Content.ReadAsStringAsync();
+                    driversList = JsonConvert.DeserializeObject<List<Driver>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return driversList;
+        }
+
         public async Task<Driver> GetDriverById(int driverId)
         {
             Driver driver = new Driver();

@@ -14,10 +14,17 @@ namespace Unicab.App.PM.CP
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CPDashboardPage : ContentPage
     {
+        public ObservableCollection<CarpoolOffer> Items { get; set; }
 
         public CPDashboardPage()
         {
             InitializeComponent();
+
+            AvailableCPListView.RefreshCommand = new Command(async () =>
+            {
+                await RefreshData();
+                AvailableCPListView.IsRefreshing = false;
+            });
 
         }
 
@@ -25,19 +32,28 @@ namespace Unicab.App.PM.CP
         {
             base.OnAppearing();
 
-            AvailableCarpoolListView.ItemsSource = await App.CarpoolManager.GetAvailableCarpoolOffers();
+            await RefreshData();
+
         }
 
-        async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var carpoolOfferItem = e.SelectedItem as CarpoolOffer;
-            var selectedCarpoolPage = new CPSelectedPage(carpoolOfferItem)
-            {
-                BindingContext = carpoolOfferItem
-            };
+            if (e.Item == null)
+                return;
 
-            await Navigation.PushAsync(selectedCarpoolPage);
+            await Navigation.PushAsync(new CPSelectedPage(e.Item as CarpoolOffer));
 
+            //Deselect Item
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private async Task RefreshData()
+        {
+            var carpoolOffersList = await App.CarpoolManager.GetAvailableCarpoolOffers();
+
+            Items = new ObservableCollection<CarpoolOffer>(carpoolOffersList);
+
+            AvailableCPListView.ItemsSource = Items;
         }
     }
 }

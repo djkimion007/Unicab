@@ -9,5 +9,7 @@ namespace Unicab.App.SM
     public interface IDriverService
     {
         Task<Driver> GetDriverById(int driverId);
+
+        Task<List<Driver>> GetAvailableDrivers();
     }
 }

@@ -2,13 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Unicab.App.DM.CR.CRDashboardPage"
-             Title="Available Cab Requests">
-    <StackLayout>
+             Title="Cab Requests">
+    <StackLayout Margin="5">
+
         <ListView x:Name="AvailableCRListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement"
-            RowHeight="100">
+            HasUnevenRows="true"
+            IsPullToRefreshEnabled="True">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -19,18 +21,17 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image Source="car_icon.png" WidthRequest="60" HeightRequest="60" />
                                         <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding DrivingFrom}" FontSize="Medium" />
-                                                <Label Text="&#8599;" FontSize="Medium"/>
-                                                <Label Text="{Binding DrivingTo}" FontSize="Medium" FontAttributes="Bold" TextColor="HotPink" />
+                                            <StackLayout>
+                                                <Label Text="{Binding LocationName}" BindingContext="{Binding DropOffLocation}" FontSize="Medium" FontAttributes="Bold" TextColor="DarkBlue" />
+                                                <Label Text="{Binding LocationName}" BindingContext="{Binding PickUpLocation}" />
                                             </StackLayout>
-                                            <StackLayout Orientation="Horizontal" BindingContext="{Binding DepartingDateTime}">
-                                                <Label Text="{Binding StringFormat='Date: {0:d}'}" />
+                                            <StackLayout Orientation="Horizontal" BindingContext="{Binding PickUpDateTime}">
+                                                <Label Text="{Binding StringFormat='{0:d}'}" FontAttributes="Bold" />
                                                 <Label Text="|" />
-                                                <Label Text="{Binding StringFormat='Time: {0:t}'}" />
+                                                <Label Text="{Binding StringFormat='{0:t}'}" FontAttributes="Bold" />
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding NoOfSeats, StringFormat='Seats Available: {0}'}" />
+                                                <Label Text="{Binding NoOfPassengers, StringFormat='Seats Available: {0}'}" />
                                             </StackLayout>
                                         </StackLayout>
 
@@ -44,7 +45,6 @@
             </ListView.ItemTemplate>
 
         </ListView>
-        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
     </StackLayout>
 
 </ContentPage>

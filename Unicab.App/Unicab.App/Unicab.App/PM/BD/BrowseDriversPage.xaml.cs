@@ -18,50 +18,28 @@ namespace Unicab.App.PM.BD
         {
             InitializeComponent();
 
-            //Items = new ObservableCollection<string>
-            //{
-            //    "Item 1",
-            //    "Item 2",
-            //    "Item 3",
-            //    "Item 4",
-            //    "Item 5"
-            //};
-
-            Items = new ObservableCollection<Driver>
+            BrowseDriversListView.RefreshCommand = new Command(async () =>
             {
-                new Driver
-                {
-                    EmailAddress = "abangwifi@student.usm.my",
-                    FirstName = "Abang",
-                    LastName = "Wifi",
-                    CarPlateNo = "BFE9720",
-                    CarMake = "Proton",
-                    CarModel = "Preve"
+                await RefreshData();
+                BrowseDriversListView.IsRefreshing = false;
+            });
+        }
 
-                },
-                new Driver
-                {
-                    EmailAddress = "suekei@student.usm.my",
-                    FirstName = "Sue",
-                    LastName = "Kei",
-                    CarPlateNo = "DEF1232",
-                    CarMake = "Perodua",
-                    CarModel = "MyVi"
+        private async Task RefreshData()
+        {
+            var driversList = await App.DriverManager.GetAvailableDrivers();
 
-                },
-                new Driver
-                {
-                    EmailAddress = "syahrulnizam@student.usm.my",
-                    FirstName = "Syahrul",
-                    LastName = "Nizam",
-                    CarPlateNo = "PDG5543",
-                    CarMake = "Honda",
-                    CarModel = "City"
+            Items = new ObservableCollection<Driver>(driversList);
 
-                }
-            };
-			
-			BrowseDriversListView.ItemsSource = Items;
+            BrowseDriversListView.ItemsSource = Items;
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await RefreshData();
+
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -69,7 +47,7 @@ namespace Unicab.App.PM.BD
             if (e.Item == null)
                 return;
 
-            await Navigation.PushAsync(new SelectedDriverPage((Driver)e.Item));
+            await Navigation.PushAsync(new SelectedDriverPage(e.Item as Driver));
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;

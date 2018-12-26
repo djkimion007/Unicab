@@ -19,7 +19,7 @@
                             <Frame OutlineColor="Accent" Padding="5">
                                 <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                     <StackLayout Orientation="Horizontal">
-                                        <Image Source="car_icon.png" WidthRequest="60" HeightRequest="60" />
+                                        <Image Source="carpool_icon.png" WidthRequest="60" HeightRequest="60" />
                                         <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                             <StackLayout>
                                                 <Label Text="{Binding LocationName}" BindingContext="{Binding DestinationLocation}" FontSize="Medium" FontAttributes="Bold" TextColor="Teal" />

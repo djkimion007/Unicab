@@ -16,27 +16,11 @@ namespace Unicab.App.DM.CR
     {
         private CabRequest selectedCabRequest;
 
-        public CRSelectedPage(CabRequest selectedRequest)
+        public CRSelectedPage(CabRequest cabRequest)
         {
             InitializeComponent();
 
-            selectedCabRequest = selectedRequest;
-
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            this.Title = string.Format("{0}", selectedCabRequest.DropOffLocation.LocationName);
-
-            DrivingFromLabel.Text = selectedCabRequest.PickUpLocation.LocationName;
-            DrivingToLabel.Text = selectedCabRequest.DropOffLocation.LocationName;
-            DepartingDateLabel.Text = selectedCabRequest.PickUpDateTime.ToLongDateString();
-            DepartingTimeLabel.Text = selectedCabRequest.PickUpDateTime.ToShortTimeString();
-            NoOfSeatsLabel.Text = selectedCabRequest.NoOfPassengers.ToString();
-            LadiesOnlyLabel.Text = (selectedCabRequest.IsLadiesOnly) ? "Yes" : "No";
-            AdditionalNotesLabel.Text = selectedCabRequest.AdditionalNotes;
+            BindingContext = cabRequest;
 
         }
 
