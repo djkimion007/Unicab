@@ -58,6 +58,11 @@
                 <Label Text="Ladies Only?" TextDecorations="Underline" Grid.Row="7" Grid.Column="2" />
                 <Label Text="{Binding Path=IsLadiesOnly, Converter={StaticResource BooleanToStringConverter}}" FontSize="Medium" Grid.Row="8" Grid.Column="2" />
 
+                <Label Text="Additional Notes" TextDecorations="Underline" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding AdditionalNotes}" LineBreakMode="WordWrap" FontSize="Medium" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                <Button x:Name="CancelRequestBtn" Text="Cancel Request" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CancelRequestBtn_Clicked" />
+                <Button x:Name="CompleteRideBtn" Text="Complete Ride" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CompleteRideBtn_Clicked" />
 
             </Grid>
         </ScrollView>

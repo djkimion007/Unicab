@@ -21,6 +21,73 @@ namespace Unicab.App.SM
             };
         }
 
+        public async Task<bool> AcceptCabRequest(CabRequest fulfillment)
+        {
+            fulfillment.IsAccepted = true;
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, string.Empty));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(fulfillment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PostAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully submitted");
+
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request fulfillment failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+
+        }
+
+        private async Task<bool> UpdateAcceptedCabRequest(int cabRequestId, CabRequest request)
+        {
+            request.IsAccepted = true;
+            request.ModifiedDateTime = DateTime.Now;
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, cabRequestId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(request);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST 201 OK: Cab request successfully updated");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request update failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+        }
+
         public async Task<bool> CreateNewCabRequest(CabRequest cabRequest)
         {
             var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, string.Empty));
@@ -128,6 +195,170 @@ namespace Unicab.App.SM
             }
 
             return cabRequest;
+        }
+
+        public async Task<List<CabRequest>> GetCabRequestsByDriverId(int driverId)
+        {
+            List<CabRequest> cabRequestFulfillments = new List<CabRequest>();
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, "FulfillmentByDriverId/" + driverId));
+            HttpResponseMessage response = null;
+
+            try
+            {
+                response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    cabRequestFulfillments = JsonConvert.DeserializeObject<List<CabRequest>>(content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return cabRequestFulfillments;
+        }
+
+        public async Task<bool> CompleteCabRequestDriverSide(CabRequest fulfillment)
+        {
+            fulfillment.DriverHasCompleted = true;
+            fulfillment.DriverCompletedDateTime = DateTime.Now;
+            fulfillment.IsFarePaid = true;
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(fulfillment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully completed (driver)");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request fulfillment failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+        }
+
+        public async Task<bool> CompleteCabRequestPassengerSide(CabRequest fulfillment)
+        {
+            if (!fulfillment.DriverHasCompleted)
+                return false;
+            
+            // Complete ride
+            fulfillment.PassengerHasCompleted = true;
+            fulfillment.PassengerCompletedDateTime = DateTime.Now;
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(fulfillment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully completed (passenger)");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request fulfillment failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+        }
+
+        public async Task<bool> CancelCabRequestByDriver(CabRequest fulfillment)
+        {
+            fulfillment.DriverHasCancelled = true;
+            fulfillment.DriverCancelledDateTime = DateTime.Now;
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(fulfillment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully cancelled (driver)");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request fulfillment cancellation failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+        }
+
+        public async Task<bool> CancelCabRequestByPassenger(CabRequest fulfillment)
+        {
+            fulfillment.PassengerHasCancelled = true;
+            fulfillment.PassengerCancelledDateTime = DateTime.Now;
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(fulfillment);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully cancelled (passenger)");
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request fulfillment cancellation failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
         }
     }
 }

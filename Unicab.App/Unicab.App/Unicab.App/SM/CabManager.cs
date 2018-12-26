@@ -34,5 +34,36 @@ namespace Unicab.App.SM
         {
             return cabService.GetAvailableCabRequestsByPassengerId(passengerId);
         }
+
+        public Task<List<CabRequest>> GetCabRequestsByDriverId(int driverId)
+        {
+            return cabService.GetCabRequestsByDriverId(driverId);
+        }
+
+        public Task<bool> AcceptCabRequest(CabRequest cabRequest)
+        {
+            return cabService.AcceptCabRequest(cabRequest);
+        }
+
+        public Task<bool> CompleteCabRequestDriverSide(CabRequest fulfillment)
+        {
+            return cabService.CompleteCabRequestDriverSide(fulfillment);
+        }
+
+        public Task<bool> CompleteCabRequestPassengerSide(CabRequest fulfillment)
+        {
+            return cabService.CompleteCabRequestPassengerSide(fulfillment);
+        }
+
+        public Task<bool> CancelCabRequestByDriver(CabRequest fulfillment)
+        {
+            return cabService.CancelCabRequestByDriver(fulfillment);
+        }
+
+        public Task<bool> CancelCabRequestByPassenger(CabRequest fulfillment)
+        {
+            return cabService.CancelCabRequestByPassenger(fulfillment);
+        }
+
     }
 }

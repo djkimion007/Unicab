@@ -19,55 +19,60 @@ namespace Unicab.App.DM.CR
         public CRSelectedPage(CabRequest cabRequest)
         {
             InitializeComponent();
+            selectedCabRequest = cabRequest;
 
-            BindingContext = cabRequest;
+            BindingContext = selectedCabRequest;
 
+            FullName.Text = string.Format("{0} {1}", cabRequest.Passenger.FirstName, cabRequest.Passenger.LastName);
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (selectedCabRequest.IsAccepted)
+            {
+                CompleteRideBtn.IsVisible = true;
+                AcceptRequestBtn.IsVisible = false;
+            }
+               
+            else
+            {
+                AcceptRequestBtn.IsVisible = true;
+                CompleteRideBtn.IsVisible = false;
+            }
+                
         }
 
         private async void AcceptRequestBtn_Clicked(object sender, EventArgs e)
         {
-            bool continueNextSteps = await DisplayAlert("Accept Request", "Are you sure you wish to accept this cab request? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
-            if (continueNextSteps)
-            {
-                await DisplayAlert("Accept Request", "You have accepted this cab request, and a notification has been sent to the passenger. You will be reminded to fetch the passenger at the appointed schedule and location. Thank you.", "OK");
+            bool confirmAccept = await DisplayAlert("Accept Request", "Are you sure you wish to accept this cab request? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
+            if (!confirmAccept)
+                return;
 
-                await Navigation.PopAsync();
-            }
+            // accept the request
+
+            bool requestAccepted = await App.CabManager.AcceptCabRequest(selectedCabRequest);
+
+            if (requestAccepted)
+                await DisplayAlert("Accept Request", "You have accepted this cab request, and a notification has been sent to the passenger. You will be reminded to fetch the passenger at the appointed schedule and location. Use the Cab Fulfillment feature upon completing the ride. Thank you.", "OK");
             else
-            {
+                await DisplayAlert("Accept Request", "Sorry, there's an issue accepting the request. Please contact technical service. Thank you.", "OK");
 
-            }
+            await Navigation.PopToRootAsync();
 
         }
 
-        private async void MessagePassengerBtn_Clicked(object sender, EventArgs e)
+        private async void CompleteRideBtn_Clicked(object sender, EventArgs e)
         {
-            bool continueNextSteps = await DisplayAlert("Message Passenger", "Are you sure you wish to message the passenger regarding this cab request? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
-            if (continueNextSteps)
-            {
-                await DisplayAlert("Message Passenger", "Not implemented yet, sorry.", "OK");
+            bool confirmAccept = await DisplayAlert("Complete Cab Ride", "Complete this cab ride?", "Yes", "No");
+            if (!confirmAccept)
+                return;
 
-                //await Navigation.PopAsync();
-            }
-            else
-            {
+            // accept the request
 
-            }
-        }
-
-        private async void CallPassengerBtn_Clicked(object sender, EventArgs e)
-        {
-            bool continueNextSteps = await DisplayAlert("Call Passenger", "Are you sure you wish to call the passenger regarding this cab request? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
-            if (continueNextSteps)
-            {
-                await DisplayAlert("Call Passenger", "Not implemented yet, sorry.", "OK");
-
-                //await Navigation.PopAsync();
-            }
-            else
-            {
-
-            }
+            await Navigation.PushAsync(new CRCompletedPage(selectedCabRequest));
         }
     }
 }

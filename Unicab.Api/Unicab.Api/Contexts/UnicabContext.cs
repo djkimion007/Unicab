@@ -23,8 +23,7 @@ namespace Unicab.Api.Contexts
         public DbSet<CarpoolOfferFulfillment> CarpoolOfferFulfillments { get; set; }
 
         public DbSet<CabRequest> CabRequests { get; set; }
-        public DbSet<CabRequestFulfillment> CabRequestFulfillments { get; set; }
-
+        
         public DbSet<RatingFeedback> RatingFeedbacks { get; set; }
 
         public DbSet<Location> Locations { get; set; }

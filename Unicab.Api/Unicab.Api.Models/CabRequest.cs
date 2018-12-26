@@ -25,12 +25,31 @@ namespace Unicab.Api.Models
 
         public string AdditionalNotes { get; set; }
 
-        public int RequestPeriod { get; set; } // in no. of seconds
+        public int RequestPeriod { get; set; }
 
         public DateTime AddedDateTime { get; set; }
 
         public DateTime ModifiedDateTime { get; set; }
 
         public bool IsAccepted { get; set; }
+
+        public int DriverId { get; set; }
+        public Driver Driver { get; set; }
+
+        public bool DriverHasCompleted { get; set; }
+        public DateTime DriverCompletedDateTime { get; set; }
+
+        public bool PassengerHasCompleted { get; set; }
+        public DateTime PassengerCompletedDateTime { get; set; }
+
+        public double DistanceTravelled { get; set; }
+        public double FareCharge { get; set; }
+        public bool IsFarePaid { get; set; }
+
+        public bool DriverHasCancelled { get; set; }
+        public DateTime DriverCancelledDateTime { get; set; }
+
+        public bool PassengerHasCancelled { get; set; }
+        public DateTime PassengerCancelledDateTime { get; set; }
     }
 }
