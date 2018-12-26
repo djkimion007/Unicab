@@ -25,14 +25,20 @@ namespace Unicab.Api.Controllers
         [HttpGet]
         public IEnumerable<CarpoolOffer> GetCarpoolOffers()
         {
-            return _context.CarpoolOffers;
+            return _context.CarpoolOffers
+                .Include(offers => offers.DestinationLocation)
+                .Include(offers => offers.OriginLocation)
+                .Include(offers => offers.Driver);
         }
 
         // GET: api/CarpoolOffers/ByDriverId/5
         [HttpGet("ByDriverId/{id}")]
         public IEnumerable<CarpoolOffer> GetCarpoolOffers([FromRoute] int id)
         {
-            return _context.CarpoolOffers.Where(b => b.DriverId == id);
+            return _context.CarpoolOffers.Where(b => b.DriverId == id)
+                .Include(offers => offers.DestinationLocation)
+                .Include(offers => offers.OriginLocation)
+                .Include(offers => offers.Driver);
         }
 
         // GET: api/CarpoolOffers/5

@@ -25,7 +25,10 @@ namespace Unicab.Api.Controllers
         [HttpGet]
         public IEnumerable<CabRequest> GetCabRequests()
         {
-            return _context.CabRequests;
+            return _context.CabRequests
+                .Include(requests => requests.PickUpLocation)
+                .Include(requests => requests.DropOffLocation)
+                .Include(requests => requests.Passenger);
         }
 
         // GET: api/CabRequests/ByPassengerId/5
