@@ -8,9 +8,10 @@ namespace Unicab.Api.Models
     {
         public int CarpoolOfferFulfillmentId { get; set; }
 
-        public int CarpoolOfferId { get; set; }
+        public CarpoolOffer CarpoolOffer { get; set; }
 
-        public int AcceptedPassengerId { get; set; }
+        public int PassengerId { get; set; }
+        public Passenger Passenger { get; set; }
 
         public bool DriverHasCompleted { get; set; }
         public DateTime DriverCompletedDateTime { get; set; }

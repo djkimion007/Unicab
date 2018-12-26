@@ -28,12 +28,12 @@ namespace Unicab.Api.Controllers
             return _context.CabRequests;
         }
 
-        // GET: api/CabRequests/ByPassengerId/5
-        [HttpGet("ByPassengerId/{id}")]
-        public IEnumerable<CabRequest> GetCabRequests([FromRoute] int id)
-        {
-            return _context.CabRequests.Where(b => b.PassengerId == id);
-        }
+        //// GET: api/CabRequests/ByPassengerId/5
+        //[HttpGet("ByPassengerId/{id}")]
+        //public IEnumerable<CabRequest> GetCabRequests([FromRoute] int id)
+        //{
+        //    return _context.CabRequests.Where(b => b.RequestPassenger.PassengerId == id);
+        //}
 
         // GET: api/CabRequests/5
         [HttpGet("{id}")]

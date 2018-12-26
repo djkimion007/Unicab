@@ -9,11 +9,12 @@ namespace Unicab.Api.Models
         public int CarpoolOfferId { get; set; }
 
         public int DriverId { get; set; }
+        public Driver Driver { get; set; }
 
-        public string OriginLocation { get; set; }
+        public Location OriginLocation { get; set; }
+        public Location DestinationLocation { get; set; }
+
         public DateTime OriginDateTime { get; set; }
-
-        public string DestinationLocation { get; set; }
 
         public int NoOfPassengers { get; set; }
 

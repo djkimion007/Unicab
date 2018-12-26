@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Unicab.Api.Contexts;
 
 namespace Unicab.Api.Migrations
 {
     [DbContext(typeof(UnicabContext))]
-    partial class UnicabContextModelSnapshot : ModelSnapshot
+    [Migration("20181226085937_RenewModelRelatedData")]
+    partial class RenewModelRelatedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,11 +88,11 @@ namespace Unicab.Api.Migrations
 
                     b.Property<int>("NoOfPassengers");
 
-                    b.Property<int>("PassengerId");
-
                     b.Property<DateTime>("PickUpDateTime");
 
                     b.Property<int?>("PickUpLocationLocationId");
+
+                    b.Property<int?>("RequestPassengerPassengerId");
 
                     b.Property<int>("RequestPeriod");
 
@@ -98,9 +100,9 @@ namespace Unicab.Api.Migrations
 
                     b.HasIndex("DropOffLocationLocationId");
 
-                    b.HasIndex("PassengerId");
-
                     b.HasIndex("PickUpLocationLocationId");
+
+                    b.HasIndex("RequestPassengerPassengerId");
 
                     b.ToTable("CabRequests");
                 });
@@ -111,15 +113,13 @@ namespace Unicab.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CabRequestId");
+                    b.Property<int?>("AcceptedDriverDriverId");
 
                     b.Property<double>("DistanceTravelled");
 
                     b.Property<DateTime>("DriverCompletedDateTime");
 
                     b.Property<bool>("DriverHasCompleted");
-
-                    b.Property<int>("DriverId");
 
                     b.Property<double>("FareCharge");
 
@@ -129,11 +129,13 @@ namespace Unicab.Api.Migrations
 
                     b.Property<bool>("PassengerHasCompleted");
 
+                    b.Property<int?>("RequestCabCabRequestId");
+
                     b.HasKey("CabRequestFulfillmentId");
 
-                    b.HasIndex("CabRequestId");
+                    b.HasIndex("AcceptedDriverDriverId");
 
-                    b.HasIndex("DriverId");
+                    b.HasIndex("RequestCabCabRequestId");
 
                     b.ToTable("CabRequestFulfillments");
                 });
@@ -152,8 +154,6 @@ namespace Unicab.Api.Migrations
 
                     b.Property<int?>("DestinationLocationLocationId");
 
-                    b.Property<int>("DriverId");
-
                     b.Property<bool>("IsAccepted");
 
                     b.Property<bool>("IsLadiesOnly");
@@ -161,6 +161,8 @@ namespace Unicab.Api.Migrations
                     b.Property<DateTime>("ModifiedDateTime");
 
                     b.Property<int>("NoOfPassengers");
+
+                    b.Property<int?>("OfferDriverDriverId");
 
                     b.Property<int>("OfferPeriod");
 
@@ -172,7 +174,7 @@ namespace Unicab.Api.Migrations
 
                     b.HasIndex("DestinationLocationLocationId");
 
-                    b.HasIndex("DriverId");
+                    b.HasIndex("OfferDriverDriverId");
 
                     b.HasIndex("OriginLocationLocationId");
 
@@ -185,7 +187,7 @@ namespace Unicab.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CarpoolOfferId");
+                    b.Property<int?>("AcceptedPassengerIdPassengerId");
 
                     b.Property<double>("DistanceTravelled");
 
@@ -199,17 +201,17 @@ namespace Unicab.Api.Migrations
 
                     b.Property<bool>("IsFareSplit");
 
+                    b.Property<int?>("OfferCarpoolCarpoolOfferId");
+
                     b.Property<DateTime>("PassengerCompletedDateTime");
 
                     b.Property<bool>("PassengerHasCompleted");
 
-                    b.Property<int>("PassengerId");
-
                     b.HasKey("CarpoolOfferFulfillmentId");
 
-                    b.HasIndex("CarpoolOfferId");
+                    b.HasIndex("AcceptedPassengerIdPassengerId");
 
-                    b.HasIndex("PassengerId");
+                    b.HasIndex("OfferCarpoolCarpoolOfferId");
 
                     b.ToTable("CarpoolOfferFulfillments");
                 });
@@ -566,26 +568,24 @@ namespace Unicab.Api.Migrations
                         .WithMany()
                         .HasForeignKey("DropOffLocationLocationId");
 
-                    b.HasOne("Unicab.Api.Models.Passenger", "Passenger")
-                        .WithMany()
-                        .HasForeignKey("PassengerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Unicab.Api.Models.Location", "PickUpLocation")
                         .WithMany()
                         .HasForeignKey("PickUpLocationLocationId");
+
+                    b.HasOne("Unicab.Api.Models.Passenger", "RequestPassenger")
+                        .WithMany()
+                        .HasForeignKey("RequestPassengerPassengerId");
                 });
 
             modelBuilder.Entity("Unicab.Api.Models.CabRequestFulfillment", b =>
                 {
-                    b.HasOne("Unicab.Api.Models.CabRequest", "CabRequest")
+                    b.HasOne("Unicab.Api.Models.Driver", "AcceptedDriver")
                         .WithMany()
-                        .HasForeignKey("CabRequestId");
+                        .HasForeignKey("AcceptedDriverDriverId");
 
-                    b.HasOne("Unicab.Api.Models.Driver", "Driver")
+                    b.HasOne("Unicab.Api.Models.CabRequest", "RequestCab")
                         .WithMany()
-                        .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RequestCabCabRequestId");
                 });
 
             modelBuilder.Entity("Unicab.Api.Models.CarpoolOffer", b =>
@@ -594,10 +594,9 @@ namespace Unicab.Api.Migrations
                         .WithMany()
                         .HasForeignKey("DestinationLocationLocationId");
 
-                    b.HasOne("Unicab.Api.Models.Driver", "Driver")
+                    b.HasOne("Unicab.Api.Models.Driver", "OfferDriver")
                         .WithMany()
-                        .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OfferDriverDriverId");
 
                     b.HasOne("Unicab.Api.Models.Location", "OriginLocation")
                         .WithMany()
@@ -606,14 +605,13 @@ namespace Unicab.Api.Migrations
 
             modelBuilder.Entity("Unicab.Api.Models.CarpoolOfferFulfillment", b =>
                 {
-                    b.HasOne("Unicab.Api.Models.CarpoolOffer", "CarpoolOffer")
+                    b.HasOne("Unicab.Api.Models.Passenger", "AcceptedPassengerId")
                         .WithMany()
-                        .HasForeignKey("CarpoolOfferId");
+                        .HasForeignKey("AcceptedPassengerIdPassengerId");
 
-                    b.HasOne("Unicab.Api.Models.Passenger", "Passenger")
+                    b.HasOne("Unicab.Api.Models.CarpoolOffer", "OfferCarpool")
                         .WithMany()
-                        .HasForeignKey("PassengerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OfferCarpoolCarpoolOfferId");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,11 +9,12 @@ namespace Unicab.Api.Models
         public int CabRequestId { get; set; }
 
         public int PassengerId { get; set; }
+        public Passenger Passenger { get; set; }
 
-        public string PickUpLocation { get; set; }
+        public Location PickUpLocation { get; set; }
+        public Location DropOffLocation { get; set; }
+
         public DateTime PickUpDateTime { get; set; }
-
-        public string DropOffLocation { get; set; }
 
         public int NoOfPassengers { get; set; }
 

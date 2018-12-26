@@ -67,6 +67,22 @@ namespace Unicab.Api.Contexts
             modelBuilder.Entity<Location>()
                 .Property(b => b.AddedDateTime)
                 .HasDefaultValueSql("GETDATE()");
+
+            modelBuilder.Entity<CarpoolOffer>()
+                .HasOne(b => b.OriginLocation)
+                .WithMany();
+
+            modelBuilder.Entity<CarpoolOffer>()
+                .HasOne(p => p.DestinationLocation)
+                .WithMany();
+
+            modelBuilder.Entity<CabRequest>()
+                .HasOne(p => p.PickUpLocation)
+                .WithMany();
+
+            modelBuilder.Entity<CabRequest>()
+                .HasOne(p => p.DropOffLocation)
+                .WithMany();
         }
     }
 }
