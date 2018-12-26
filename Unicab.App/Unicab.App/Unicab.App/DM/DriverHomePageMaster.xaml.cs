@@ -36,10 +36,8 @@ namespace Unicab.App.DM
                 MenuItems = new ObservableCollection<DriverHomePageMenuItem>(new[]
                 {
                     new DriverHomePageMenuItem { Id = 0, Title = "Home", TargetType = typeof(DriverDashboardPage) },
-                    new DriverHomePageMenuItem { Id = 1, Title = "Available Cab Requests", TargetType = typeof(AvailableCabRequestsPage) },
-                    new DriverHomePageMenuItem { Id = 2, Title = "Carpool Offers", TargetType = typeof(CarpoolDashboardPage) },
-                    new DriverHomePageMenuItem { Id = 3, Title = "Fare Table", TargetType = typeof(DriverFareTablePage) },
-                    new DriverHomePageMenuItem { Id = 4, Title = "History", TargetType = typeof(DriverHistoryPage) },
+                    new DriverHomePageMenuItem { Id = 1, Title = "Available Cab Requests", TargetType = typeof(CR.CRDashboardPage) },
+                    new DriverHomePageMenuItem { Id = 2, Title = "Carpool Offers", TargetType = typeof(CP.CPDashboardPage) },
 
                     new DriverHomePageMenuItem { Id = 99, Title = "Log Out", TargetType = null }
                 });
@@ -61,10 +59,7 @@ namespace Unicab.App.DM
         private void ProfileTapper_Tapped(object sender, EventArgs e)
         {
             DriverHomePage DvrHomePage = (DriverHomePage)App.Current.MainPage;
-            DvrHomePage.Detail = new NavigationPage(new DriverProfilePage()) {
-                BarBackgroundColor = Color.Teal,
-                BarTextColor = Color.White
-            };
+            DvrHomePage.Detail = new NavigationPage(new DP.DPPage());
             DvrHomePage.IsPresented = false;
 
         }

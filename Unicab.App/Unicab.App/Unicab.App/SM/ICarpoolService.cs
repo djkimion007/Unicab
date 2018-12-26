@@ -14,6 +14,8 @@ namespace Unicab.App.SM
 
         Task<List<CarpoolOffer>> GetAvailableCarpoolOffers();
 
+        Task<List<CarpoolOffer>> GetAvailableCarpoolOffersByDriverId(int driverId);
+
         //Task<bool> AcceptCarpoolOffer(int carpoolOfferId);
 
     }

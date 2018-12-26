@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             x:Class="Unicab.App.PM.PP.PPPage"
+             Title="My Profile">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="2" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+
+                <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Source="profilephoto_sample.jpg" Aspect="AspectFit"
+                                      WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label x:Name="FullName" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding MatricsNo}" FontSize="Medium" HorizontalTextAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="Gender" TextDecorations="Underline" Grid.Row="7" Grid.Column="1" />
+                <Label Text="{Binding Gender}" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
+
+                <Label Text="Date of Birth" TextDecorations="Underline" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding DateOfBirth, StringFormat='{0:d}'}" FontSize="Medium" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="Email Address" TextDecorations="Underline" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding EmailAddress}" FontSize="Medium" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Label Text="Phone Number" TextDecorations="Underline" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding PhoneNumber}" FontSize="Medium" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                <Button x:Name="UpdateProfileButton" Text="Update Profile" Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="2" Clicked="UpdateProfileButton_Clicked" />
+
+            </Grid>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

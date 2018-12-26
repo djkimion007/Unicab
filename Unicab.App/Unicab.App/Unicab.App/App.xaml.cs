@@ -13,6 +13,7 @@ namespace Unicab.App
     {
         public static CredentialsManager CredentialsManager { get; private set; }
         public static CarpoolManager CarpoolManager { get; private set; }
+        public static CabManager CabManager { get; private set; }
         public static DriverManager DriverManager { get; private set; }
         public static PassengerManager PassengerManager { get; set; }
         public static LocationManager LocationManager { get; set; }
@@ -26,6 +27,7 @@ namespace Unicab.App
 
             CredentialsManager = new CredentialsManager(new CredentialsService());
             CarpoolManager = new CarpoolManager(new CarpoolService());
+            CabManager = new CabManager(new CabService());
             DriverManager = new DriverManager(new DriverService());
             PassengerManager = new PassengerManager(new PassengerService());
             LocationManager = new LocationManager(new LocationService());

@@ -29,5 +29,11 @@ namespace Unicab.App.SM
         {
             return carpoolService.GetAvailableCarpoolOffers();
         }
+
+        public Task<List<CarpoolOffer>> GetAvailableCarpoolOffersByDriverId(int driverId)
+        {
+            return carpoolService.GetAvailableCarpoolOffersByDriverId(driverId);
+        }
+
     }
 }

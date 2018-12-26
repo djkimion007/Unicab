@@ -9,11 +9,11 @@ using Unicab.Api.Models;
 
 namespace Unicab.App.SM
 {
-    public class CarpoolService : ICarpoolService
+    public class CabService : ICabService
     {
         private readonly HttpClient client;
 
-        public CarpoolService()
+        public CabService()
         {
             client = new HttpClient
             {
@@ -21,27 +21,26 @@ namespace Unicab.App.SM
             };
         }
 
-        public async Task<bool> CreateNewCarpoolOffer(CarpoolOffer carpoolOffer)
+        public async Task<bool> CreateNewCabRequest(CabRequest cabRequest)
         {
-
-            var uri = new Uri(string.Format(AppServerConstants.CarpoolOffersUrl, string.Empty));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, string.Empty));
             HttpResponseMessage responseMessage = null;
 
             try
             {
-                var json = JsonConvert.SerializeObject(carpoolOffer);
+                var json = JsonConvert.SerializeObject(cabRequest);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 responseMessage = await client.PostAsync(uri, content);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine("POST 201 OK: Carpool offer successfully submitted");
+                    Debug.WriteLine("POST 201 OK: Cab request successfully submitted");
                     return true;
                 }
                 else
                 {
-                    Debug.WriteLine(@"POST {0} NOT OK: Carpool offer failed", responseMessage.StatusCode);
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request failed", responseMessage.StatusCode);
                 }
             }
             catch (Exception ex)
@@ -50,15 +49,67 @@ namespace Unicab.App.SM
             }
 
             return false;
-
         }
 
-
-        public async Task<CarpoolOffer> GetCarpoolOfferById(int carpoolOfferId)
+        public async Task<List<CabRequest>> GetAvailableCabRequests()
         {
-            CarpoolOffer carpoolOffer = new CarpoolOffer();
+            List<CabRequest> cabRequests = new List<CabRequest>();
 
-            var uri = new Uri(string.Format(AppServerConstants.CarpoolOffersUrl, carpoolOfferId));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, string.Empty));
+            HttpResponseMessage response = null;
+
+            try
+            {
+                response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    cabRequests = JsonConvert.DeserializeObject<List<CabRequest>>(content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return cabRequests;
+        }
+
+        public async Task<List<CabRequest>> GetAvailableCabRequestsByPassengerId(int passengerId)
+        {
+            List<CabRequest> cabRequests = new List<CabRequest>();
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, "ByPassengerId/" + passengerId));
+            HttpResponseMessage response = null;
+
+            try
+            {
+                response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    cabRequests = JsonConvert.DeserializeObject<List<CabRequest>>(content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return cabRequests;
+        }
+
+        public async Task<CabRequest> GetCabRequestById(int cabRequestId)
+        {
+            CabRequest cabRequest = new CabRequest();
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, cabRequestId));
 
             try
             {
@@ -67,7 +118,7 @@ namespace Unicab.App.SM
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    carpoolOffer = JsonConvert.DeserializeObject<CarpoolOffer>(content);
+                    cabRequest = JsonConvert.DeserializeObject<CabRequest>(content);
 
                 }
             }
@@ -76,62 +127,7 @@ namespace Unicab.App.SM
                 Debug.WriteLine(@"ERROR: {0}", ex.Message);
             }
 
-            return carpoolOffer;
-
-        }
-
-        public async Task<List<CarpoolOffer>> GetAvailableCarpoolOffers()
-        {
-            List<CarpoolOffer> carpoolOffers = new List<CarpoolOffer>();
-
-            var uri = new Uri(string.Format(AppServerConstants.CarpoolOffersUrl, string.Empty));
-            HttpResponseMessage response = null;
-
-            try
-            {
-                response = await client.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    carpoolOffers = JsonConvert.DeserializeObject<List<CarpoolOffer>>(content);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"ERROR: {0}", ex.Message);
-                throw;
-            }
-
-            return carpoolOffers;
-        }
-
-        public async Task<List<CarpoolOffer>> GetAvailableCarpoolOffersByDriverId(int driverId)
-        {
-            List<CarpoolOffer> carpoolOffers = new List<CarpoolOffer>();
-
-            var uri = new Uri(string.Format(AppServerConstants.CarpoolOffersUrl, "ByDriverId/" + driverId));
-            HttpResponseMessage response = null;
-
-            try
-            {
-                response = await client.GetAsync(uri);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    carpoolOffers = JsonConvert.DeserializeObject<List<CarpoolOffer>>(content);
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(@"ERROR: {0}", ex.Message);
-                throw;
-            }
-
-            return carpoolOffers;
+            return cabRequest;
         }
     }
 }

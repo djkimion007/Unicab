@@ -81,7 +81,7 @@ namespace Unicab.App.DM
             if (e.Item == null)
                 return;
 
-            await Navigation.PushAsync(new SelectedUpcomingRidePage(e.Item as CabRequest));
+            //await Navigation.PushAsync(new SelectedUpcomingRidePage(e.Item as CabRequest));
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
@@ -90,14 +90,14 @@ namespace Unicab.App.DM
         private void AcceptCabFrameTapGesture_Tapped(object sender, EventArgs e)
         {
             DriverHomePage DvrHomePage = (DriverHomePage)App.Current.MainPage;
-            DvrHomePage.Detail = new NavigationPage(new AvailableCabRequestsPage());
+            //DvrHomePage.Detail = new NavigationPage(new AvailableCabRequestsPage());
             DvrHomePage.IsPresented = false;
         }
 
         private void OfferCarpoolFrameTapGesture_Tapped(object sender, EventArgs e)
         {
             DriverHomePage DvrHomePage = (DriverHomePage)App.Current.MainPage;
-            DvrHomePage.Detail = new NavigationPage(new OfferCarpoolRidesPage());
+            //DvrHomePage.Detail = new NavigationPage(new OfferCarpoolRidesPage());
             DvrHomePage.IsPresented = false;
         }
     }

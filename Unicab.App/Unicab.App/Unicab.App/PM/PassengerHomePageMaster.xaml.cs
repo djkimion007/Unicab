@@ -36,11 +36,9 @@ namespace Unicab.App.PM
                 MenuItems = new ObservableCollection<PassengerHomePageMenuItem>(new[]
                 {
                     new PassengerHomePageMenuItem { Id = 0, Title = "Home", TargetType = typeof(PassengerDashboardPage) },
-                    new PassengerHomePageMenuItem { Id = 1, Title = "Request Cab", TargetType = typeof(RequestCabPage) },
-                    new PassengerHomePageMenuItem { Id = 2, Title = "Available Carpool", TargetType = typeof(AvailableCarpoolPage) },
-                    new PassengerHomePageMenuItem { Id = 3, Title = "Browse Drivers", TargetType = typeof(BrowseDriversPage) },
-                    new PassengerHomePageMenuItem { Id = 4, Title = "Fare Table", TargetType = typeof(PassengerFareTablePage) },
-                    new PassengerHomePageMenuItem { Id = 5, Title = "History", TargetType = typeof(RideHistoryPage) },
+                    new PassengerHomePageMenuItem { Id = 1, Title = "Cab Requests", TargetType = typeof(CR.CRDashboardPage) },
+                    new PassengerHomePageMenuItem { Id = 2, Title = "Available Carpool", TargetType = typeof(CP.CPDashboardPage) },
+                    new PassengerHomePageMenuItem { Id = 3, Title = "Browse Drivers", TargetType = typeof(BD.BrowseDriversPage) },
 
                     new PassengerHomePageMenuItem { Id = 99, Title = "Log Out", TargetType = null }
                 });
@@ -62,7 +60,7 @@ namespace Unicab.App.PM
         private void ProfileTapper_Tapped(object sender, EventArgs e)
         {
             PassengerHomePage PgrHomePage = (PassengerHomePage)App.Current.MainPage;
-            PgrHomePage.Detail = new NavigationPage(new PassengerProfilePage());
+            PgrHomePage.Detail = new NavigationPage(new PP.PPPage());
             PgrHomePage.IsPresented = false;
         }
     }

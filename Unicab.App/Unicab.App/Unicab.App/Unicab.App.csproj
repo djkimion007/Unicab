@@ -28,22 +28,70 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DM\SelectedCarpoolPage.xaml.cs">
-      <DependentUpon>SelectedCarpoolPage.xaml</DependentUpon>
+    <Compile Update="DM\CP\NewCPOfferPage.xaml.cs">
+      <DependentUpon>NewCPOfferPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="DM\DP\DPPage.xaml.cs">
+      <DependentUpon>DPPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Landing\RegisterNewDriver_MainPage.xaml.cs">
       <DependentUpon>RegisterNewDriver_MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="PM\BD\BrowseDriversPage.xaml.cs">
+      <DependentUpon>BrowseDriversPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PM\CP\CPDashboardPage.xaml.cs">
+      <DependentUpon>CPDashboardPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PM\CP\CPSelectedPage.xaml.cs">
+      <DependentUpon>CPSelectedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PM\CR\NewCRPage.xaml.cs">
+      <DependentUpon>NewCRPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="PM\PP\PPPage.xaml.cs">
+      <DependentUpon>PPPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="DM\CarpoolDashboardPage.xaml">
+    <EmbeddedResource Update="DM\CP\CPCompletedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DM\SelectedCarpoolPage.xaml">
+    <EmbeddedResource Update="DM\CP\CPDashboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CP\CPFulfillmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CP\NewCPOfferPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CP\CPSelectedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CR\CRCompletedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CR\CRDashboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CR\CRFulfillmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CR\CRSelectedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Landing\RegisterNewDriver_CarDetailsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PM\CP\CPCompletedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PM\CP\CPFulfillmentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PM\CR\CRDashboardPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
