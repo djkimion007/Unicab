@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Unicab.App.DM.CP.CPDashboardPage"
-             Title="Your Carpool Offers">
+             Title="Carpool Offers">
     <StackLayout>
         <ListView x:Name="YourCPListView"
             ItemsSource="{Binding Items}"
@@ -19,10 +19,11 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image Source="car_icon.png" WidthRequest="60" HeightRequest="60" />
                                         <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding DestinationLocation}" FontSize="Large" FontAttributes="Bold" TextColor="HotPink" />
+                                            <StackLayout>
+                                                <Label Text="{Binding DestinationLocationId}" FontSize="Large" FontAttributes="Bold" TextColor="Teal" />
+                                                <Label Text="{Binding OriginLocationId}" FontSize="Medium" />
                                             </StackLayout>
-                                            <StackLayout Orientation="Horizontal" BindingContext="{Binding DepartingDateTime}">
+                                            <StackLayout Orientation="Horizontal" BindingContext="{Binding OriginDateTime}">
                                                 <Label Text="{Binding StringFormat='Date: {0:d}'}" />
                                                 <Label Text="|" />
                                                 <Label Text="{Binding StringFormat='Time: {0:t}'}" />
@@ -42,7 +43,7 @@
             </ListView.ItemTemplate>
 
         </ListView>
-        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+        <ActivityIndicator IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" Color="Teal" />
     </StackLayout>
 
 </ContentPage>

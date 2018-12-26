@@ -38,8 +38,8 @@ namespace Unicab.App.DM.CP
         private async void OfferCarpoolBtn_Clicked(object sender, EventArgs e)
         {
             string confirmBookingText = string.Format("Do you wish to confirm your carpool offer as follows:\n\nDriving From: {0}\nDriving To: {1}\nDeparting Date: {2:D}\nDeparting Time: {3}\nNo. of Seats: {4}\nLadies Only?: {5}\nAdditional Notes: {6}",
-                DrivingFromPicker.SelectedItem,
-                DrivingToPicker.SelectedItem,
+                (DrivingFromPicker.SelectedItem as Location).LocationName,
+                (DrivingToPicker.SelectedItem as Location).LocationName,
                 DepartingDatePicker.Date.ToString("ddd, d MMM yyyy"),
                 DateTime.Today.Add(DepartingTimePicker.Time).ToString("h:mm tt"),
                 NoOfSeatsPicker.SelectedItem,
@@ -55,14 +55,14 @@ namespace Unicab.App.DM.CP
 
                 CarpoolOffer carpoolOffer = new CarpoolOffer
                 {
-                    DestinationLocation = Convert.ToString(DrivingToPicker.SelectedItem),
-                    OriginLocation = Convert.ToString(DrivingFromPicker.SelectedItem),
+                    DestinationLocation = DrivingToPicker.SelectedItem as Location,
+                    OriginLocation = DrivingFromPicker.SelectedItem as Location,
                     OriginDateTime = dateTime,
                     NoOfPassengers = Convert.ToInt32(NoOfSeatsPicker.SelectedItem),
                     IsLadiesOnly = (LadiesOnlyPicker.SelectedItem.Equals("Yes")) ? true : false,
                     AdditionalNotes = AdditionalNotesEditor.Text,
-
                     DriverId = App.CurrentDriver.DriverId
+
                 };
 
                 bool IsSubmitted = await App.CarpoolManager.CreateNewCarpoolOffer(carpoolOffer);

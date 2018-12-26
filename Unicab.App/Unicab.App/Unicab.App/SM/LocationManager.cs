@@ -29,5 +29,10 @@ namespace Unicab.App.SM
         {
             return locationService.GetStationLocationsExcludeUSM();
         }
+
+        public Task<Location> GetLocationById(int locationId)
+        {
+            return locationService.GetLocationById(locationId);
+        }
     }
 }

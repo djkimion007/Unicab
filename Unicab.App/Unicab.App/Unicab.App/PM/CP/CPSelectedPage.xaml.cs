@@ -16,21 +16,12 @@ namespace Unicab.App.PM.CP
 	public partial class CPSelectedPage : ContentPage
 	{
         public CarpoolOffer carpoolOffer;
-        public Driver carpoolDriver;
 
         public CPSelectedPage(CarpoolOffer selectedOffer)
         {
             InitializeComponent();
 
             carpoolOffer = selectedOffer;
-
-        }
-
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            carpoolDriver = await App.DriverManager.GetDriverById(carpoolOffer.DriverId);
 
         }
 
@@ -74,7 +65,7 @@ namespace Unicab.App.PM.CP
             {
                 try
                 {
-                    PhoneDialer.Open(carpoolDriver.PhoneNumber);
+                    PhoneDialer.Open(carpoolOffer.Driver.PhoneNumber);
                 }
                 catch (Exception ex)
                 {

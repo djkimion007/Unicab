@@ -19,61 +19,61 @@ namespace Unicab.App.PM
 		{
 			InitializeComponent ();
 
-            Items = new ObservableCollection<CabRequest>
-            {
-                new CabRequest
-                {
-                    PickUpLocation = "USM",
-                    DropOffLocation = "KL",
-                    PickUpDateTime = new DateTime(2018, 12, 1, 6, 0, 0),
-                    NoOfPassengers = 4,
-                    IsLadiesOnly = false,
-                    AdditionalNotes = "Carrying two luggages"
+            //Items = new ObservableCollection<CabRequest>
+            //{
+            //    new CabRequest
+            //    {
+            //        PickUpLocation = "USM",
+            //        DropOffLocation = "KL",
+            //        PickUpDateTime = new DateTime(2018, 12, 1, 6, 0, 0),
+            //        NoOfPassengers = 4,
+            //        IsLadiesOnly = false,
+            //        AdditionalNotes = "Carrying two luggages"
 
-                },
-                new CabRequest
-                {
-                    PickUpLocation = "KL",
-                    DropOffLocation = "USM",
-                    PickUpDateTime = new DateTime(2018, 12, 6, 13, 30, 0),
-                    NoOfPassengers = 4,
-                    IsLadiesOnly = false,
-                    AdditionalNotes = "Extra space for a luggage"
+            //    },
+            //    new CabRequest
+            //    {
+            //        PickUpLocation = "KL",
+            //        DropOffLocation = "USM",
+            //        PickUpDateTime = new DateTime(2018, 12, 6, 13, 30, 0),
+            //        NoOfPassengers = 4,
+            //        IsLadiesOnly = false,
+            //        AdditionalNotes = "Extra space for a luggage"
 
-                },
-                new CabRequest
-                {
-                    PickUpLocation = "USM",
-                    DropOffLocation = "Ipoh",
-                    PickUpDateTime = new DateTime(2018, 12, 9, 15, 10, 0),
-                    NoOfPassengers = 2,
-                    IsLadiesOnly = false,
-                    AdditionalNotes = "Carrying musical instruments"
+            //    },
+            //    new CabRequest
+            //    {
+            //        PickUpLocation = "USM",
+            //        DropOffLocation = "Ipoh",
+            //        PickUpDateTime = new DateTime(2018, 12, 9, 15, 10, 0),
+            //        NoOfPassengers = 2,
+            //        IsLadiesOnly = false,
+            //        AdditionalNotes = "Carrying musical instruments"
 
-                },
-                new CabRequest
-                {
-                    PickUpLocation = "Kampar",
-                    DropOffLocation = "George Town",
-                    PickUpDateTime = new DateTime(2018, 12, 12, 10, 0, 0),
-                    NoOfPassengers = 4,
-                    IsLadiesOnly = false,
-                    AdditionalNotes = "Bring warm jacket"
+            //    },
+            //    new CabRequest
+            //    {
+            //        PickUpLocation = "Kampar",
+            //        DropOffLocation = "George Town",
+            //        PickUpDateTime = new DateTime(2018, 12, 12, 10, 0, 0),
+            //        NoOfPassengers = 4,
+            //        IsLadiesOnly = false,
+            //        AdditionalNotes = "Bring warm jacket"
 
-                },
-                new CabRequest
-                {
-                    PickUpLocation = "USM",
-                    DropOffLocation = "KL",
-                    PickUpDateTime = new DateTime(2018, 12, 23, 9, 30, 0),
-                    NoOfPassengers = 4,
-                    IsLadiesOnly = false,
-                    AdditionalNotes = "Christmas trip"
+            //    },
+            //    new CabRequest
+            //    {
+            //        PickUpLocation = "USM",
+            //        DropOffLocation = "KL",
+            //        PickUpDateTime = new DateTime(2018, 12, 23, 9, 30, 0),
+            //        NoOfPassengers = 4,
+            //        IsLadiesOnly = false,
+            //        AdditionalNotes = "Christmas trip"
 
-                }
-            };
+            //    }
+            //};
 
-            DashboardListView.ItemsSource = Items;
+            //DashboardListView.ItemsSource = Items;
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

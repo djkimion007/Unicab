@@ -13,5 +13,7 @@ namespace Unicab.App.SM
         Task<List<Location>> GetStationLocationsIncludeUSM();
 
         Task<List<Location>> GetStationLocationsAll();
+
+        Task<Location> GetLocationById(int locationId);
     }
 }

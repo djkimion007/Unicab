@@ -21,9 +21,36 @@ namespace Unicab.App.SM
             };
         }
 
+        public async Task<Location> GetLocationById(int locationId)
+        {
+            Location loc = null;
+
+            var uri = new Uri(string.Format(AppServerConstants.LocationsUrl, locationId));
+            HttpResponseMessage response = null;
+
+            try
+            {
+                response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    loc = JsonConvert.DeserializeObject<Location>(content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return loc;
+        }
+
         public async Task<List<Location>> GetStationLocationsAll()
         {
-            List<Location> locationList = new List<Location>();
+            List<Location> locationList = null;
 
             var uri = new Uri(string.Format(AppServerConstants.LocationsUrl, string.Empty));
             HttpResponseMessage response = null;
@@ -50,7 +77,7 @@ namespace Unicab.App.SM
 
         public async Task<List<Location>> GetStationLocationsExcludeUSM()
         {
-            List<Location> locationList = new List<Location>();
+            List<Location> locationList = null;
 
             var uri = new Uri(string.Format(AppServerConstants.LocationsUrl, "ExUSM"));
             HttpResponseMessage response = null;
@@ -77,7 +104,7 @@ namespace Unicab.App.SM
 
         public async Task<List<Location>> GetStationLocationsIncludeUSM()
         {
-            List<Location> locationList = new List<Location>();
+            List<Location> locationList = null;
 
             var uri = new Uri(string.Format(AppServerConstants.LocationsUrl, "InUSM"));
             HttpResponseMessage response = null;

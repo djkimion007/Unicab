@@ -14,19 +14,29 @@ namespace Unicab.App.DM.CR
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CRSelectedPage : ContentPage
     {
+        private CabRequest selectedCabRequest;
+
         public CRSelectedPage(CabRequest selectedRequest)
         {
             InitializeComponent();
 
-            this.Title = string.Format("{0} {1} {2}", selectedRequest.PickUpLocation, char.ConvertFromUtf32(0x2197), selectedRequest.DropOffLocation);
+            selectedCabRequest = selectedRequest;
 
-            DrivingFromLabel.Text = selectedRequest.PickUpLocation;
-            DrivingToLabel.Text = selectedRequest.DropOffLocation;
-            DepartingDateLabel.Text = selectedRequest.PickUpDateTime.ToLongDateString();
-            DepartingTimeLabel.Text = selectedRequest.PickUpDateTime.ToShortTimeString();
-            NoOfSeatsLabel.Text = selectedRequest.NoOfPassengers.ToString();
-            LadiesOnlyLabel.Text = (selectedRequest.IsLadiesOnly) ? "Yes" : "No";
-            AdditionalNotesLabel.Text = selectedRequest.AdditionalNotes;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            this.Title = string.Format("{0}", selectedCabRequest.DropOffLocation.LocationName);
+
+            DrivingFromLabel.Text = selectedCabRequest.PickUpLocation.LocationName;
+            DrivingToLabel.Text = selectedCabRequest.DropOffLocation.LocationName;
+            DepartingDateLabel.Text = selectedCabRequest.PickUpDateTime.ToLongDateString();
+            DepartingTimeLabel.Text = selectedCabRequest.PickUpDateTime.ToShortTimeString();
+            NoOfSeatsLabel.Text = selectedCabRequest.NoOfPassengers.ToString();
+            LadiesOnlyLabel.Text = (selectedCabRequest.IsLadiesOnly) ? "Yes" : "No";
+            AdditionalNotesLabel.Text = selectedCabRequest.AdditionalNotes;
 
         }
 
