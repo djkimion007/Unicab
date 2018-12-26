@@ -28,6 +28,13 @@ namespace Unicab.Api.Controllers
             return _context.CarpoolOffers;
         }
 
+        // GET: api/CarpoolOffers/ByDriverId/5
+        [HttpGet("ByDriverId/{id}")]
+        public IEnumerable<CarpoolOffer> GetCarpoolOffers([FromRoute] int id)
+        {
+            return _context.CarpoolOffers.Where(b => b.DriverId == id);
+        }
+
         // GET: api/CarpoolOffers/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCarpoolOffer([FromRoute] int id)
