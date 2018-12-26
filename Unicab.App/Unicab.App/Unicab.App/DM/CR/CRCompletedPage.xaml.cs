@@ -12,13 +12,16 @@ namespace Unicab.App.DM.CR
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CRCompletedPage : ContentPage
 	{
-        private CabRequest CRFulfillment;
+        private CabRequestFulfillment CRFulfillment;
+        private CabRequest request;
 
-		public CRCompletedPage (CabRequest cabRequestFulfillment)
+		public CRCompletedPage (CabRequestFulfillment cabRequestFulfillment)
 		{
 			InitializeComponent ();
             CRFulfillment = cabRequestFulfillment;
             BindingContext = CRFulfillment;
+
+            request = CRFulfillment.CabRequest;
 		}
 
         private async void NotCompletedBtn_Clicked(object sender, EventArgs e)

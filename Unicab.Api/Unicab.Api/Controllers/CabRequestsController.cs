@@ -25,7 +25,7 @@ namespace Unicab.Api.Controllers
         [HttpGet]
         public IEnumerable<CabRequest> GetCabRequests()
         {
-            return _context.CabRequests.Where(b => !b.DriverHasCompleted && !b.PassengerHasCompleted)
+            return _context.CabRequests
                 .Include(requests => requests.PickUpLocation)
                 .Include(requests => requests.DropOffLocation)
                 .Include(requests => requests.Passenger);
@@ -35,7 +35,7 @@ namespace Unicab.Api.Controllers
         [HttpGet("ByPassengerId/{id}")]
         public IEnumerable<CabRequest> GetCabRequests([FromRoute] int id)
         {
-            return _context.CabRequests.Where(b => b.PassengerId == id && !b.DriverHasCompleted && !b.PassengerHasCompleted)
+            return _context.CabRequests.Where(b => b.PassengerId == id)
                 .Include(requests => requests.PickUpLocation)
                 .Include(requests => requests.DropOffLocation)
                 .Include(requests => requests.Passenger);

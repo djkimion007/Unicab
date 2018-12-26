@@ -31,6 +31,9 @@
     <Compile Update="DM\CP\NewCPOfferPage.xaml.cs">
       <DependentUpon>NewCPOfferPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="DM\CR\CRFulfillmentPage.xaml.cs">
+      <DependentUpon>CRFulfillmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="DM\DP\DPPage.xaml.cs">
       <DependentUpon>DPPage.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="DM\CR\CRDashboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CR\CRFulfillmentsListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DM\CR\CRFulfillmentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="DM\CR\CRSelectedPage.xaml">

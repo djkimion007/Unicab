@@ -35,12 +35,12 @@ namespace Unicab.App.PM.CR
 
             // perform completion
 
-            bool completedSuccess = await App.CabManager.CompleteCabRequestPassengerSide(fulfillment);
+            //bool completedSuccess = await App.CabManager.CompleteCabRequestPassengerSide(fulfillment);
 
-            if (completedSuccess)
-                await DisplayAlert("Complete Cab Ride", "Your cab ride has been completed. Thank you for using Unicab Service!", "OK");
-            else
-                await DisplayAlert("Complete Cab Ride", "There's an issue completing your ride, or the driver has yet to initiate ride completion.", "OK");
+            //if (completedSuccess)
+            //    await DisplayAlert("Complete Cab Ride", "Your cab ride has been completed. Thank you for using Unicab Service!", "OK");
+            //else
+            //    await DisplayAlert("Complete Cab Ride", "There's an issue completing your ride, or the driver has yet to initiate ride completion.", "OK");
 
             await Navigation.PopToRootAsync();
         }

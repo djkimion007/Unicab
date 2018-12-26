@@ -27,24 +27,6 @@ namespace Unicab.App.DM.CR
 
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            if (selectedCabRequest.IsAccepted)
-            {
-                CompleteRideBtn.IsVisible = true;
-                AcceptRequestBtn.IsVisible = false;
-            }
-               
-            else
-            {
-                AcceptRequestBtn.IsVisible = true;
-                CompleteRideBtn.IsVisible = false;
-            }
-                
-        }
-
         private async void AcceptRequestBtn_Clicked(object sender, EventArgs e)
         {
             bool confirmAccept = await DisplayAlert("Accept Request", "Are you sure you wish to accept this cab request? Tap 'Yes' to proceed, or 'No' to go back.", "Yes", "No");
@@ -64,15 +46,5 @@ namespace Unicab.App.DM.CR
 
         }
 
-        private async void CompleteRideBtn_Clicked(object sender, EventArgs e)
-        {
-            bool confirmAccept = await DisplayAlert("Complete Cab Ride", "Complete this cab ride?", "Yes", "No");
-            if (!confirmAccept)
-                return;
-
-            // accept the request
-
-            await Navigation.PushAsync(new CRCompletedPage(selectedCabRequest));
-        }
     }
 }

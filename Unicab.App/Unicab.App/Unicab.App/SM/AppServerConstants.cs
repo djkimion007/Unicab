@@ -20,5 +20,8 @@ namespace Unicab.App.SM
         public static string CarpoolOffersUrl = AppServerUrl + ":" + AppServerPort + "/api/CarpoolOffers/{0}";
         public static string CabRequestsUrl = AppServerUrl + ":" + AppServerPort + "/api/CabRequests/{0}";
 
+        public static string CarpoolOfferFulfillmentsUrl = AppServerUrl + ":" + AppServerPort + "/api/CarpoolOfferFulfillments/{0}";
+        public static string CabRequestFulfillmentsUrl = AppServerUrl + ":" + AppServerPort + "/api/CabRequestFulfillments/{0}";
+
     }
 }

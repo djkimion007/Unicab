@@ -23,9 +23,14 @@ namespace Unicab.App.SM
 
         public async Task<bool> AcceptCabRequest(CabRequest fulfillment)
         {
-            fulfillment.IsAccepted = true;
 
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, string.Empty));
+            CabRequestFulfillment newFulfillment = new CabRequestFulfillment
+            {
+                CabRequestId = fulfillment.CabRequestId,
+                DriverId = App.CurrentDriver.DriverId
+            };
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, string.Empty));
             HttpResponseMessage responseMessage = null;
 
             try
@@ -39,6 +44,7 @@ namespace Unicab.App.SM
                 {
                     Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully submitted");
 
+                    await UpdateAcceptedCabRequest(fulfillment.CabRequestId, fulfillment);
                     return true;
                 }
                 else
@@ -197,11 +203,11 @@ namespace Unicab.App.SM
             return cabRequest;
         }
 
-        public async Task<List<CabRequest>> GetCabRequestsByDriverId(int driverId)
+        public async Task<List<CabRequestFulfillment>> GetCabRequestFulfillmentsByDriverId(int driverId)
         {
-            List<CabRequest> cabRequestFulfillments = new List<CabRequest>();
+            List<CabRequestFulfillment> cabRequestFulfillments = new List<CabRequestFulfillment>();
 
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, "FulfillmentByDriverId/" + driverId));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, "FulfillmentByDriverId/" + driverId));
             HttpResponseMessage response = null;
 
             try
@@ -211,7 +217,7 @@ namespace Unicab.App.SM
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    cabRequestFulfillments = JsonConvert.DeserializeObject<List<CabRequest>>(content);
+                    cabRequestFulfillments = JsonConvert.DeserializeObject<List<CabRequestFulfillment>>(content);
 
                 }
             }
@@ -224,13 +230,13 @@ namespace Unicab.App.SM
             return cabRequestFulfillments;
         }
 
-        public async Task<bool> CompleteCabRequestDriverSide(CabRequest fulfillment)
+        public async Task<bool> CompleteCabRequestDriverSide(CabRequestFulfillment fulfillment)
         {
             fulfillment.DriverHasCompleted = true;
             fulfillment.DriverCompletedDateTime = DateTime.Now;
             fulfillment.IsFarePaid = true;
 
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, fulfillment.CabRequestFulfillmentId));
             HttpResponseMessage responseMessage = null;
 
             try
@@ -258,7 +264,7 @@ namespace Unicab.App.SM
             return false;
         }
 
-        public async Task<bool> CompleteCabRequestPassengerSide(CabRequest fulfillment)
+        public async Task<bool> CompleteCabRequestPassengerSide(CabRequestFulfillment fulfillment)
         {
             if (!fulfillment.DriverHasCompleted)
                 return false;
@@ -267,7 +273,7 @@ namespace Unicab.App.SM
             fulfillment.PassengerHasCompleted = true;
             fulfillment.PassengerCompletedDateTime = DateTime.Now;
 
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, fulfillment.CabRequestFulfillmentId));
             HttpResponseMessage responseMessage = null;
 
             try
@@ -295,12 +301,12 @@ namespace Unicab.App.SM
             return false;
         }
 
-        public async Task<bool> CancelCabRequestByDriver(CabRequest fulfillment)
+        public async Task<bool> CancelCabRequestByDriver(CabRequestFulfillment fulfillment)
         {
             fulfillment.DriverHasCancelled = true;
             fulfillment.DriverCancelledDateTime = DateTime.Now;
 
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, fulfillment.CabRequestFulfillmentId));
             HttpResponseMessage responseMessage = null;
 
             try
@@ -328,12 +334,12 @@ namespace Unicab.App.SM
             return false;
         }
 
-        public async Task<bool> CancelCabRequestByPassenger(CabRequest fulfillment)
+        public async Task<bool> CancelCabRequestByPassenger(CabRequestFulfillment fulfillment)
         {
             fulfillment.PassengerHasCancelled = true;
             fulfillment.PassengerCancelledDateTime = DateTime.Now;
 
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, fulfillment.CabRequestId));
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, fulfillment.CabRequestFulfillmentId));
             HttpResponseMessage responseMessage = null;
 
             try

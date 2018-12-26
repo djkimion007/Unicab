@@ -35,14 +35,14 @@ namespace Unicab.App.PM.CR
 
             // perform cancellation
 
-            bool cancelSuccess = await App.CabManager.CancelCabRequestByPassenger(selectedRequest);
+            //bool cancelSuccess = await App.CabManager.CancelCabRequestByPassenger(selectedRequest);
 
-            if (cancelSuccess)
+            //if (cancelSuccess)
 
-                await DisplayAlert("Cancel Cab Request", "You have cancelled your cab request.", "OK");
+            //    await DisplayAlert("Cancel Cab Request", "You have cancelled your cab request.", "OK");
 
-            else
-                await DisplayAlert("Cancel Cab Request", "There's an issue cancelling your cab request. Kindly contact technical service.", "OK");
+            //else
+            //    await DisplayAlert("Cancel Cab Request", "There's an issue cancelling your cab request. Kindly contact technical service.", "OK");
 
             await Navigation.PopToRootAsync();
         }

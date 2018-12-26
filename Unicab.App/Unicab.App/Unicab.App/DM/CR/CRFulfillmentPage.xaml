@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cvt="clr-namespace:Unicab.App.CM"
-             x:Class="Unicab.App.DM.CR.CRSelectedPage"
+             x:Class="Unicab.App.DM.CR.CRFulfillmentPage"
              Title="Selected Cab Request">
     <ContentPage.Resources>
         <cvt:BoolToStringConverter x:Key="BooleanToStringConverter" FalseObject="No" TrueObject="Yes" />
@@ -64,7 +64,7 @@
                 <Label Text="Passenger Name" TextDecorations="Underline" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
                 <Label x:Name="FullName" FontSize="Medium" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="AcceptRequestBtn" Text="Accept Request" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Clicked="AcceptRequestBtn_Clicked" />
+                <Button x:Name="CompleteRideBtn" Text="Accept Request" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CompleteRideBtn_Clicked" />
 
             </Grid>
         </ScrollView>
