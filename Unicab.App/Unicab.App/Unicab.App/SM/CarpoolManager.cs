@@ -35,5 +35,30 @@ namespace Unicab.App.SM
             return carpoolService.GetAvailableCarpoolOffersByDriverId(driverId);
         }
 
+        public Task<bool> CancelCarpoolOffer(int carpoolOfferId)
+        {
+            return carpoolService.CancelCarpoolOffer(carpoolOfferId);
+        }
+
+        public Task<bool> CompleteCarpoolOfferDriverSide(CarpoolOfferFulfillment fulfillment)
+        {
+            return carpoolService.CompleteCarpoolOfferDriverSide(fulfillment);
+        }
+
+        public Task<bool> CompleteCarpoolOfferPassengerSide(CarpoolOfferFulfillment fulfillment)
+        {
+            return carpoolService.CompleteCarpoolOfferPassengerSide(fulfillment);
+        }
+
+        public Task<List<CarpoolOfferFulfillment>> GetAvailableCarpoolOfferFulfillmentsByDriverId(int driverId)
+        {
+            return carpoolService.GetAvailableCarpoolOfferFulfillmentsByDriverId(driverId);
+        }
+
+        public Task<List<CarpoolOfferFulfillment>> GetAvailableCarpoolOfferFulfillmentsByPassengerId(int passengerId)
+        {
+            return carpoolService.GetAvailableCarpoolOfferFulfillmentsByPassengerId(passengerId);
+        }
+
     }
 }

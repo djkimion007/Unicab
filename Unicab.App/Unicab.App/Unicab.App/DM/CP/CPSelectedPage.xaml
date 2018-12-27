@@ -73,8 +73,7 @@
                 <Label Text="Additional Notes" TextDecorations="Underline" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
                 <Label Text="{Binding AdditionalNotes}" FontSize="Medium" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="CancelOfferBtn" Text="Cancel Offer" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Button x:Name="CompleteOfferBtn" Text="Complete Offer" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button x:Name="CancelOfferBtn" Text="Cancel Offer" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CancelOfferBtn_Clicked" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

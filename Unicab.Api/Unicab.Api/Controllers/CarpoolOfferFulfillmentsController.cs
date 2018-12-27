@@ -28,6 +28,32 @@ namespace Unicab.Api.Controllers
             return _context.CarpoolOfferFulfillments;
         }
 
+        // GET: api/CarpoolOfferFulfillments
+        [HttpGet("ByDriverId/{id}")]
+        public IEnumerable<CarpoolOfferFulfillment> GetCarpoolOfferFulfillments([FromRoute] int id)
+        {
+            return _context.CarpoolOfferFulfillments.Where(b => b.CarpoolOffer.DriverId == id && b.DriverHasCompleted != true)
+                .Include(p => p.CarpoolOffer)
+                    .ThenInclude(q => q.DestinationLocation)
+                .Include(p => p.CarpoolOffer)
+                    .ThenInclude(q => q.OriginLocation)
+                .Include(p => p.CarpoolOffer)
+                    .ThenInclude(q => q.Driver);
+        }
+
+        // GET: api/CarpoolOfferFulfillments
+        [HttpGet("ByPassengerId/{id}")]
+        public IEnumerable<CarpoolOfferFulfillment> GetCarpoolOfferFulfillmentsPassenger([FromRoute] int id)
+        {
+            return _context.CarpoolOfferFulfillments.Where(b => b.PassengerId == id && b.PassengerHasCompleted != true)
+                .Include(p => p.CarpoolOffer)
+                    .ThenInclude(q => q.DestinationLocation)
+                .Include(p => p.CarpoolOffer)
+                    .ThenInclude(q => q.OriginLocation)
+                .Include(p => p.CarpoolOffer)
+                    .ThenInclude(q => q.Driver);
+        }
+
         // GET: api/CarpoolOfferFulfillments/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCarpoolOfferFulfillment([FromRoute] int id)
