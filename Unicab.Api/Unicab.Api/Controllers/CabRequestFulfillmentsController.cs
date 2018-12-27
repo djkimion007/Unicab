@@ -41,6 +41,32 @@ namespace Unicab.Api.Controllers
                     .ThenInclude(q => q.Passenger);
         }
 
+        // GET: api/CabRequestFulfillments
+        [HttpGet("FulfillmentByPassengerId/{id}")]
+        public IEnumerable<CabRequestFulfillment> GetCabRequestFulfillmentsPassenger([FromRoute] int id)
+        {
+            return _context.CabRequestFulfillments.Where(b => b.CabRequest.PassengerId == id && b.PassengerHasCompleted != true)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.DropOffLocation)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.PickUpLocation)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.Passenger);
+        }
+
+        // GET: api/CabRequestFulfillments
+        [HttpGet("SearchByCabRequestId/{id}")]
+        public IEnumerable<CabRequestFulfillment> GetCabRequestFulfillmentByCabRequestId([FromRoute] int id)
+        {
+            return _context.CabRequestFulfillments.Where(b => b.CabRequestId == id && b.DriverHasCompleted != true)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.DropOffLocation)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.PickUpLocation)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.Passenger);
+        }
+
         // GET: api/CabRequestFulfillments/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCabRequestFulfillment([FromRoute] int id)

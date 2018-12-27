@@ -40,6 +40,11 @@ namespace Unicab.App.SM
             return cabService.GetCabRequestFulfillmentsByDriverId(driverId);
         }
 
+        public Task<List<CabRequestFulfillment>> GetCabRequestFulfillmentsByPassengerId(int passengerId)
+        {
+            return cabService.GetCabRequestFulfillmentsByPassengerId(passengerId);
+        }
+
         public Task<bool> AcceptCabRequest(CabRequest cabRequest, int driverId)
         {
             return cabService.AcceptCabRequest(cabRequest, driverId);
@@ -60,7 +65,7 @@ namespace Unicab.App.SM
             return cabService.CancelCabRequestByDriver(fulfillment);
         }
 
-        public Task<bool> CancelCabRequestByPassenger(CabRequestFulfillment fulfillment)
+        public Task<bool> CancelCabRequestByPassenger(CabRequest fulfillment)
         {
             return cabService.CancelCabRequestByPassenger(fulfillment);
         }

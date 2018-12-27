@@ -37,8 +37,9 @@ namespace Unicab.App.PM
                 {
                     new PassengerHomePageMenuItem { Id = 0, Title = "Home", TargetType = typeof(PassengerDashboardPage) },
                     new PassengerHomePageMenuItem { Id = 1, Title = "Cab Requests", TargetType = typeof(CR.CRDashboardPage) },
-                    new PassengerHomePageMenuItem { Id = 2, Title = "Available Carpool", TargetType = typeof(CP.CPDashboardPage) },
-                    new PassengerHomePageMenuItem { Id = 3, Title = "Browse Drivers", TargetType = typeof(BD.BrowseDriversPage) },
+                    new PassengerHomePageMenuItem { Id = 2, Title = "Cab Fulfillment", TargetType = typeof(CR.CRFulfillmentsListPage) },
+                    new PassengerHomePageMenuItem { Id = 3, Title = "Available Carpool", TargetType = typeof(CP.CPDashboardPage) },
+                    new PassengerHomePageMenuItem { Id = 4, Title = "Browse Drivers", TargetType = typeof(BD.BrowseDriversPage) },
 
                     new PassengerHomePageMenuItem { Id = 99, Title = "Log Out", TargetType = null }
                 });

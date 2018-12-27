@@ -49,6 +49,12 @@
     <Compile Update="PM\CP\CPSelectedPage.xaml.cs">
       <DependentUpon>CPSelectedPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="PM\CR\CRFulfillmentPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="PM\CR\CRFulfillmentsListPage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="PM\CR\NewCRPage.xaml.cs">
       <DependentUpon>NewCRPage.xaml</DependentUpon>
     </Compile>

@@ -20,13 +20,16 @@ namespace Unicab.App.SM
 
         Task<List<CabRequestFulfillment>> GetCabRequestFulfillmentsByDriverId(int driverId);
 
+        Task<List<CabRequestFulfillment>> GetCabRequestFulfillmentsByPassengerId(int passengerId);
+
         Task<bool> CompleteCabRequestDriverSide(CabRequestFulfillment fulfillment);
 
         Task<bool> CompleteCabRequestPassengerSide(CabRequestFulfillment fulfillment);
 
         Task<bool> CancelCabRequestByDriver(CabRequestFulfillment fulfillment);
 
-        Task<bool> CancelCabRequestByPassenger(CabRequestFulfillment fulfillment);
+        Task<bool> CancelCabRequestByPassenger(CabRequest fulfillment);
+        
 
     }
 }

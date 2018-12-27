@@ -22,8 +22,6 @@ namespace Unicab.App.PM.CR
 
             BindingContext = selectedRequest;
 
-            //FullName.Text = string.Format("{0} {1}", cabRequest.Passenger.FirstName, cabRequest.Passenger.LastName);
-
         }
 
         private async void CancelRequestBtn_Clicked(object sender, EventArgs e)
@@ -35,28 +33,17 @@ namespace Unicab.App.PM.CR
 
             // perform cancellation
 
-            //bool cancelSuccess = await App.CabManager.CancelCabRequestByPassenger(selectedRequest);
+            bool cancelSuccess = await App.CabManager.CancelCabRequestByPassenger(selectedRequest);
 
-            //if (cancelSuccess)
+            if (cancelSuccess)
 
-            //    await DisplayAlert("Cancel Cab Request", "You have cancelled your cab request.", "OK");
+                await DisplayAlert("Cancel Cab Request", "You have cancelled your cab request.", "OK");
 
-            //else
-            //    await DisplayAlert("Cancel Cab Request", "There's an issue cancelling your cab request. Kindly contact technical service.", "OK");
+            else
+                await DisplayAlert("Cancel Cab Request", "There's an issue cancelling your cab request. Kindly contact technical service.", "OK");
 
             await Navigation.PopToRootAsync();
         }
 
-        private async void CompleteRideBtn_Clicked(object sender, EventArgs e)
-        {
-            bool confirmComplete = await DisplayAlert("Complete Cab Ride", "Complete this cab ride?", "Yes", "No");
-
-            if (!confirmComplete)
-                return;
-
-            // perform completion
-
-            await Navigation.PushAsync(new CRCompletedPage(selectedRequest));
-        }
     }
 }

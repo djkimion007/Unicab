@@ -301,6 +301,33 @@ namespace Unicab.App.SM
             return false;
         }
 
+        public async Task<CabRequestFulfillment> GetCabRequestFulfillmentByCabRequestId(int cabRequestId)
+        {
+            CabRequestFulfillment crFulfillment = new CabRequestFulfillment();
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, "SearchByCabRequestId/" + cabRequestId));
+            HttpResponseMessage response = null;
+
+            try
+            {
+                response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    crFulfillment = JsonConvert.DeserializeObject<CabRequestFulfillment>(content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return crFulfillment;
+        }
+
         public async Task<bool> CancelCabRequestByDriver(CabRequestFulfillment fulfillment)
         {
             fulfillment.DriverHasCancelled = true;
@@ -334,29 +361,25 @@ namespace Unicab.App.SM
             return false;
         }
 
-        public async Task<bool> CancelCabRequestByPassenger(CabRequestFulfillment fulfillment)
+        public async Task<bool> CancelCabRequestByPassenger(CabRequest cabRequest)
         {
-            fulfillment.PassengerHasCancelled = true;
-            fulfillment.PassengerCancelledDateTime = DateTime.Now;
-
-            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, fulfillment.CabRequestFulfillmentId));
+            
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestsUrl, cabRequest.CabRequestId ));
             HttpResponseMessage responseMessage = null;
 
             try
             {
-                var json = JsonConvert.SerializeObject(fulfillment);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                responseMessage = await client.PutAsync(uri, content);
+                responseMessage = await client.DeleteAsync(uri);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine("POST 201 OK: Cab request fulfillment successfully cancelled (passenger)");
+                    Debug.WriteLine("POST 201 OK: Cab request successfully cancelled (passenger)");
                     return true;
                 }
                 else
                 {
-                    Debug.WriteLine(@"POST {0} NOT OK: Cab request fulfillment cancellation failed", responseMessage.StatusCode);
+                    Debug.WriteLine(@"POST {0} NOT OK: Cab request cancellation failed", responseMessage.StatusCode);
                 }
             }
             catch (Exception ex)
@@ -365,6 +388,33 @@ namespace Unicab.App.SM
             }
 
             return false;
+        }
+
+        public async Task<List<CabRequestFulfillment>> GetCabRequestFulfillmentsByPassengerId(int passengerId)
+        {
+            List<CabRequestFulfillment> cabRequestFulfillments = new List<CabRequestFulfillment>();
+
+            var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, "FulfillmentByPassengerId/" + passengerId));
+            HttpResponseMessage response = null;
+
+            try
+            {
+                response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    cabRequestFulfillments = JsonConvert.DeserializeObject<List<CabRequestFulfillment>>(content);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+                throw;
+            }
+
+            return cabRequestFulfillments;
         }
     }
 }

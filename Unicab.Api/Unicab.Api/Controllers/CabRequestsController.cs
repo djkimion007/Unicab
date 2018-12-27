@@ -35,7 +35,7 @@ namespace Unicab.Api.Controllers
         [HttpGet("ByPassengerId/{id}")]
         public IEnumerable<CabRequest> GetCabRequests([FromRoute] int id)
         {
-            return _context.CabRequests.Where(b => b.PassengerId == id)
+            return _context.CabRequests.Where(b => b.PassengerId == id && b.IsAccepted != true)
                 .Include(requests => requests.PickUpLocation)
                 .Include(requests => requests.DropOffLocation)
                 .Include(requests => requests.Passenger);
