@@ -21,13 +21,13 @@ namespace Unicab.App.SM
             };
         }
 
-        public async Task<bool> AcceptCabRequest(CabRequest fulfillment)
+        public async Task<bool> AcceptCabRequest(CabRequest fulfillment, int driverId)
         {
 
             CabRequestFulfillment newFulfillment = new CabRequestFulfillment
             {
                 CabRequestId = fulfillment.CabRequestId,
-                DriverId = App.CurrentDriver.DriverId
+                DriverId = driverId
             };
 
             var uri = new Uri(string.Format(AppServerConstants.CabRequestFulfillmentsUrl, string.Empty));
@@ -35,7 +35,7 @@ namespace Unicab.App.SM
 
             try
             {
-                var json = JsonConvert.SerializeObject(fulfillment);
+                var json = JsonConvert.SerializeObject(newFulfillment);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 responseMessage = await client.PostAsync(uri, content);

@@ -13,15 +13,15 @@ namespace Unicab.App.DM.CR
 	public partial class CRCompletedPage : ContentPage
 	{
         private CabRequestFulfillment CRFulfillment;
-        private CabRequest request;
 
 		public CRCompletedPage (CabRequestFulfillment cabRequestFulfillment)
 		{
 			InitializeComponent ();
-            CRFulfillment = cabRequestFulfillment;
-            BindingContext = CRFulfillment;
 
-            request = CRFulfillment.CabRequest;
+            CRFulfillment = cabRequestFulfillment;
+
+            BindingContext = CRFulfillment.CabRequest;
+            
 		}
 
         private async void NotCompletedBtn_Clicked(object sender, EventArgs e)

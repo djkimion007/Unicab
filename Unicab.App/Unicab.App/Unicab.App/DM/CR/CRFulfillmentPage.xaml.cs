@@ -12,19 +12,17 @@ namespace Unicab.App.DM.CR
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CRFulfillmentPage : ContentPage
 	{
-        private CabRequestFulfillment selectedCRFulfillment;
-        private CabRequest selectedCR;
+        public CabRequestFulfillment selectedCRFulfillment { get; set; }
 
         public CRFulfillmentPage(CabRequestFulfillment fulfillment)
         {
             InitializeComponent();
+
             selectedCRFulfillment = fulfillment;
 
-            BindingContext = selectedCRFulfillment;
+            BindingContext = fulfillment.CabRequest;
 
-            selectedCR = selectedCRFulfillment.CabRequest;
-
-            FullName.Text = string.Format("{0} {1}", selectedCR.Passenger.FirstName, selectedCR.Passenger.LastName);
+            FullName.Text = string.Format("{0} {1}", fulfillment.CabRequest.Passenger.FirstName, fulfillment.CabRequest.Passenger.LastName);
 
         }
 

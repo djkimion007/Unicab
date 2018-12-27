@@ -35,7 +35,7 @@ namespace Unicab.App.DM.CR
 
             // accept the request
 
-            bool requestAccepted = await App.CabManager.AcceptCabRequest(selectedCabRequest);
+            bool requestAccepted = await App.CabManager.AcceptCabRequest(selectedCabRequest, App.CurrentDriver.DriverId);
 
             if (requestAccepted)
                 await DisplayAlert("Accept Request", "You have accepted this cab request, and a notification has been sent to the passenger. You will be reminded to fetch the passenger at the appointed schedule and location. Use the Cab Fulfillment feature upon completing the ride. Thank you.", "OK");

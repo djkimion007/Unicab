@@ -53,6 +53,7 @@ namespace Unicab.App.DM.CR
             Items = new ObservableCollection<CabRequestFulfillment>(CRFulfillmentsList);
 
             FulfillmentCRListView.ItemsSource = Items;
+
         }
     }
 }

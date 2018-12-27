@@ -32,8 +32,13 @@ namespace Unicab.Api.Controllers
         [HttpGet("FulfillmentByDriverId/{id}")]
         public IEnumerable<CabRequestFulfillment> GetCabRequestFulfillments([FromRoute] int id)
         {
-            return _context.CabRequestFulfillments.Where(b => b.DriverId == id)
-                .Include(p => p.CabRequest);
+            return _context.CabRequestFulfillments.Where(b => b.DriverId == id && b.DriverHasCompleted != true)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.DropOffLocation)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.PickUpLocation)
+                .Include(p => p.CabRequest)
+                    .ThenInclude(q => q.Passenger);
         }
 
         // GET: api/CabRequestFulfillments/5

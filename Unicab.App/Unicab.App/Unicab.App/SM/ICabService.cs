@@ -16,7 +16,7 @@ namespace Unicab.App.SM
 
         Task<List<CabRequest>> GetAvailableCabRequestsByPassengerId(int passengerId);
 
-        Task<bool> AcceptCabRequest(CabRequest fulfillment);
+        Task<bool> AcceptCabRequest(CabRequest fulfillment, int driverId);
 
         Task<List<CabRequestFulfillment>> GetCabRequestFulfillmentsByDriverId(int driverId);
 

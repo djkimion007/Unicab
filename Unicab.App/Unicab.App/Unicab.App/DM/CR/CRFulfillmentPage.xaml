@@ -41,10 +41,10 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Drop Off At" TextDecorations="Underline" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Label Text="{Binding LocationName}" BindingContext="{Binding DropOffLocation}" FontSize="Large" TextColor="DarkBlue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding DropOffLocation.LocationName}" FontAttributes="Bold" FontSize="Large" TextColor="DarkBlue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
 
                 <Label Text="Pick Up From" TextDecorations="Underline" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Label Text="{Binding LocationName}" BindingContext="{Binding PickUpLocation}" FontSize="Medium" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding PickUpLocation.LocationName}" FontSize="Medium" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
 
                 <Label Text="Pick Up Date" TextDecorations="Underline" Grid.Row="5" Grid.Column="1" />
                 <Label Text="{Binding PickUpDateTime, StringFormat='{0:d}'}" FontSize="Medium" Grid.Row="6" Grid.Column="1" />

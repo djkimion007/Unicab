@@ -42,32 +42,32 @@
 
                 <Label Text="Kindly check and confirm that you have fulfilled the cab request as follows:" LineBreakMode="WordWrap" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Drop Off At" TextDecorations="Underline" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Label Text="{Binding LocationName}" BindingContext="{Binding DropOffLocation}" FontSize="Large" TextColor="DarkBlue" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="Drop Off At" TextDecorations="Underline" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label Text="{Binding DropOffLocation.LocationName}" FontAttributes="Bold" FontSize="Large" TextColor="DarkBlue" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Pick Up From" TextDecorations="Underline" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Label Text="{Binding LocationName}" BindingContext="{Binding PickUpLocation}" FontSize="Medium" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="Pick Up From" TextDecorations="Underline" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding PickUpLocation.LocationName}" FontSize="Medium" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Label Text="Pick Up Date" TextDecorations="Underline" Grid.Row="5" Grid.Column="1" />
-                <Label Text="{Binding PickUpDateTime, StringFormat='{0:d}'}" FontSize="Medium" Grid.Row="6" Grid.Column="1" />
+                <Label Text="Pick Up Date" TextDecorations="Underline" Grid.Row="6" Grid.Column="1" />
+                <Label Text="{Binding PickUpDateTime, StringFormat='{0:d}'}" FontSize="Medium" Grid.Row="7" Grid.Column="1" />
 
-                <Label Text="Pick Up Time" TextDecorations="Underline" Grid.Row="5" Grid.Column="2" />
-                <Label Text="{Binding PickUpDateTime, StringFormat='{0:t}'}" FontSize="Medium" Grid.Row="6" Grid.Column="2" />
+                <Label Text="Pick Up Time" TextDecorations="Underline" Grid.Row="6" Grid.Column="2" />
+                <Label Text="{Binding PickUpDateTime, StringFormat='{0:t}'}" FontSize="Medium" Grid.Row="7" Grid.Column="2" />
 
-                <Label Text="No. of Passengers" TextDecorations="Underline" Grid.Row="7" Grid.Column="1" />
-                <Label Text="{Binding NoOfPassengers}" FontSize="Medium" Grid.Row="8" Grid.Column="1" />
+                <Label Text="No. of Passengers" TextDecorations="Underline" Grid.Row="8" Grid.Column="1" />
+                <Label Text="{Binding NoOfPassengers}" FontSize="Medium" Grid.Row="9" Grid.Column="1" />
 
-                <Label Text="Ladies Only?" TextDecorations="Underline" Grid.Row="7" Grid.Column="2" />
-                <Label Text="{Binding Path=IsLadiesOnly, Converter={StaticResource BooleanToStringConverter}}" FontSize="Medium" Grid.Row="8" Grid.Column="2" />
+                <Label Text="Ladies Only?" TextDecorations="Underline" Grid.Row="8" Grid.Column="2" />
+                <Label Text="{Binding Path=IsLadiesOnly, Converter={StaticResource BooleanToStringConverter}}" FontSize="Medium" Grid.Row="9" Grid.Column="2" />
 
-                <Label Text="Additional Notes" TextDecorations="Underline" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Label Text="{Binding AdditionalNotes}" LineBreakMode="WordWrap" FontSize="Medium" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Label Text="Additional Notes" TextDecorations="Underline" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="{Binding AdditionalNotes}" LineBreakMode="WordWrap" FontSize="Medium" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2"/>
 
-                <Label Text="Passenger Name" TextDecorations="Underline" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" />
-                <Label x:Name="FullName" FontSize="Medium" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label Text="Passenger Name" TextDecorations="Underline" Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Label x:Name="FullName" FontSize="Medium" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="NotCompletedBtn" Text="Not Completed" Grid.Row="13" Grid.Column="1" Grid.ColumnSpan="2" Clicked="NotCompletedBtn_Clicked" />
-                <Button x:Name="CompletedBtn" Text="Completed" Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CompletedBtn_Clicked" />
+                <Button x:Name="NotCompletedBtn" Text="Not Completed" Grid.Row="15" Grid.Column="1" Grid.ColumnSpan="2" Clicked="NotCompletedBtn_Clicked" />
+                <Button x:Name="CompletedBtn" Text="Completed" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" Clicked="CompletedBtn_Clicked" />
 
             </Grid>
         </ScrollView>

@@ -40,9 +40,9 @@ namespace Unicab.App.SM
             return cabService.GetCabRequestFulfillmentsByDriverId(driverId);
         }
 
-        public Task<bool> AcceptCabRequest(CabRequest cabRequest)
+        public Task<bool> AcceptCabRequest(CabRequest cabRequest, int driverId)
         {
-            return cabService.AcceptCabRequest(cabRequest);
+            return cabService.AcceptCabRequest(cabRequest, driverId);
         }
 
         public Task<bool> CompleteCabRequestDriverSide(CabRequestFulfillment fulfillment)
