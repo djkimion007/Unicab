@@ -24,5 +24,11 @@ namespace Unicab.Api.Models
         public double FareCharge { get; set; }
         public bool IsFarePaid { get; set; }
         public bool IsFareSplit { get; set; }
+
+        public bool DriverHasCancelled { get; set; }
+        public DateTime DriverCancelledDateTime { get; set; }
+
+        public bool PassengerHasCancelled { get; set; }
+        public DateTime PassengerCancelledDateTime { get; set; }
     }
 }

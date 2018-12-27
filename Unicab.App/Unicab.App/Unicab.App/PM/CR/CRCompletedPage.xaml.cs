@@ -43,7 +43,7 @@ namespace Unicab.App.PM.CR
             if (completedSuccess)
                 await DisplayAlert("Complete Cab Ride", "Your cab ride has been completed. Thank you for using Unicab Service!", "OK");
             else
-                await DisplayAlert("Complete Cab Ride", "There's an issue completing the ride, kindly contact technical service", "OK");
+                await DisplayAlert("Complete Cab Ride", "Oops, the driver has not initiated ride completion yet. Please ask the driver to complete the ride. Thank you.", "OK");
 
             await Navigation.PopToRootAsync();
         }
