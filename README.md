@@ -9,7 +9,7 @@ This project consists of three components:
 2. Admin (Web) interface (**__Unicab.Admin__**)
 3. Cross-platform mobile application (**__Unicab.App__**)
 
-The project makes use of **ASP.NET Core Razor Pages and MVC**, as well as **Xamarin.Forms cross-platform
+The project makes use of **ASP.NET Core Razor Pages / MVC and Entity Framework Core**, as well as **Xamarin.Forms cross-platform
 mobile development** via **Visual Studio 2017** - adequate knowledge of these technologies are expected.
 
 ## Minimum Prerequisites:
@@ -25,16 +25,21 @@ Xamarin and ASP.NET Web Development workloads installed.
 2. Load the solution file from the desired solution (API or Web or App)
 3. Explore, test and fix the codes!
 
-### Starting the API data server
+### a. Starting the API data server
 
-1. Load **Unicab.Api** solution (Unicab.Api.sln) and do a Rebuild Solution
+1. Load **Unicab.Api** solution (Unicab.Api.sln)
+   - **You will first need to set up MS SQL Server LocalDB for the data server to function**
+   a. Go to **View -> Other Windows -> Package Manager Console**
+   b. Once the PMC is ready, enter `Add-Migration InitialSetup` (InitialSetup is arbitrary, you can name it whatever)
+   c. Then, enter `Update-Database`
+   d. Once everything is done without errors, proceed to the next steps.
 2. Go to **Debug -> Unicab.Api Properties...**
 3. Under **Debug** sub-menu and **Profile: Unicab.Api**, at Web Server Settings, set the **App URL**
 to your computer's network IP address (you can get it from the Task Manager)
 4. Save and press **F5 (Start Debugging)** to start the server under debugging mode in Visual Studio.
 (you can also do a **Ctrl-F5 (Start Without Debugging)** if you wish to)
 
-### Starting the Admin (Web) server
+### b. Starting the Admin (Web) server
 
 1. Load **Unicab.Web** solution (Unicab.Web.sln)
 2. Go to **Debug -> Unicab.Api Properties...**
@@ -46,7 +51,7 @@ to your computer's network IP address (you can get it from the Task Manager)
 to fire up the Web server. The site can then be accessed from the URL link incl. the port number
 (http://10.207.142.52:26830 for example.)
 
-### Loading and running the application (Android)
+### c. Loading and running the application (Android)
 
 **IMPORTANT PREREQUISITE - Before running the app, make sure that the API data server is __up and running__,
 otherwise the app will crash.**
@@ -65,7 +70,7 @@ well, **congratulations!** Have fun exploring and improving on the code and feat
 
 ## Additional notes
 
-List of abbreviations used in Unicab.App:
+List of abbreviations used in **Unicab.App**:
 
 * CM - common module
 * DM - driver module
@@ -76,7 +81,8 @@ List of abbreviations used in Unicab.App:
 Many features are either working well, or somewhat working, or not working at all - that's something to put in
 mind if you are trying this out for the very first time.
 
+If ever you encounter issues along the way,  Mr. Google and Mrs. StackOverflow are ready to get you back up and going!
+
 ## Contact
 
-I am contactable via e-mail at `lesterngkimho (at) gmail (dot) com` at anytime in case any (minor) assistance
-is needed. Otherwise, Mr. Google and Mrs. StackOverflow are willing to assist as well!
+I am contactable via e-mail at `lesterngkimho (at) gmail (dot) com` at anytime.
