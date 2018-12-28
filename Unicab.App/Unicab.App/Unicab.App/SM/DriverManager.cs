@@ -24,5 +24,10 @@ namespace Unicab.App.SM
         {
             return driverService.GetAvailableDrivers();
         }
+
+        public Task<bool> UpdateProfilePhoto(Driver driver, byte[] profilePhoto)
+        {
+            return driverService.UpdateProfilePhoto(driver, profilePhoto);
+        }
     }
 }

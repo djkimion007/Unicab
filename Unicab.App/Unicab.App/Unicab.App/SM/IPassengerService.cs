@@ -9,5 +9,7 @@ namespace Unicab.App.SM
     public interface IPassengerService
     {
         Task<Passenger> GetPassengerById(int passengerId);
+
+        Task<bool> UpdateProfilePhoto(Passenger passenger, byte[] profilePhoto);
     }
 }

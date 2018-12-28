@@ -19,7 +19,7 @@
                         <Image Source="bg_profile.jpg" Aspect="AspectFill" />
                         <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                             <Label Text="Unicab Service: Passenger" TextColor="White" FontSize="Small" TextDecorations="Underline" HorizontalTextAlignment="Center" />
-                            <controls:CircleImage BorderColor="Black" BorderThickness="2" Source="profilephoto_sample.jpg" Aspect="AspectFit" WidthRequest="85" HeightRequest="85" HorizontalOptions="Center">
+                            <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Aspect="AspectFit" WidthRequest="85" HeightRequest="85" HorizontalOptions="Center">
                                 <controls:CircleImage.GestureRecognizers>
                                     <TapGestureRecognizer x:Name="ProfilePhotoTapper" NumberOfTapsRequired="1" Tapped="ProfileTapper_Tapped" />
                                 </controls:CircleImage.GestureRecognizers>

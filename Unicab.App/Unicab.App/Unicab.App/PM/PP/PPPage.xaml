@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cvt="clr-namespace:Unicab.App.CM"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Unicab.App.PM.PP.PPPage"
              Title="My Profile">
+    <ContentPage.Resources>
+        <cvt:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <Grid>
@@ -37,7 +41,7 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Source="profilephoto_sample.jpg" Aspect="AspectFit"
+                <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Aspect="AspectFill" Source="{Binding ProfilePhoto,Converter={StaticResource ByteArrayToImageSourceConverter}}"
                                       WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" />
 
                 <Label x:Name="FullName" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" />
@@ -55,7 +59,7 @@
                 <Label Text="Phone Number" TextDecorations="Underline" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" />
                 <Label Text="{Binding PhoneNumber}" FontSize="Medium" Grid.Row="17" Grid.Column="1" Grid.ColumnSpan="2" />
 
-                <Button x:Name="UpdateProfilePhotoButton" Text="Update Profile" Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="2" Clicked="UpdateProfilePhotoButton_Clicked" />
+                <Button x:Name="UpdateProfilePhotoButton" Text="Update Profile Photo" Grid.Row="19" Grid.Column="1" Grid.ColumnSpan="2" Clicked="UpdateProfilePhotoButton_Clicked" />
 
             </Grid>
 

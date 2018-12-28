@@ -11,5 +11,7 @@ namespace Unicab.App.SM
         Task<Driver> GetDriverById(int driverId);
 
         Task<List<Driver>> GetAvailableDrivers();
+
+        Task<bool> UpdateProfilePhoto(Driver driver, byte[] profilePhoto);
     }
 }

@@ -70,5 +70,39 @@ namespace Unicab.App.SM
 
             return driver;
         }
+
+        public async Task<bool> UpdateProfilePhoto(Driver driver, byte[] profilePhoto)
+        {
+            driver.ModifiedDateTime = DateTime.Now;
+            driver.MatricsCardPhoto = profilePhoto;
+
+            var uri = new Uri(string.Format(AppServerConstants.DriversUrl, driver.DriverId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(driver);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST {0} OK: Driver update successful", responseMessage.StatusCode);
+
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Driver update failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+        }
     }
 }

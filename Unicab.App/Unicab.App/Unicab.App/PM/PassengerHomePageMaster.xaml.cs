@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Unicab.App.PM
 
             BindingContext = new PassengerHomePageMasterViewModel();
             ListView = MenuItemsListView;
+
+            PgrPhoto.Source = ImageSource.FromStream(() => new MemoryStream(App.CurrentPassenger.ProfilePhoto));
 
             FullName.Text = string.Format("{0} {1}", App.CurrentPassenger.FirstName, App.CurrentPassenger.LastName);
         }

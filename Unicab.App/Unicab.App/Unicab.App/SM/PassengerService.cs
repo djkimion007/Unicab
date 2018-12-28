@@ -45,5 +45,39 @@ namespace Unicab.App.SM
 
             return passenger;
         }
+
+        public async Task<bool> UpdateProfilePhoto(Passenger passenger, byte[] profilePhoto)
+        {
+            passenger.ModifiedDateTime = DateTime.Now;
+            passenger.MatricsCardPhoto = profilePhoto;
+
+            var uri = new Uri(string.Format(AppServerConstants.PassengersUrl, passenger.PassengerId));
+            HttpResponseMessage responseMessage = null;
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(passenger);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                responseMessage = await client.PutAsync(uri, content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine("POST {0} OK: Passenger update successful", responseMessage.StatusCode);
+
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine(@"POST {0} NOT OK: Passenger update failed", responseMessage.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR: {0}", ex.Message);
+            }
+
+            return false;
+        }
     }
 }

@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cvt="clr-namespace:Unicab.App.CM"
              x:Class="Unicab.App.PM.BD.BrowseDriversPage"
              Title="Browse Drivers">
+    <ContentPage.Resources>
+        <cvt:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+    </ContentPage.Resources>
     <ListView x:Name="BrowseDriversListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
@@ -17,7 +21,7 @@
                         <Frame OutlineColor="Accent" Padding="5">
                             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                 <StackLayout Orientation="Horizontal">
-                                    <Image Source="profile_blank.png" WidthRequest="60" HeightRequest="60" />
+                                    <Image x:Name="DvrPhoto" Source="{Binding ProfilePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="60" HeightRequest="60" />
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                                         <StackLayout Orientation="Horizontal">
                                             <Label Text="{Binding FirstName}" FontSize="Medium" FontAttributes="Bold" />

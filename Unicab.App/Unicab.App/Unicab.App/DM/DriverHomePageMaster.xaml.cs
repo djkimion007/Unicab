@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Unicab.App.DM
 
             BindingContext = new DriverHomePageMasterViewModel();
             ListView = MenuItemsListView;
+
+            DvrPhoto.Source = ImageSource.FromStream(() => new MemoryStream(App.CurrentDriver.ProfilePhoto));
 
             FullName.Text = string.Format("{0} {1}", App.CurrentDriver.FirstName, App.CurrentDriver.LastName);
         }

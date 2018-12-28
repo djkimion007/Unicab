@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,18 +14,24 @@ namespace Unicab.App.PM.BD
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SelectedDriverPage : ContentPage
     {
-        private string PhoneNumber { get; set; }
+        private Driver driver;
 
-        public SelectedDriverPage(Driver driver)
+        public SelectedDriverPage(Driver selectedDriver)
         {
             InitializeComponent();
+
+            driver = selectedDriver;
 
             BindingContext = driver;
             
             FullNameLabel.Text = string.Format("{0} {1}", driver.FirstName, driver.LastName);
 
-            PhoneNumber = driver.PhoneNumber;
 
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
 
         private async void CallDriverBtn_Clicked(object sender, EventArgs e)
@@ -37,7 +44,7 @@ namespace Unicab.App.PM.BD
 
             try
             {
-                PhoneDialer.Open(PhoneNumber);
+                PhoneDialer.Open(driver.PhoneNumber);
             }
             catch (Exception ex)
             {
@@ -56,7 +63,7 @@ namespace Unicab.App.PM.BD
 
             try
             {
-                string[] recipient = { PhoneNumber };
+                string[] recipient = { driver.PhoneNumber };
                 await Sms.ComposeAsync(new SmsMessage(string.Empty, recipient));
             }
             catch (Exception ex)

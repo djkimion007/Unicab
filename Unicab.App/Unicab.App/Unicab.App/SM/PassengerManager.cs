@@ -19,5 +19,10 @@ namespace Unicab.App.SM
         {
             return passengerService.GetPassengerById(passengerId);
         }
+
+        public Task<bool> UpdateProfilePhoto(Passenger passenger, byte[] profilePhoto)
+        {
+            return passengerService.UpdateProfilePhoto(passenger, profilePhoto);
+        }
     }
 }

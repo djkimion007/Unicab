@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cvt="clr-namespace:Unicab.App.CM"
               xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Unicab.App.PM.BD.SelectedDriverPage"
              Title="Selected Driver">
+    <ContentPage.Resources>
+        <cvt:ByteArrayToImageSourceConverter x:Key="ByteArrayToImageSourceConverter" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <Grid>
@@ -33,7 +37,7 @@
                     <ColumnDefinition Width="10" />
                 </Grid.ColumnDefinitions>
 
-                <controls:CircleImage x:Name="PgrPhoto" BorderColor="Black" BorderThickness="2" Source="profile_blank.png" Aspect="AspectFill" WidthRequest="85" HeightRequest="85" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+                <controls:CircleImage x:Name="DvrPhoto" BorderColor="Black" BorderThickness="2" Aspect="AspectFill" Source="{Binding ProfilePhoto, Converter={StaticResource ByteArrayToImageSourceConverter}}" WidthRequest="85" HeightRequest="85" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" />
                 <Label x:Name="FullNameLabel" FontSize="Large" HorizontalTextAlignment="Center" FontAttributes="Bold" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
 
                 <Label Text="Vehicle Plate No." TextDecorations="Underline" Grid.Row="5" Grid.Column="1" />
