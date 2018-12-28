@@ -29,14 +29,14 @@ Xamarin and ASP.NET Web Development workloads installed.
 
 1. Load **Unicab.Api** solution (Unicab.Api.sln)
 2. **You will first need to set up MS SQL Server LocalDB for the data server to function**
-   a. Go to **View -> Other Windows -> Package Manager Console**
-   b. Once the PMC is ready, enter `Add-Migration InitialSetup` (InitialSetup is arbitrary, you can name it whatever)
-   c. Then, enter `Update-Database`
-   d. Once everything is done without errors, proceed to the next steps.
-2. Go to **Debug -> Unicab.Api Properties...**
-3. Under **Debug** sub-menu and **Profile: Unicab.Api**, at Web Server Settings, set the **App URL**
+   1. Go to **View -> Other Windows -> Package Manager Console**
+   2. Once the PMC is ready, enter `Add-Migration InitialSetup` (InitialSetup is arbitrary, you can name it whatever)
+   3. Then, enter `Update-Database`
+   4. Once everything is done without errors, proceed to the next steps.
+3. Go to **Debug -> Unicab.Api Properties...**
+4. Under **Debug** sub-menu and **Profile: Unicab.Api**, at Web Server Settings, set the **App URL**
 to your computer's network IP address (you can get it from the Task Manager)
-4. Save and press **F5 (Start Debugging)** to start the server under debugging mode in Visual Studio.
+5. Save and press **F5 (Start Debugging)** to start the server under debugging mode in Visual Studio.
 (you can also do a **Ctrl-F5 (Start Without Debugging)** if you wish to)
 
 ### b. Starting the Admin (Web) server
