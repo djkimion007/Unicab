@@ -1,6 +1,12 @@
 # Unicab
 **UNICAB SERVICE** - a project to develop an app ecosystem for student cab drivers in Universiti Sains Malaysia!
 
+* If you are reading this README from the project CD, you can also access this README online at the project's
+GitHub link: https://github.com/djkimion007/Unicab
+
+* If you intend to take up and make improvements on this project, I highly recommend that you fork this project
+(it's MIT-licensed anyway).
+
 ## Preamble
 
 This project consists of three components:
@@ -28,7 +34,8 @@ Xamarin and ASP.NET Web Development workloads installed.
 ### a. Starting the API data server
 
 1. Load **Unicab.Api** solution (Unicab.Api.sln)
-2. **You will first need to set up MS SQL Server LocalDB for the data server to function**
+2. **You will first need to set up MS SQL Server LocalDB for the data server to function. If this step is done once, then you
+don't need to repeat this step again later on, unless you changed the data models in __Unicab.Api.Models__**
    1. Go to **View -> Other Windows -> Package Manager Console**
    2. Once the PMC is ready, enter `Add-Migration InitialSetup` (InitialSetup is arbitrary, you can name it whatever)
    3. Then, enter `Update-Database`
