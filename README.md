@@ -19,7 +19,7 @@ Xamarin and ASP.NET Web Development workloads installed.
 2. A decent computer with a decent specification - minimum **8GB RAM** and about 1GB disk space.
 3. (Android) An Android smartphone with at least 1GB RAM and version 5.0 (Lollipop) and above.
 
-## Getting Started:
+## Getting Started
 
 1. Open Visual Studio.
 2. Load the solution file from the desired solution (API or Web or App)
@@ -72,6 +72,9 @@ List of abbreviations used in Unicab.App:
 * LM - landing module (when user starts the app, or exits driver or passenger module)
 * PM - passenger module
 * SM - services module
+
+Many features are either working well, or somewhat working, or not working at all - that's something to put in
+mind if you are trying this out for the very first time.
 
 ## Contact
 
